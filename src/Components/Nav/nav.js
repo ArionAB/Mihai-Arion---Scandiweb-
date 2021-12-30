@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import CategoryName from "../../Components/Category/CategoryName";
 import SelectCurrency from "../../Components/selectCurrency/SelectCurrency";
+import { Link } from "react-router-dom";
+
 import Logo from "../../Assets/shopping-bag-svgrepo-com.svg";
 
 import "./nav.styles.scss";
@@ -9,7 +11,9 @@ class Nav extends Component {
     return (
       <div className="nav">
         <CategoryName />
-        <img src={Logo} className="logo" alt="Logo"></img>
+        <Link to="/">
+          <img src={Logo} className="logo" alt="Logo"></img>
+        </Link>
         <SelectCurrency />
       </div>
     );
