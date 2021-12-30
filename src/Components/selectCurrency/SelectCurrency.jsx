@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
+import Cart from "../../Assets/shopping-cart-svgrepo-com.svg";
+
+import "./selectCurrency.styles.scss";
 
 const SELECT_CURRENCY = gql`
   query {
@@ -31,8 +34,9 @@ class SelectCurrency extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="currency">
         <select>{this.SelectCurrencies()}</select>
+        <img src={Cart} className="shoppingCart" alt="Shopping Cart"></img>
       </div>
     );
   }
