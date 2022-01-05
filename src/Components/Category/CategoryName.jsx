@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
 import { Link } from "react-router-dom";
+import Clothes from "../../Pages/Clothes/clothes";
 
 const GET_CATEGORY_NAMES = gql`
   query {
@@ -24,9 +25,11 @@ class CategoryName extends Component {
     } else {
       return data.categories.map((category) => {
         return (
-          <Link to={`/${category.name}`}>
-            <li key={category.name}>{category.name}</li>
-          </Link>
+          <>
+            <Link to={`/${category.name}`}>
+              <li key={category.name}>{category.name}</li>
+            </Link>
+          </>
         );
       });
     }
