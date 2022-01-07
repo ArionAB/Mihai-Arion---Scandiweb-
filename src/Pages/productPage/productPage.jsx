@@ -34,8 +34,8 @@ const GET_ALL = gql`
 `;
 
 const GET_PRODUCT = gql`
-  query {
-    product(id: "huarache-x-stussy-le") {
+  query GetProduct($id: String!) {
+    product(id: $id) {
       id
       name
     }
@@ -50,13 +50,13 @@ const GET_PRODUCT = gql`
   }
 `; */
 
-// const id = this.props.match.params.id;
+const id = "huarache-x-stussy-le";
 class ProductPage extends Component {
   GetAll() {
     const data = this.props.data;
     console.log(data);
-    console.log(data.products); //undef
-    console.log(data.product);
+    console.log(data.variables);
+
     if (data.loading) {
       return <div>Loading Product</div>;
     }
@@ -76,8 +76,17 @@ class ProductPage extends Component {
   }
 }
 
-export default graphql(GET_PRODUCT)(ProductPage);
+export default graphql(GET_PRODUCT, {
+  options: { variables: { id } },
+})(ProductPage);
 
+// Options are computed from `props` here.
+/* export default graphql(GET_PRODUCT, {
+  options: (props) => ({
+    variables: { id: props.id },
+  }),
+})(ProductPage);
+ */
 /* function ProductPage({ data }) {
   const { id } = useParams();
 
