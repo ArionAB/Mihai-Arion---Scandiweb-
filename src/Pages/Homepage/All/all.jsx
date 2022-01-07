@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
+import Cart from "../../../Assets/shopping-cart-svgrepo-com.svg";
+import { Link } from "react-router-dom";
 
 import "./all.styles.scss";
+import ProductPage from "../../productPage/productPage";
 
 /* const GET_ALL = gql`
   query category($title: String!) {
@@ -50,22 +53,28 @@ const GET_ALL = gql`
 class All extends Component {
   GetAll() {
     const data = this.props.data;
+
     if (data.loading) {
-      return <div>Loading Currencies</div>;
+      return <div>Loading Categories</div>;
     }
     if (data.error) {
       return <div>Something went wrong</div>;
     } else {
-      return data.category.products.map((product) => {
+      return data.category.products.map((product, index) => {
         return (
-          <div key={product.id} className="card">
-            <img src={product.gallery} alt="product"></img>
-            <p className="name">{product.name}</p>
-            <div className="price">
-              <p>{product.prices[0].currency.symbol}</p>
-              <p>{product.prices[0].amount}</p>
+          <Link to={`/${product.id}`}>
+            <div key={index} className="card">
+              <img src={product.gallery} alt="product"></img>
+
+              <img src={Cart} alt="cart" className="cart" />
+
+              <p className="name">{product.name}</p>
+              <div className="price">
+                <p>{product.prices[0].currency.symbol}</p>
+                <p>{product.prices[0].amount}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         );
       });
     }

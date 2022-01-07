@@ -4,6 +4,10 @@
   margin-top: 5rem;
   gap: 5rem;
 
+  a {
+    text-decoration: none;
+  }
+
   .card {
     display: flex;
     flex-direction: column;
@@ -12,15 +16,32 @@
     width: 25vw;
     height: 40vh;
     box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
 
     &:hover {
       box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     }
   }
+  .card:hover .cart {
+    display: block;
+    position: absolute;
+    right: 25px;
+    bottom: 100px;
+    background-color: green;
+    padding: 5px;
+    border-radius: 60%;
+  }
 
   img {
     height: 40vh;
     width: 20vw;
+  }
+
+  .cart {
+    width: 25px;
+    height: 25px;
+    display: none;
   }
 
   .name {

@@ -23,11 +23,11 @@ class CategoryName extends Component {
     if (data.error) {
       return <div>Something went wrong</div>;
     } else {
-      return data.categories.map((category) => {
+      return data.categories.map((category, index) => {
         return (
           <>
-            <Link to={`/${category.name}`}>
-              <li key={category.name}>{category.name}</li>
+            <Link key={index} to={`/${category.name}`}>
+              <li>{category.name}</li>
             </Link>
           </>
         );

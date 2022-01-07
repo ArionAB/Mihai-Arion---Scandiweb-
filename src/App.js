@@ -6,6 +6,7 @@ import Nav from "./Components/Nav/nav";
 import All from "./Pages/Homepage/All/all";
 import Clothes from "./Pages/Clothes/clothes";
 import Tech from "./Pages/Tech/tech";
+import ProductPage from "./Pages/productPage/productPage";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path="/all" element={<All />} />
           <Route path="/clothes" element={<Clothes />} />
           <Route path="/tech" element={<Tech />} />
+          <Route path="/:id" element={<ProductPage />} />
         </Routes>
       </div>
       // <Route path="/clothes" element={<Clothes />} />
