@@ -1,4 +1,6 @@
-export const setProdID = (prodId) => ({
-  type: "SET_PROD_ID",
-  payload: prodId,
+import { ProductActionTypes } from "./productiID.types";
+
+export const setProdID = (id) => ({
+  type: ProductActionTypes.SET_PROD_ID,
+  payload: id,
 });

@@ -8,4 +8,17 @@
   width: 25px;
   height: 25px;
   margin-left: 1rem;
+  position: relative;
+}
+
+.item-count {
+  position: absolute;
+  right: 4vw;
+  top: 2.5vh;
+
+  background-color: black;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 }

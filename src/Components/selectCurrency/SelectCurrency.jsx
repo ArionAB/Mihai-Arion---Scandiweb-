@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
-import Cart from "../../Assets/shopping-cart-svgrepo-com.svg";
+import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.svg";
 
 import "./selectCurrency.styles.scss";
 
@@ -36,7 +36,10 @@ class SelectCurrency extends Component {
     return (
       <div className="currency">
         <select>{this.SelectCurrencies()}</select>
-        <img src={Cart} className="shoppingCart" alt="Shopping Cart"></img>
+        <div>
+          <Cart className="shoppingCart" />
+          <span className="item-count">0</span>
+        </div>
       </div>
     );
   }

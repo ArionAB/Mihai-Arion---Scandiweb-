@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import GetId from "../../Components/GetId";
 
 const GET_PRODUCT = gql`
   query GetProduct($id: String!) {

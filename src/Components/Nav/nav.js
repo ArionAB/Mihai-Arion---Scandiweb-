@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../Assets/shopping-bag-svgrepo-com.svg";
 
 import "./nav.styles.scss";
+import CartDropdown from "../Cart-dropdown/cart-dropdown";
 class Nav extends Component {
   render() {
     return (
@@ -15,6 +16,7 @@ class Nav extends Component {
           <img src={Logo} className="logo" alt="Logo"></img>
         </Link>
         <SelectCurrency />
+        <CartDropdown />
       </div>
     );
   }
