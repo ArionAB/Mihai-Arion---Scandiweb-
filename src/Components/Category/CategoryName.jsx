@@ -26,7 +26,7 @@ class CategoryName extends Component {
       return data.categories.map((category, index) => {
         return (
           <>
-            <Link key={index} to={`/${category.name}`}>
+            <Link key={index} to={`/category/${category.name}`}>
               <li>{category.name}</li>
             </Link>
           </>

@@ -45,6 +45,7 @@ const GET_CLOTHES = gql`
 class Clothes extends Component {
   GetClothes() {
     const data = this.props.data;
+    console.log(data);
     if (data.loading) {
       return <div>Loading Currencies</div>;
     }

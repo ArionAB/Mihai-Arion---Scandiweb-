@@ -49,6 +49,7 @@ class Tech extends Component {
     if (data.error) {
       return <div>Something went wrong</div>;
     } else {
+      console.log(data.category.products);
       return data.category.products.map((product) => {
         return (
           <div key={product.id} className="card">

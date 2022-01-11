@@ -15,11 +15,38 @@ const GET_PRODUCT = gql`
     }
   }
 `;
+/* const GET_PRODUCT = gql`
+  query GetProduct($id: String!) {
+    product(id: $id) {
+      id
+      brand
+      name
+      gallery
+      inStock
+      prices {
+        currency
+        amount
+      }
+      category
+      description
+      attributes {
+        id
+        name
+        type
+        items {
+          displayValue
+          value
+          id
+        }
+      }
+    }
+  }
+`; */
 
 class ProductPage extends Component {
   constructor(props) {
     super(props);
-    this.getProduct = this.getProduct.bind(this);
+    // this.getProduct = this.getProduct.bind(this);
     // this.mapProduct = this.mapProduct.bind(this);
 
     this.state = {
@@ -52,30 +79,20 @@ class ProductPage extends Component {
   async getProduct() {
     const id = this.props.id;
     console.log(id);
-
     const response = await client.query({
       query: GET_PRODUCT,
       variables: {
         id: id,
       },
     });
-    console.log(response, "***RESPONSE***");
-    this.setState({ item: response.data.product });
-    console.log({ item: response.data.product }, "***ITEM");
-    // this.mapProduct();
 
-    // console.log(response.data.product);
-    // console.log(response.data.product.brand);
-    // const { item } = this.state;
-    // console.log(item);
-    // return <div>{item.id}</div>;
+    this.setState({ item: response.data.product });
   }
 
   render() {
     const { item } = this.state;
     console.log(item);
-    // return <div>{this.GetAll()}</div>;
-    // return <div>{this.getProduct()}</div>;
+
     return <div>{item.brand}</div>;
   }
 }

@@ -3,17 +3,14 @@ import ProductPage from "../Pages/productPage/productPage";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setProdID } from "../Redux/productID/productID.actions";
+import All from "../Pages/Homepage/All/all";
 
 function GetId() {
-  const [prodID, setProdID] = useState(null);
   const { id } = useParams();
-  useEffect(() => {
-    setProdID(id);
-  }, []);
 
   return (
     <div>
-      <ProductPage id={prodID} />
+      <ProductPage id={id} />
     </div>
   );
 }

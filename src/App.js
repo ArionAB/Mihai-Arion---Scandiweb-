@@ -8,6 +8,7 @@ import Clothes from "./Pages/Clothes/clothes";
 import Tech from "./Pages/Tech/tech";
 import ProductPage from "./Pages/productPage/productPage";
 import GetId from "./Components/GetId";
+import GetTitle from "./Components/getTitle";
 
 class App extends Component {
   render() {
@@ -16,12 +17,12 @@ class App extends Component {
         <Nav />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/all" element={<All />} />
-          <Route path="/clothes" element={<Clothes />} />
-          <Route path="/tech" element={<Tech />} />
-          <Route path="/:id" element={<GetId />} />
+          <Route path="/category/:title" element={<GetTitle />} />
+          <Route path="/product/:id" element={<GetId />} />
         </Routes>
       </div>
+      // <Route path="/clothes" element={<Clothes />} />
+      // <Route path="/tech" element={<Tech />} />
       // <Route path="/clothes" element={<Clothes />} />
     );
   }
