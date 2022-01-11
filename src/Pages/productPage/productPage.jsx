@@ -6,29 +6,15 @@ import { connect } from "react-redux";
 import GetId from "../../Components/GetId";
 import { client } from "../../index";
 
+import "./productPage.styles.scss";
+
 const GET_PRODUCT = gql`
   query GetProduct($id: String!) {
     product(id: $id) {
       id
       brand
       name
-    }
-  }
-`;
-/* const GET_PRODUCT = gql`
-  query GetProduct($id: String!) {
-    product(id: $id) {
-      id
-      brand
-      name
       gallery
-      inStock
-      prices {
-        currency
-        amount
-      }
-      category
-      description
       attributes {
         id
         name
@@ -41,16 +27,17 @@ const GET_PRODUCT = gql`
       }
     }
   }
-`; */
+`;
 
 class ProductPage extends Component {
   constructor(props) {
     super(props);
-    // this.getProduct = this.getProduct.bind(this);
-    // this.mapProduct = this.mapProduct.bind(this);
+
+    this.toggleClass = this.toggleClass.bind(this);
 
     this.state = {
       item: {},
+      active: false,
       chosenImage: [],
       savedAttributes: [],
       prices: [],
@@ -59,26 +46,15 @@ class ProductPage extends Component {
   componentDidMount() {
     this.getProduct();
   }
-  /*   mapProduct() {
-    if (this.state.item) {
-      this.setState((prevState) => {
-        const emptyAttrs = this.state.item.attributes.map((i) => {
-          return {
-            id: i.id,
-            name: i.name,
-            type: i.type,
-            item: null,
-          };
-        });
-        return { ...prevState, savedAttributes: emptyAttrs };
-      });
-      this.setState({ chosenImage: this.state.item.gallery[0] });
-    }
-  } */
+
+  toggleClass() {
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
+  }
 
   async getProduct() {
     const id = this.props.id;
-    console.log(id);
+
     const response = await client.query({
       query: GET_PRODUCT,
       variables: {
@@ -89,13 +65,50 @@ class ProductPage extends Component {
     this.setState({ item: response.data.product });
   }
 
+  getGallery() {
+    const { item } = this.state;
+    const gallery = item.gallery;
+
+    const entries = Object.entries(gallery ? gallery : "");
+
+    return entries.map((entry) => {
+      console.log(entry);
+      console.log(entry[1]);
+      /*       entry.filter((filtru) => {
+        if (filtru[0] == entry[0]);
+
+        alert("nu e egal");
+      }); */
+      return (
+        <>
+          <p>{entry[0]}</p>
+          <img
+            className={this.state.active ? "images" : "oneImage"}
+            onClick={this.toggleClass}
+            src={entry[1]}
+            alt=""
+          ></img>
+        </>
+      );
+    });
+  }
+
   render() {
     const { item } = this.state;
-    console.log(item);
 
-    return <div>{item.brand}</div>;
+    return (
+      <div>
+        <h1>{item.brand}</h1>
+        <div className="gallery">{this.getGallery()}</div>
+        <div></div>
+      </div>
+    );
   }
 }
+/* const gallery = item.gallery;
+    for (const photo of gallery) {
+      console.log(photo);
+    } */
 
 const mapStateToProps = (state) => ({
   prodId: state.product.prodID,

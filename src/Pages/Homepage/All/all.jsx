@@ -30,27 +30,6 @@ const GET_ALL = gql`
     }
   }
 `;
-/* const GET_ALL = gql`
-  query {
-    category(input: { title: "all" }) {
-      name
-      products {
-        id
-        gallery
-        name
-        inStock
-
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
-        }
-      }
-    }
-  }
-`; */
 
 class All extends Component {
   constructor(props) {
@@ -75,7 +54,7 @@ class All extends Component {
   async getCategories() {
     const title = this.props.title;
     console.log(title);
-    // const { title } = this.props;
+
     const response = await client.query({
       query: GET_ALL,
       variables: {
@@ -86,42 +65,15 @@ class All extends Component {
     this.forceUpdate();
   }
 
-  /*  GetAll() {
-    const { category } = this.state;
-
-    if (category.loading) {
-      return <div>Loading Categories</div>;
-    }
-    if (category.error) {
-      return <div>Something went wrong</div>;
-    } else {
-      return category.products.map((product, index) => {
-        return (
-          <Link to={`/${product.id}`}>
-            <div key={index} className="card">
-              <img src={product.gallery} alt="product"></img>
-
-              <img src={Cart} alt="cart" className="cart" />
-
-              <p className="name">{product.name}</p>
-              <div className="price">
-                <p>{product.prices[0].currency.symbol}</p>
-                <p>{product.prices[0].amount}</p>
-              </div>
-            </div>
-          </Link>
-        );
-      });
-    }
-  } */
   mapCategories() {
     const { category } = this.state;
-    console.log(category.products);
+
     return category.products?.map((product, index) => {
       return (
         <Link to={`/product/${product.id}`}>
           <div key={index} className="card">
             <img src={product.gallery} alt="product"></img>
+            {!product.inStock && <div className="stock">OUT OF STOCK</div>}
 
             <img src={Cart} alt="cart" className="cart" />
 
@@ -141,8 +93,3 @@ class All extends Component {
 }
 
 export default All;
-/* export default graphql(GET_ALL, {
-  variables: {
-    title
-  }
-})(All); */
