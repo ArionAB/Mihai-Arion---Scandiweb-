@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
 import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.svg";
+import { connect } from "react-redux";
+import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
 
 import "./selectCurrency.styles.scss";
 
@@ -32,17 +34,25 @@ class SelectCurrency extends Component {
       });
     }
   }
+  // <select>{this.SelectCurrencies()}</select>
   render() {
     return (
       <div className="currency">
-        <select>{this.SelectCurrencies()}</select>
-        <div>
-          <Cart className="shoppingCart" />
-          <span className="item-count">0</span>
+        <div onClick={toggleCartHidden}>
+          <Cart className="shoppingCart" onClick={toggleCartHidden} />
+          <span className="item-count" onClick={toggleCartHidden}>
+            0
+          </span>
         </div>
       </div>
     );
   }
 }
 
-export default graphql(SELECT_CURRENCY)(SelectCurrency);
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+export default connect(null, mapDispatchToProps)(SelectCurrency);
+
+// graphql(SELECT_CURRENCY)(SelectCurrency)

@@ -13,7 +13,7 @@ function GetId() {
 
   return (
     <div>
-      <ProductPage />
+      <ProductPage id={prodID} />
     </div>
   );
 }

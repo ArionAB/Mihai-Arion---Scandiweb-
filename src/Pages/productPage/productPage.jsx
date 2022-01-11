@@ -4,52 +4,92 @@ import { graphql } from "@apollo/client/react/hoc";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import GetId from "../../Components/GetId";
+import { client } from "../../index";
 
 const GET_PRODUCT = gql`
   query GetProduct($id: String!) {
     product(id: $id) {
       id
+      brand
       name
     }
   }
 `;
 
-// const id = "huarache-x-stussy-le";
-
 class ProductPage extends Component {
-  GetAll() {
-    const data = this.props.data;
-    // const id = this.props.id;
-    const id = this.props.params;
+  constructor(props) {
+    super(props);
+    this.getProduct = this.getProduct.bind(this);
+    // this.mapProduct = this.mapProduct.bind(this);
 
-    if (data.loading) {
-      return <div>Loading Product</div>;
-    }
-    if (data.error) {
-      return <div>Something went wrong on product page</div>;
-    } else {
-      return (
-        <div key={data.product.id}>
-          <p>{data.product.id}</p>
-          <p>{data.product.name}</p>
-        </div>
-      );
-    }
+    this.state = {
+      item: {},
+      chosenImage: [],
+      savedAttributes: [],
+      prices: [],
+    };
   }
+  componentDidMount() {
+    this.getProduct();
+  }
+  /*   mapProduct() {
+    if (this.state.item) {
+      this.setState((prevState) => {
+        const emptyAttrs = this.state.item.attributes.map((i) => {
+          return {
+            id: i.id,
+            name: i.name,
+            type: i.type,
+            item: null,
+          };
+        });
+        return { ...prevState, savedAttributes: emptyAttrs };
+      });
+      this.setState({ chosenImage: this.state.item.gallery[0] });
+    }
+  } */
+
+  async getProduct() {
+    const id = this.props.id;
+    console.log(id);
+
+    const response = await client.query({
+      query: GET_PRODUCT,
+      variables: {
+        id: id,
+      },
+    });
+    console.log(response, "***RESPONSE***");
+    this.setState({ item: response.data.product });
+    console.log({ item: response.data.product }, "***ITEM");
+    // this.mapProduct();
+
+    // console.log(response.data.product);
+    // console.log(response.data.product.brand);
+    // const { item } = this.state;
+    // console.log(item);
+    // return <div>{item.id}</div>;
+  }
+
   render() {
-    return <div>{this.GetAll()}</div>;
+    const { item } = this.state;
+    console.log(item);
+    // return <div>{this.GetAll()}</div>;
+    // return <div>{this.getProduct()}</div>;
+    return <div>{item.brand}</div>;
   }
 }
-const id = "huarache-x-stussy-le";
 
 const mapStateToProps = (state) => ({
   prodId: state.product.prodID,
 });
 
-export default graphql(GET_PRODUCT, {
+export default ProductPage;
+
+/* export default graphql(GET_PRODUCT, {
   options: { variables: { id } },
 })(ProductPage);
-connect(mapStateToProps)(ProductPage);
+connect(mapStateToProps)(ProductPage); */
 
 /* export default graphql(GET_PRODUCT, {
   options: { variables: { id } },
