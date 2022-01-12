@@ -8,3 +8,25 @@
   width: 200px;
   height: 200px;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumb {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  & img {
+    height: 100px;
+    width: 100px;
+  }
+  & img:nth-child(2) {
+    height: 200px;
+    width: 200px;
+  }
+}
