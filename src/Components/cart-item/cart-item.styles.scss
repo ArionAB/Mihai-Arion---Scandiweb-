@@ -1,0 +1,41 @@
+.cart-img {
+  height: 100px;
+  width: 100px;
+}
+
+.price-symbol {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  p {
+    display: flex;
+    margin: 0;
+  }
+}
+
+.increment {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    width: 25px;
+  }
+
+  span {
+    width: 25px;
+  }
+}
+
+.btn-img {
+  display: flex;
+}
+
+.name {
+  height: 100%;
+}
