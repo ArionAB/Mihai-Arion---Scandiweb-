@@ -46,7 +46,7 @@
 
   .att-button {
     padding: 1rem 1.5rem;
-    margin-left: 0.7rem;
+
     background-color: white;
     border: 1px solid black;
     cursor: pointer;
@@ -78,4 +78,9 @@
     justify-content: start;
     align-items: flex-start;
   }
+}
+.att-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

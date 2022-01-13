@@ -7,10 +7,11 @@ import "./cart-dropdown.styles.scss";
 class CartDropdown extends Component {
   render() {
     const cartItems = this.props.cartItems;
+    const itemCount = this.props.itemCount;
 
     return (
       <div className="cart-dropdown">
-        <div className="mybag">My bag, 0 items</div>
+        <div className="mybag">My bag, {itemCount} items</div>
         <div className="cart-items">
           {cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} item={cartItem} />
@@ -28,6 +29,10 @@ class CartDropdown extends Component {
 
 const mapStateToProps = ({ cart: { cartItems } }) => ({
   cartItems,
+  itemCount: cartItems.reduce(
+    (accQuantity, cartItem) => accQuantity + cartItem.quantity,
+    0
+  ),
 });
 
 export default connect(mapStateToProps)(CartDropdown);

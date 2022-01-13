@@ -78,16 +78,18 @@ class ProductPage extends Component {
 
     return item.attributes?.map((att) => {
       return (
-        <div className="size-att">
+        <div>
           <p className="attribute">{att.name}</p>
 
-          {att.items.map((size, index) => {
-            return (
-              <button className="att-button" key={index}>
-                {size.value}
-              </button>
-            );
-          })}
+          <div className="att-btn">
+            {att.items.map((size, index) => {
+              return (
+                <button className="att-button" key={index}>
+                  {size.value}
+                </button>
+              );
+            })}
+          </div>
         </div>
       );
     });

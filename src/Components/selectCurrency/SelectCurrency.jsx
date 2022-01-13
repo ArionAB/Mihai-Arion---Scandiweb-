@@ -50,13 +50,14 @@ class SelectCurrency extends Component {
 
   // <select>{this.SelectCurrencies()}</select>
   render() {
+    const itemCount = this.props.itemCount;
     return (
       <div className="currency">
         <select>{this.selectCurrency()}</select>
 
         <div className="toggle" onClick={() => this.props.toggleCartHidden()}>
           <Cart className="shoppingCart" />
-          <span className="item-count">0</span>
+          <span className="item-count">{itemCount}</span>
         </div>
       </div>
     );
@@ -67,4 +68,11 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-export default connect(null, mapDispatchToProps)(SelectCurrency);
+const mapStateToProps = ({ cart: { cartItems } }) => ({
+  itemCount: cartItems.reduce(
+    (accQuantity, cartItem) => accQuantity + cartItem.quantity,
+    0
+  ),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectCurrency);

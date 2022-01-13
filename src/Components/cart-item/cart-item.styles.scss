@@ -39,3 +39,13 @@
 .name {
   height: 100%;
 }
+
+.size-att {
+  display: flex;
+  gap: 5px;
+
+  button {
+    background-color: white;
+    border: 1px solid black;
+  }
+}
