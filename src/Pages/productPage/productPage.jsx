@@ -118,6 +118,21 @@ class ProductPage extends Component {
     });
   }
 
+  getPrices() {
+    const { item } = this.state;
+    return item.prices?.forEach((price) => {
+      console.log(price);
+      console.log(price.amount);
+
+      return (
+        <div>
+          <p>{price.amount}</p>
+          <p>{price.currency.symbol}</p>
+        </div>
+      );
+    });
+  }
+
   render() {
     const addItem = this.props.addItem;
 
@@ -135,6 +150,9 @@ class ProductPage extends Component {
           <h1>{item.brand}</h1>
           <h2>{item.name}</h2>
           {this.getAttributes()}
+          <div>
+            <p>PRICE:</p>
+          </div>
           <button className="addCart" onClick={() => addItem(item)}>
             ADD TO CART
           </button>

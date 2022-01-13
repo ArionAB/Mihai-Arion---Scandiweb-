@@ -26,7 +26,7 @@ class CategoryName extends Component {
         return (
           <>
             <Link key={index} to={`/category/${category.name}`}>
-              <li>{category.name}</li>
+              <li key={index}> {category.name}</li>
             </Link>
           </>
         );

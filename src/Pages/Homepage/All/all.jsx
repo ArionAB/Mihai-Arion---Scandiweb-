@@ -37,6 +37,7 @@ class All extends Component {
     this.getCategories = this.getCategories.bind(this);
     this.state = {
       category: [],
+      prices: [],
     };
   }
 
