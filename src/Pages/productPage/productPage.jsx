@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { client } from "../../index";
+import { connect } from "react-redux";
+import { addItem } from "../../Redux/Cart/cart.actions";
 
 import "./productPage.styles.scss";
 
@@ -117,6 +119,8 @@ class ProductPage extends Component {
   }
 
   render() {
+    const addItem = this.props.addItem;
+
     const { item, index } = this.state;
     const gallery = item.gallery;
 
@@ -131,7 +135,9 @@ class ProductPage extends Component {
           <h1>{item.brand}</h1>
           <h2>{item.name}</h2>
           {this.getAttributes()}
-          <button className="addCart">ADD TO CART</button>
+          <button className="addCart" onClick={() => addItem(item)}>
+            ADD TO CART
+          </button>
           <p>{item.description}</p>
         </div>
       </div>
@@ -139,8 +145,8 @@ class ProductPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  prodId: state.product.prodID,
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
 });
 
-export default ProductPage;
+export default connect(null, mapDispatchToProps)(ProductPage);
