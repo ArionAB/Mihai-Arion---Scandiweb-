@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
 import { Link } from "react-router-dom";
-import Clothes from "../../Pages/Clothes/clothes";
 
 const GET_CATEGORY_NAMES = gql`
   query {

@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
-import { graphql } from "@apollo/client/react/hoc";
-import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import GetId from "../../Components/GetId";
 import { client } from "../../index";
 
 import "./productPage.styles.scss";
@@ -42,7 +38,7 @@ class ProductPage extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleClass = this.toggleClass.bind(this);
+    // this.toggleClass = this.toggleClass.bind(this);
 
     this.state = {
       item: [],
@@ -57,10 +53,10 @@ class ProductPage extends Component {
     this.getProduct();
   }
 
-  toggleClass() {
+  /*   toggleClass() {
     const currentState = this.state.active;
     this.setState({ active: !currentState });
-  }
+  } */
 
   async getProduct() {
     const id = this.props.id;
@@ -80,15 +76,16 @@ class ProductPage extends Component {
 
     return item.attributes?.map((att) => {
       return (
-        <div>
-          <div>
-            <p>{att.name}</p>
-          </div>
-          <div>
-            {att.items.map((size, index) => {
-              return <button key={index}>{size.value}</button>;
-            })}
-          </div>
+        <div className="size-att">
+          <p className="attribute">{att.name}</p>
+
+          {att.items.map((size, index) => {
+            return (
+              <button className="att-button" key={index}>
+                {size.value}
+              </button>
+            );
+          })}
         </div>
       );
     });
@@ -118,25 +115,6 @@ class ProductPage extends Component {
       );
     });
   }
-  /*   getGallery() {
-    const { item, index } = this.state;
-    const gallery = item.gallery;
-
-    return gallery?.map((entry) => {
-      console.log(entry, index);
-      return (
-        <div className="thumb">
-          <img
-            onClick={() => this.handleTab(index)}
-            key={index}
-            className={this.state.active ? "images" : "oneImage"}
-            src={entry}
-            alt=""
-          ></img>
-        </div>
-      );
-    });
-  } */
 
   render() {
     const { item, index } = this.state;
@@ -152,34 +130,17 @@ class ProductPage extends Component {
         <div className="specs">
           <h1>{item.brand}</h1>
           <h2>{item.name}</h2>
-          <div>{this.getAttributes()}</div>
-          <button>ADD TO CART</button>
+          {this.getAttributes()}
+          <button className="addCart">ADD TO CART</button>
           <p>{item.description}</p>
         </div>
       </div>
     );
   }
 }
-//  const gallery = item.gallery;
-//     for (const photo of gallery) {
-//       console.log(photo);
-//     }
 
 const mapStateToProps = (state) => ({
   prodId: state.product.prodID,
 });
 
 export default ProductPage;
-
-// /* export default graphql(GET_PRODUCT, {
-//   options: { variables: { id } },
-// })(ProductPage);
-// connect(mapStateToProps)(ProductPage); */
-
-/* export default graphql(GET_PRODUCT, {
-  options: { variables: { id } },
-})(ProductPage); */
-
-/* export default graphql(GET_PRODUCT, {
-  options: { variables: { id } },
-})()(<ProductPage  params={useParams()}/>) */

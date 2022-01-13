@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CategoryName from "../../Components/Category/CategoryName";
 import SelectCurrency from "../../Components/selectCurrency/SelectCurrency";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Logo from "../../Assets/shopping-bag-svgrepo-com.svg";
 
@@ -9,6 +10,8 @@ import "./nav.styles.scss";
 import CartDropdown from "../Cart-dropdown/cart-dropdown";
 class Nav extends Component {
   render() {
+    const hidden = this.props.hidden;
+
     return (
       <div className="nav">
         <CategoryName />
@@ -16,11 +19,14 @@ class Nav extends Component {
           <img src={Logo} className="logo" alt="Logo"></img>
         </Link>
         <SelectCurrency />
-        <CartDropdown />
+        {hidden ? null : <CartDropdown />}
       </div>
     );
   }
 }
 
-// <img src={require(`../images/arc0${i + 1}.jpg`).default}
-export default Nav;
+const mapStateToProps = ({ cart: { hidden } }) => ({
+  hidden,
+});
+
+export default connect(mapStateToProps)(Nav);

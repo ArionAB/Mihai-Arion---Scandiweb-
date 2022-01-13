@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
-import { graphql } from "@apollo/client/react/hoc";
+import { client } from "../../index";
 import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.svg";
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
@@ -17,32 +17,46 @@ const SELECT_CURRENCY = gql`
 `;
 
 class SelectCurrency extends Component {
-  SelectCurrencies() {
-    const data = this.props.data;
-    if (data.loading) {
-      return <div>Loading Currencies</div>;
-    }
-    if (data.error) {
-      return <div>Something went wrong</div>;
-    } else {
-      return data.currencies.map((currency) => {
-        return (
-          <option key={currency.label}>
-            {currency.symbol} {currency.label}
-          </option>
-        );
-      });
-    }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {},
+    };
   }
+
+  componentDidMount() {
+    this.getCurrencies();
+  }
+
+  async getCurrencies() {
+    const response = await client.query({
+      query: SELECT_CURRENCY,
+    });
+    this.setState({ data: response.data });
+  }
+
+  selectCurrency() {
+    const { data } = this.state;
+
+    return data.currencies?.map((currency) => {
+      return (
+        <option key={currency.label}>
+          {currency.symbol} {currency.label}
+        </option>
+      );
+    });
+  }
+
   // <select>{this.SelectCurrencies()}</select>
   render() {
     return (
       <div className="currency">
-        <div onClick={toggleCartHidden}>
-          <Cart className="shoppingCart" onClick={toggleCartHidden} />
-          <span className="item-count" onClick={toggleCartHidden}>
-            0
-          </span>
+        <select>{this.selectCurrency()}</select>
+
+        <div className="toggle" onClick={() => this.props.toggleCartHidden()}>
+          <Cart className="shoppingCart" />
+          <span className="item-count">0</span>
         </div>
       </div>
     );
@@ -54,5 +68,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(SelectCurrency);
-
-// graphql(SELECT_CURRENCY)(SelectCurrency)

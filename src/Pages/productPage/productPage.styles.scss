@@ -1,32 +1,81 @@
-.images {
-  width: 100px;
-  height: 100px;
-  cursor: pointer;
-}
-
-.oneImage {
-  width: 200px;
-  height: 200px;
-}
-
 .container {
   display: flex;
-  justify-content: space-between;
-}
-
-.thumb {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
+  justify-content: center;
 
   & img {
-    height: 100px;
-    width: 100px;
+    height: 50vh;
   }
-  & img:nth-child(2) {
-    height: 200px;
+
+  .gallery {
+    order: -1;
+  }
+
+  .images {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+
+  .oneImage {
     width: 200px;
+    height: 200px;
+  }
+
+  .thumb {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    & img {
+      height: 100px;
+      width: 100px;
+    }
+    & img:nth-child(2) {
+      height: 200px;
+      width: 200px;
+    }
+  }
+
+  .attribute {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .att-button {
+    padding: 1rem 1.5rem;
+    margin-left: 0.7rem;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+
+    &:focus {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  .addCart {
+    background-color: #5ece7b;
+    height: 3rem;
+    width: 15rem;
+    margin-top: 10%;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .specs {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
   }
 }

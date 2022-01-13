@@ -53,7 +53,6 @@ class All extends Component {
 
   async getCategories() {
     const title = this.props.title;
-    console.log(title);
 
     const response = await client.query({
       query: GET_ALL,
