@@ -44,9 +44,9 @@ class ProductPage extends Component {
 
     this.state = {
       item: [],
-      active: false,
-      chosenImage: [],
+      errors: "",
       savedAttributes: [],
+      attributeName: "",
       prices: [],
       index: 0,
     };
@@ -73,6 +73,38 @@ class ProductPage extends Component {
     this.setState({ item: response.data.product });
   }
 
+  getAttributeName() {
+    const { item } = this.state;
+    const { attributeName } = this.state;
+
+    if (attributeName.length > 0) return;
+    else
+      return item.attributes?.map((att) => {
+        this.setState({ attributeName: att.name });
+      });
+  }
+
+  /*   noAttributes() {
+    const {item} = this.state
+    const { savedAttributes } = this.state;
+    const { attributeName } = this.state;
+    if (attributeName.length > 1) return;
+    else if (savedAttributes.length == 0) {
+      this.setState({ savedAttributes: "a" });
+    }
+  } */
+
+  /*   noAttributes() {
+    const { item } = this.state;
+    const { savedAttributes } = this.state;
+    const { attributeName } = this.state;
+    if (!item.attributes.length ? item.attributes.length : "") {
+      alert("No items");
+    }
+  } */
+  // if (item.attributes !== undefined) return;
+  // else return this.setState({ savedAttributes: "a" });
+
   getAttributes() {
     const { item } = this.state;
 
@@ -84,7 +116,16 @@ class ProductPage extends Component {
           <div className="att-btn">
             {att.items.map((size, index) => {
               return (
-                <button className="att-button" key={index}>
+                <button
+                  className="att-button"
+                  key={index}
+                  onClick={() =>
+                    this.setState({
+                      savedAttributes: size.value,
+                      errors: "",
+                    })
+                  }
+                >
                   {size.value}
                 </button>
               );
@@ -123,8 +164,8 @@ class ProductPage extends Component {
   getPrices() {
     const { item } = this.state;
     return item.prices?.forEach((price) => {
-      console.log(price);
-      console.log(price.amount);
+      // console.log(price);
+      console.log(price.currency.label);
 
       return (
         <div>
@@ -136,7 +177,14 @@ class ProductPage extends Component {
   }
 
   render() {
+    this.getPrices();
+    this.getAttributeName();
+
     const addItem = this.props.addItem;
+    const { savedAttributes } = this.state;
+
+    const { attributeName } = this.state;
+    const { errors } = this.state;
 
     const { item, index } = this.state;
     const gallery = item.gallery;
@@ -155,9 +203,22 @@ class ProductPage extends Component {
           <div>
             <p>PRICE:</p>
           </div>
-          <button className="addCart" onClick={() => addItem(item)}>
+          <div className={errors ? "hasErrors" : ""}>{errors}</div>
+          <button
+            className="addCart"
+            onClick={
+              () =>
+                savedAttributes.length > 0
+                  ? addItem(item)
+                  : this.setState({
+                      errors: `Please choose a ${attributeName}`,
+                    })
+              // : alert(`Please choose a ${attributeName}.`)
+            }
+          >
             ADD TO CART
           </button>
+
           <p>{item.description}</p>
         </div>
       </div>
@@ -170,3 +231,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(ProductPage);
+
+/* <button className="addCart" onClick={() => addItem(item)}>
+ADD TO CART
+</button> */
