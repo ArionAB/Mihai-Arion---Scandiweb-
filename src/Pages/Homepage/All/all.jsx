@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { gql, throwServerError } from "@apollo/client";
-import { graphql } from "@apollo/client/react/hoc";
+import { gql } from "@apollo/client";
+
 import Cart from "../../../Assets/shopping-cart-svgrepo-com.svg";
 import { Link } from "react-router-dom";
 import { client } from "../../../index";
+import { connect } from "react-redux";
 
 import "./all.styles.scss";
-import ProductPage from "../../productPage/productPage";
-import { compose } from "redux";
 
 const GET_ALL = gql`
   query category($title: String!) {
@@ -67,6 +66,8 @@ class All extends Component {
 
   mapCategories() {
     const { category } = this.state;
+    const selectCurrency = this.props.selectCurrency;
+    console.log(selectCurrency);
 
     return category.products?.map((product, index) => {
       return (
@@ -79,8 +80,8 @@ class All extends Component {
 
             <p className="name">{product.name}</p>
             <div className="price">
-              <p>{product.prices[0].currency.symbol}</p>
-              <p>{product.prices[0].amount}</p>
+              <p>{product.prices[selectCurrency].currency.symbol}</p>
+              <p>{product.prices[selectCurrency].amount}</p>
             </div>
           </div>
         </Link>
@@ -92,4 +93,8 @@ class All extends Component {
   }
 }
 
-export default All;
+const mapStateToProps = ({ current: { currency } }) => ({
+  selectCurrency: currency,
+});
+
+export default connect(mapStateToProps)(All);

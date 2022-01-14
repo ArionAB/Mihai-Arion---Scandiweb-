@@ -4,6 +4,8 @@ import { client } from "../../index";
 import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.svg";
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
+import { selectCurrency } from "../../Redux/Currency/currency.actions";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 import "./selectCurrency.styles.scss";
 
@@ -22,7 +24,14 @@ class SelectCurrency extends Component {
 
     this.state = {
       data: {},
+
+      value: 0,
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
   }
 
   componentDidMount() {
@@ -36,12 +45,16 @@ class SelectCurrency extends Component {
     this.setState({ data: response.data });
   }
 
-  selectCurrency() {
+  getSymbolFromCurrency() {
+    console.log(getSymbolFromCurrency("USD"));
+  }
+
+  chooseCurrency() {
     const { data } = this.state;
 
-    return data.currencies?.map((currency) => {
+    return data.currencies?.map((currency, index) => {
       return (
-        <option key={currency.label}>
+        <option value={index}>
           {currency.symbol} {currency.label}
         </option>
       );
@@ -51,9 +64,16 @@ class SelectCurrency extends Component {
   // <select>{this.SelectCurrencies()}</select>
   render() {
     const itemCount = this.props.itemCount;
+    const selectCurrency = this.props.selectCurrency;
+    this.getSymbolFromCurrency();
+    const { value } = this.state;
+    selectCurrency(value);
+
     return (
       <div className="currency">
-        <select>{this.selectCurrency()}</select>
+        <select value={this.state.value} onChange={this.handleChange}>
+          {this.chooseCurrency()}
+        </select>
 
         <div className="toggle" onClick={() => this.props.toggleCartHidden()}>
           <Cart className="shoppingCart" />
@@ -66,6 +86,7 @@ class SelectCurrency extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
+  selectCurrency: (pisat) => dispatch(selectCurrency(pisat)),
 });
 
 const mapStateToProps = ({ cart: { cartItems } }) => ({

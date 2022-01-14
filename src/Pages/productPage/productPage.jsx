@@ -227,7 +227,7 @@ class ProductPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+  addItem: (cacat) => dispatch(addItem(cacat)),
 });
 
 export default connect(null, mapDispatchToProps)(ProductPage);
