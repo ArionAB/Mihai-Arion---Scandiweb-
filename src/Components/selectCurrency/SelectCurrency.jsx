@@ -45,9 +45,7 @@ class SelectCurrency extends Component {
     this.setState({ data: response.data });
   }
 
-  getSymbolFromCurrency() {
-    console.log(getSymbolFromCurrency("USD"));
-  }
+  getSymbolFromCurrency() {}
 
   chooseCurrency() {
     const { data } = this.state;
@@ -61,7 +59,6 @@ class SelectCurrency extends Component {
     });
   }
 
-  // <select>{this.SelectCurrencies()}</select>
   render() {
     const itemCount = this.props.itemCount;
     const selectCurrency = this.props.selectCurrency;

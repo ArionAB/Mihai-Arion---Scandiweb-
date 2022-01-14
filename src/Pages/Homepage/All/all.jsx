@@ -7,6 +7,7 @@ import { client } from "../../../index";
 import { connect } from "react-redux";
 
 import "./all.styles.scss";
+import ProductPage from "../../productPage/productPage";
 
 const GET_ALL = gql`
   query category($title: String!) {
@@ -36,7 +37,7 @@ class All extends Component {
     this.getCategories = this.getCategories.bind(this);
     this.state = {
       category: [],
-      prices: [],
+      prices: 0,
     };
   }
 
@@ -44,12 +45,11 @@ class All extends Component {
     this.getCategories();
   }
 
-  componentDidUpdate(prevProps) {
+  /*   componentDidUpdate(prevProps) {
     if (prevProps.category !== this.props.category) {
-      console.log(prevProps.category);
       this.getCategories();
     }
-  }
+  } */
 
   async getCategories() {
     const title = this.props.title;
@@ -61,30 +61,31 @@ class All extends Component {
       },
     });
     this.setState({ category: response.data.category });
-    this.forceUpdate();
   }
 
   mapCategories() {
     const { category } = this.state;
     const selectCurrency = this.props.selectCurrency;
-    console.log(selectCurrency);
-
+    console.log("category", category);
     return category.products?.map((product, index) => {
+      console.log(product.prices[0].amount);
       return (
-        <Link to={`/product/${product.id}`}>
-          <div key={index} className="card">
-            <img src={product.gallery} alt="product"></img>
-            {!product.inStock && <div className="stock">OUT OF STOCK</div>}
+        <div>
+          <Link to={`/product/${product.id}`}>
+            <div key={index} className="card">
+              <img src={product.gallery} alt="product"></img>
+              {!product.inStock && <div className="stock">OUT OF STOCK</div>}
 
-            <img src={Cart} alt="cart" className="cart" />
+              <img src={Cart} alt="cart" className="cart" />
 
-            <p className="name">{product.name}</p>
-            <div className="price">
-              <p>{product.prices[selectCurrency].currency.symbol}</p>
-              <p>{product.prices[selectCurrency].amount}</p>
+              <p className="name">{product.name}</p>
+              <div className="price">
+                <p>{product.prices[selectCurrency].currency.symbol}</p>
+                <p>{product.prices[selectCurrency].amount}</p>
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       );
     });
   }

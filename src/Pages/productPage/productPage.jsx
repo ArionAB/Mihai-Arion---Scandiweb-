@@ -43,7 +43,7 @@ class ProductPage extends Component {
     // this.toggleClass = this.toggleClass.bind(this);
 
     this.state = {
-      item: [],
+      item: {},
       errors: "",
       savedAttributes: [],
       attributeName: "",
@@ -163,21 +163,22 @@ class ProductPage extends Component {
 
   getPrices() {
     const { item } = this.state;
-    return item.prices?.forEach((price) => {
-      // console.log(price);
-      console.log(price.currency.label);
+    const selectCurrency = this.props.selectCurrency;
+    const amount = item.prices ? item.prices[selectCurrency].amount : "";
+    const symbol = item.prices
+      ? item.prices[selectCurrency].currency.symbol
+      : "";
 
-      return (
-        <div>
-          <p>{price.amount}</p>
-          <p>{price.currency.symbol}</p>
-        </div>
-      );
-    });
+    return (
+      <div className="symbol-amount">
+        <p>{symbol}</p>
+        <p>{amount}</p>
+      </div>
+    );
   }
-
+  /* <p>{item.prices}</p>
+  <p>{item.prices.currency.symbol}</p> */
   render() {
-    this.getPrices();
     this.getAttributeName();
 
     const addItem = this.props.addItem;
@@ -202,6 +203,7 @@ class ProductPage extends Component {
           {this.getAttributes()}
           <div>
             <p>PRICE:</p>
+            {this.getPrices()}
           </div>
           <div className={errors ? "hasErrors" : ""}>{errors}</div>
           <button
@@ -230,7 +232,11 @@ const mapDispatchToProps = (dispatch) => ({
   addItem: (cacat) => dispatch(addItem(cacat)),
 });
 
-export default connect(null, mapDispatchToProps)(ProductPage);
+const mapStateToProps = ({ current: { currency } }) => ({
+  selectCurrency: currency,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
 
 /* <button className="addCart" onClick={() => addItem(item)}>
 ADD TO CART

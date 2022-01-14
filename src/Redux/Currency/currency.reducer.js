@@ -1,11 +1,12 @@
-import { selectCurrency } from "./currency.actions";
 import { CurrencyActionTypes } from "./currency.types";
+import { PriceActionTypes } from "./currency.types";
 
 const INITIAL_STATE = {
-  currency: 1,
+  currency: 0,
+  price: 0,
 };
 
-const currencyReducer = (state = INITIAL_STATE, action) => {
+export const currencyReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CurrencyActionTypes.SELECT_CURRENCY:
       return {
@@ -17,4 +18,14 @@ const currencyReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default currencyReducer;
+export const priceReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case PriceActionTypes.SET_PRICE:
+      return {
+        ...state,
+        price: action.payload,
+      };
+    default:
+      return state;
+  }
+};

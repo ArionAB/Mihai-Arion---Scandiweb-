@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import "./cart-item.styles.scss";
 
@@ -22,15 +23,15 @@ class CartItem extends Component {
   }
   render() {
     const item = this.props.item;
-    console.log(item);
+    const selectCurrency = this.props.selectCurrency;
     return (
       <>
         <div className="btn-img">
           <div className="name">
             <p>{item.name}</p>
             <div className="price-symbol">
-              <span>{item.prices[0].currency.symbol}</span>{" "}
-              <p>{item.prices[0].amount}</p>
+              <span>{item.prices[selectCurrency].currency.symbol}</span>
+              <p>{item.prices[selectCurrency].amount}</p>
             </div>
             {this.getAttributes()}
           </div>
@@ -49,4 +50,8 @@ class CartItem extends Component {
   }
 }
 
-export default CartItem;
+const mapStateToProps = ({ current: { currency } }) => ({
+  selectCurrency: currency,
+});
+
+export default connect(mapStateToProps)(CartItem);
