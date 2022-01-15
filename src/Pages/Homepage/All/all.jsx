@@ -66,9 +66,8 @@ class All extends Component {
   mapCategories() {
     const { category } = this.state;
     const selectCurrency = this.props.selectCurrency;
-    console.log("category", category);
+
     return category.products?.map((product, index) => {
-      console.log(product.prices[0].amount);
       return (
         <div>
           <Link to={`/product/${product.id}`}>

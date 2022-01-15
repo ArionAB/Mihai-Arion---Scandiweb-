@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "../cart-item/cart-item";
+import { Link } from "react-router-dom";
 
 import "./cart-dropdown.styles.scss";
 
@@ -23,7 +24,9 @@ class CartDropdown extends Component {
         </div>
 
         <div className="buttons">
-          <button>View Bag</button>
+          <Link to="/cart">
+            <button>View Bag</button>
+          </Link>
           <button>Check Out</button>
         </div>
       </div>

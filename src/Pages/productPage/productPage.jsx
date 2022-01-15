@@ -40,8 +40,6 @@ class ProductPage extends Component {
   constructor(props) {
     super(props);
 
-    // this.toggleClass = this.toggleClass.bind(this);
-
     this.state = {
       item: {},
       errors: "",
@@ -55,10 +53,9 @@ class ProductPage extends Component {
     this.getProduct();
   }
 
-  /*   toggleClass() {
-    const currentState = this.state.active;
-    this.setState({ active: !currentState });
-  } */
+  /*   handleSavedAtt = (e) => {
+    this.setState([...this.state.savedAttributes], this.state.savedAttributes);
+  }; */
 
   async getProduct() {
     const id = this.props.id;
@@ -107,7 +104,7 @@ class ProductPage extends Component {
 
   getAttributes() {
     const { item } = this.state;
-
+    // console.log(item.attributes ? item.attributes.length : "");
     return item.attributes?.map((att) => {
       return (
         <div>
@@ -117,12 +114,18 @@ class ProductPage extends Component {
             {att.items.map((size, index) => {
               return (
                 <button
+                  style={{ background: size.value, color: size.value }}
                   className="att-button"
                   key={index}
                   onClick={() =>
                     this.setState({
                       savedAttributes: size.value,
+                      // savedAttributes: size.value,
                       errors: "",
+                      // this.setState({
+                      //   savedAttributes.push(size.value),
+                      //   // savedAttributes: size.value,
+                      //   errors: "",
                     })
                   }
                 >
@@ -183,6 +186,7 @@ class ProductPage extends Component {
 
     const addItem = this.props.addItem;
     const { savedAttributes } = this.state;
+    console.log(savedAttributes);
 
     const { attributeName } = this.state;
     const { errors } = this.state;
@@ -200,7 +204,9 @@ class ProductPage extends Component {
         <div className="specs">
           <h1>{item.brand}</h1>
           <h2>{item.name}</h2>
+
           {this.getAttributes()}
+
           <div>
             <p>PRICE:</p>
             {this.getPrices()}
@@ -208,14 +214,12 @@ class ProductPage extends Component {
           <div className={errors ? "hasErrors" : ""}>{errors}</div>
           <button
             className="addCart"
-            onClick={
-              () =>
-                savedAttributes.length > 0
-                  ? addItem(item)
-                  : this.setState({
-                      errors: `Please choose a ${attributeName}`,
-                    })
-              // : alert(`Please choose a ${attributeName}.`)
+            onClick={() =>
+              savedAttributes.length > 0
+                ? addItem(item)
+                : this.setState({
+                    errors: `Please choose a ${attributeName}`,
+                  })
             }
           >
             ADD TO CART

@@ -6,6 +6,7 @@ import Nav from "./Components/Nav/nav";
 
 import GetId from "./Components/GetId";
 import GetTitle from "./Components/getTitle";
+import CartPage from "./Pages/cart-page/cart-page";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path="/" element={<Homepage />} />
           <Route path="/category/:title" element={<GetTitle />} />
           <Route path="/product/:id" element={<GetId />} />
+          <Route path="/Cart" element={<CartPage />} />
         </Routes>
       </div>
     );
