@@ -9,7 +9,7 @@ class CartPage extends Component {
     const cartItems = this.props.cartItems;
     const itemCount = this.props.itemCount;
     return (
-      <div className="cart-items">
+      <div className="cart-page">
         <h1>CART</h1>
         {cartItems.length ? (
           cartItems.map((cartItem) => (
