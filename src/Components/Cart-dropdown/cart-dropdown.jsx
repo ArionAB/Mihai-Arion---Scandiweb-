@@ -56,13 +56,6 @@ const mapStateToProps = ({ cart: { cartItems }, current: { currency } }) => ({
     (accQuantity, cartItem) => accQuantity + cartItem.quantity,
     0
   ),
-  /* totalPrice: cartItems.reduce(
-    (accQuantity, cartItem) =>
-      accQuantity + cartItem.quantity * cartItem.prices[0].amount,
-    // (cartItem.price ? cartItem.prices[0].amount : ""),
-
-    ""
-  ), */
 });
 
 export default connect(mapStateToProps)(CartDropdown);
