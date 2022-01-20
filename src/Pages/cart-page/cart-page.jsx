@@ -18,6 +18,7 @@ class CartPage extends Component {
         ) : (
           <span className="empty-message">Your cart is empty</span>
         )}
+        =
       </div>
     );
   }

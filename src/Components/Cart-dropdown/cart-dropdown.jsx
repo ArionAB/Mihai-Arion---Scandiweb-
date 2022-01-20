@@ -4,8 +4,6 @@ import CartItem from "../cart-item/cart-item";
 import { Link } from "react-router-dom";
 
 import "./cart-dropdown.styles.scss";
-import { CartActionTypes } from "../../Redux/Cart/cart.types";
-import cartItem from "../cart-item/cart-item";
 
 class CartDropdown extends Component {
   getprice() {

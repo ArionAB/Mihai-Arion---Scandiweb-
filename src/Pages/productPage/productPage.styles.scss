@@ -51,15 +51,19 @@
     border: 1px solid black;
     cursor: pointer;
 
-    &:hover {
+    &:target {
       background-color: black;
       color: white;
     }
 
-    &:focus {
+    &:hover {
       background-color: black;
       color: white;
     }
+  }
+
+  .input-btn {
+    background-color: #fff;
   }
 
   .addCart {

@@ -47,7 +47,10 @@ class ProductPage extends Component {
       attributeName: "",
       prices: [],
       index: 0,
+      value: "",
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     this.getProduct();
@@ -71,8 +74,7 @@ class ProductPage extends Component {
   }
 
   getAttributeName() {
-    const { item } = this.state;
-    const { attributeName } = this.state;
+    const { item, attributeName } = this.state;
 
     if (attributeName.length > 0) return;
     else
@@ -102,9 +104,13 @@ class ProductPage extends Component {
   // if (item.attributes !== undefined) return;
   // else return this.setState({ savedAttributes: "a" });
 
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
   getAttributes() {
-    const { item } = this.state;
-    // console.log(item.attributes ? item.attributes.length : "");
+    const { item, savedAttributes } = this.state;
+
     return item.attributes?.map((att) => {
       return (
         <div>
@@ -119,13 +125,9 @@ class ProductPage extends Component {
                   key={index}
                   onClick={() =>
                     this.setState({
-                      savedAttributes: size.value,
-                      // savedAttributes: size.value,
+                      savedAttributes: [...savedAttributes, size.value],
+
                       errors: "",
-                      // this.setState({
-                      //   savedAttributes.push(size.value),
-                      //   // savedAttributes: size.value,
-                      //   errors: "",
                     })
                   }
                 >
@@ -185,13 +187,11 @@ class ProductPage extends Component {
     this.getAttributeName();
 
     const addItem = this.props.addItem;
-    const { savedAttributes } = this.state;
+    const { savedAttributes, attributeName, errors, item, index, value } =
+      this.state;
     console.log(savedAttributes);
+    const attributesLength = item.attributes ? item.attributes.length : "";
 
-    const { attributeName } = this.state;
-    const { errors } = this.state;
-
-    const { item, index } = this.state;
     const gallery = item.gallery;
 
     const newObj = Object.assign({}, gallery);
@@ -215,10 +215,11 @@ class ProductPage extends Component {
           <button
             className="addCart"
             onClick={() =>
-              savedAttributes.length > 0
+              savedAttributes.length === attributesLength ||
+              savedAttributes.length > attributesLength
                 ? addItem(item)
                 : this.setState({
-                    errors: `Please choose a ${attributeName}`,
+                    errors: `Please choose  ${attributesLength} attributes.`,
                   })
             }
           >

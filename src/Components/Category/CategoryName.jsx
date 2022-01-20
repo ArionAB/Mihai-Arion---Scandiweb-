@@ -14,6 +14,15 @@ const GET_CATEGORY_NAMES = gql`
 `;
 
 class CategoryName extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { state: "" };
+  }
+
+  componentDidMount() {
+    this.setState({ state: "string" });
+  }
+
   displayCategories() {
     const data = this.props.data;
     if (data.loading) {
@@ -25,7 +34,11 @@ class CategoryName extends Component {
       return data.categories.map((category, index) => {
         return (
           <>
-            <Link key={index} to={`/category/${category.name}`}>
+            <Link
+              key={index}
+              to={`/category/${category.name}`}
+              onClick={this.forceUpdate}
+            >
               <li key={index}> {category.name}</li>
             </Link>
           </>

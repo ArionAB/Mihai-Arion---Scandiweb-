@@ -5,6 +5,7 @@ import Cart from "../../../Assets/shopping-cart-svgrepo-com.svg";
 import { Link } from "react-router-dom";
 import { client } from "../../../index";
 import { connect } from "react-redux";
+import { addItem } from "../../../Redux/Cart/cart.actions";
 
 import "./all.styles.scss";
 import ProductPage from "../../productPage/productPage";
@@ -25,6 +26,16 @@ const GET_ALL = gql`
             symbol
           }
           amount
+        }
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
         }
       }
     }
@@ -68,6 +79,9 @@ class All extends Component {
     const selectCurrency = this.props.selectCurrency;
 
     return category.products?.map((product, index) => {
+      const hasAttributes = product.attributes ? product.attributes.length : "";
+
+      const addItem = this.props.addItem;
       return (
         <div>
           <Link to={`/product/${product.id}`}>
@@ -75,7 +89,16 @@ class All extends Component {
               <img src={product.gallery} alt="product"></img>
               {!product.inStock && <div className="stock">OUT OF STOCK</div>}
 
-              <img src={Cart} alt="cart" className="cart" />
+              <img
+                src={Cart}
+                alt="cart"
+                className="cart"
+                onClick={() =>
+                  !hasAttributes
+                    ? addItem(product)
+                    : alert("Please select attributes")
+                }
+              />
 
               <p className="name">{product.name}</p>
               <div className="price">
@@ -93,8 +116,12 @@ class All extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (cacat) => dispatch(addItem(cacat)),
+});
+
 const mapStateToProps = ({ current: { currency } }) => ({
   selectCurrency: currency,
 });
 
-export default connect(mapStateToProps)(All);
+export default connect(mapStateToProps, mapDispatchToProps)(All);
