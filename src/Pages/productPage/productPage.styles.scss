@@ -51,7 +51,7 @@
     border: 1px solid black;
     cursor: pointer;
 
-    &:target {
+    &:focus {
       background-color: black;
       color: white;
     }
@@ -102,4 +102,14 @@
 .left-arrow {
   width: 25px;
   height: 25px;
+}
+
+.no-stock {
+  background-color: #5b7963;
+  height: 3rem;
+  width: 15rem;
+  margin-top: 10%;
+  color: white;
+  border: none;
+  cursor: pointer;
 }

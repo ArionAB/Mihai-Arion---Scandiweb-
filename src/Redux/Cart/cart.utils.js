@@ -1,4 +1,5 @@
 import cartItem from "../../Components/cart-item/cart-item";
+import { addAttribute } from "./cart.actions";
 
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
@@ -13,7 +14,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     );
   }
 
-  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+  return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
 };
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
@@ -32,4 +33,19 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
         }
       : cartItem
   );
+};
+
+export const addAttributetoCart = (cartItems, cartItemToAdd) => {
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToAdd.id
+  );
+
+  if (existingCartItem) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === cartItemToAdd.id
+        ? { ...cartItem, addAttribute: cartItem.addAttribute }
+        : cartItem
+    );
+  }
+  return cartItems;
 };

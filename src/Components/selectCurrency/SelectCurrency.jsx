@@ -5,7 +5,6 @@ import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.s
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
 import { selectCurrency } from "../../Redux/Currency/currency.actions";
-import getSymbolFromCurrency from "currency-symbol-map";
 
 import "./selectCurrency.styles.scss";
 
@@ -45,8 +44,6 @@ class SelectCurrency extends Component {
     this.setState({ data: response.data });
   }
 
-  getSymbolFromCurrency() {}
-
   chooseCurrency() {
     const { data } = this.state;
 
@@ -62,7 +59,7 @@ class SelectCurrency extends Component {
   render() {
     const itemCount = this.props.itemCount;
     const selectCurrency = this.props.selectCurrency;
-    this.getSymbolFromCurrency();
+
     const { value } = this.state;
     selectCurrency(value);
 

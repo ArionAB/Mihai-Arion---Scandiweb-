@@ -47,9 +47,13 @@ class CartDropdown extends Component {
   }
 }
 
-const mapStateToProps = ({ cart: { cartItems }, current: { currency } }) => ({
+const mapStateToProps = ({
+  cart: { cartItems, attributes },
+  current: { currency },
+}) => ({
   selectCurrency: currency,
   cartItems,
+  attributes,
   itemCount: cartItems.reduce(
     (accQuantity, cartItem) => accQuantity + cartItem.quantity,
     0

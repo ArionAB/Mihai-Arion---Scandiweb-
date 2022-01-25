@@ -13,7 +13,18 @@ class CartItem extends Component {
       return (
         <div className="size-att">
           {att.items.map((size, index) => {
-            return (
+            return item[0].id === size.id ? (
+              <button
+                className="att-button"
+                key={index}
+                style={{
+                  background: "black",
+                  color: "white",
+                }}
+              >
+                {size.value}
+              </button>
+            ) : (
               <button
                 className="att-button"
                 key={index}
@@ -27,8 +38,30 @@ class CartItem extends Component {
       );
     });
   }
+  /*   getAttributes() {
+    const item = this.props.item;
+
+    return item.attributes?.map((att) => {
+      return (
+        <div className="size-att">
+          {att.items.map((size, index) => {
+            return (
+              <button
+                className="att-button"
+                key={index}
+                style={{ background: size.value, color: size.value }}
+              >
+                {item[0].id}
+              </button>
+            );
+          })}
+        </div>
+      );
+    });
+  } */
   render() {
     const item = this.props.item;
+    console.log(item[0].id);
     const selectCurrency = this.props.selectCurrency;
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;
