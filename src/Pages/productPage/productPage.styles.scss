@@ -42,6 +42,7 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.2rem;
+    display: flex;
   }
 
   .att-button {
@@ -81,6 +82,16 @@
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
+
+    h1 {
+      margin-bottom: 0.5em;
+    }
+
+    h2 {
+      font-size: 2em;
+      font-weight: 400;
+      margin: 0 0 1em 0;
+    }
   }
 }
 .att-btn {
@@ -97,11 +108,20 @@
 
 .symbol-amount {
   display: flex;
+
+  p {
+    font-weight: 700;
+  }
 }
 
 .left-arrow {
   width: 25px;
   height: 25px;
+}
+
+.product-price {
+  display: flex;
+  font-weight: 600;
 }
 
 .no-stock {

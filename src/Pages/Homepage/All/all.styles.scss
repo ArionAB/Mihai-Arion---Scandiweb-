@@ -22,13 +22,18 @@
     &:hover {
       box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     }
+
+    .card-img {
+      height: 60%;
+      width: 50%;
+    }
   }
   .card:hover .cart {
     display: block;
     position: absolute;
     right: 25px;
     bottom: 100px;
-    background-color: green;
+    background-color: #5ece7b;
     padding: 5px;
     border-radius: 60%;
   }

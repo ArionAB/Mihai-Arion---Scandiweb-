@@ -83,7 +83,7 @@ class ProductPage extends Component {
       const nameAtt = att.name;
       return (
         <div key={index}>
-          <p className="attribute">{att.name}</p>
+          <p className="attribute">{att.name}:</p>
 
           <div className="att-btn">
             {att.items.map((size, index) => {
@@ -179,7 +179,7 @@ class ProductPage extends Component {
           {this.getAttributes()}
 
           <div>
-            <p>PRICE:</p>
+            <p className="product-price">PRICE:</p>
             {this.getPrices()}
           </div>
           <div className={errors ? "hasErrors" : ""}>{errors}</div>

@@ -86,7 +86,11 @@ class All extends Component {
         <div key={index}>
           <Link to={`/product/${product.id}`}>
             <div key={index} className="card">
-              <img src={product.gallery} alt="product"></img>
+              <img
+                className="card-img"
+                src={product.gallery}
+                alt={product.id}
+              ></img>
               {!product.inStock && <div className="stock">OUT OF STOCK</div>}
 
               <img
