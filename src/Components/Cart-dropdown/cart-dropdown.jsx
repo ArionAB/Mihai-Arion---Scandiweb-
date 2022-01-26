@@ -16,7 +16,7 @@ class CartDropdown extends Component {
       0
     );
 
-    return <div>{totalPrice}</div>;
+    return <div>{(Math.round(totalPrice * 100) / 100).toFixed(2)}</div>;
   }
   render() {
     this.getprice();

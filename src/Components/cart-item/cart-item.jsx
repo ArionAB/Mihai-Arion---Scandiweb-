@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import leftArrow from "../../Assets/left-arrow-svgrepo-com.svg";
 import { ReactComponent as rightArrow } from "../../Assets/right-arrow-svgrepo-com.svg";
 import { addItem, removeItem } from "../../Redux/Cart/cart.actions";
@@ -13,7 +14,9 @@ class CartItem extends Component {
       return (
         <div className="size-att">
           {att.items.map((size, index) => {
-            return item[0].id === size.id ? (
+            return item[0].id === size.id || item[1]?.id === size.id ? (
+              // item[1].id === size.id ||
+              // item[2].id === size.id
               <button
                 className="att-button"
                 key={index}
@@ -35,33 +38,95 @@ class CartItem extends Component {
             );
           })}
         </div>
-      );
-    });
-  }
-  /*   getAttributes() {
-    const item = this.props.item;
-
-    return item.attributes?.map((att) => {
-      return (
-        <div className="size-att">
+        /* <div className="size-att">
           {att.items.map((size, index) => {
-            return (
+            console.log(size.id);
+            return item[0].id === size.id || item[1].id === size.id ? (
+              // item[1].id === size.id ||
+              // item[2].id === size.id
+              <button
+                className="att-button"
+                key={index}
+                style={{
+                  background: "black",
+                  color: "white",
+                }}
+              >
+                {size.value}
+              </button>
+            ) : (
               <button
                 className="att-button"
                 key={index}
                 style={{ background: size.value, color: size.value }}
               >
-                {item[0].id}
+                {size.value}
               </button>
             );
           })}
-        </div>
+        </div> */
+        /*  return (
+        <div className="size-att">
+          {att.items.map((size, index) => {
+            return item[0].id === size.id ||
+              item[1].id === size.id ||
+              item[2].id === size.id ? (
+              <button
+                className="att-button"
+                key={index}
+                style={{
+                  background: "black",
+                  color: "white",
+                }}
+              >
+                {size.value}
+              </button>
+            ) : (
+              <button
+                className="att-button"
+                key={index}
+                background={size.value}
+              >
+                {size.value}
+              </button>
+            );
+          })}
+        </div> */
       );
     });
-  } */
+  }
+  /*   return (
+    <div className="size-att">
+      {att.items.map((size, index) => {
+        console.log(size.id);
+        return item[0].id === size.id ||
+          item[1].id === size.id ||
+          item[2].id === size.id ? (
+          <button
+            className="att-button"
+            key={index}
+            style={{
+              background: "black",
+              color: "white",
+            }}
+          >
+            {size.value}
+          </button>
+        ) : (
+          <button
+            className="att-button"
+            key={index}
+            style={{ background: size.value, color: size.value }}
+          >
+            {size.value}
+          </button>
+        );
+      })}
+    </div>
+  ); */
   render() {
     const item = this.props.item;
-    console.log(item[0].id);
+
     const selectCurrency = this.props.selectCurrency;
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;

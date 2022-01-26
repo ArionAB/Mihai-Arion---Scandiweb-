@@ -239,8 +239,13 @@ class ProductPage extends Component {
   //   });*/
   // }
 
-  filterAttributes() {
+  /*   filterAttributes() {
     const { savedAttributes } = this.state;
+    console.log(savedAttributes);
+    const allSaved = Object.assign(savedAttributes, savedAttributes);
+    // console.log(allSaved && allSaved[0].id);
+    console.log(savedAttributes);
+    console.log(allSaved.brand);
     return savedAttributes.map((saved) => {
       console.log(saved);
     });
@@ -248,11 +253,12 @@ class ProductPage extends Component {
     console.log(savedAttributes[0]);
     console.log(savedAttributes[1]);
     console.log(savedAttributes[2]); */
-  }
+  // }
 
   getAttributes() {
     const { item, savedAttributes } = this.state;
     return item.attributes?.map((att) => {
+      // console.log(att, "***ATT***");
       const nameAtt = att.name;
       return (
         <div>
@@ -260,6 +266,7 @@ class ProductPage extends Component {
 
           <div className="att-btn">
             {att.items.map((size, index) => {
+              // console.log(size, "***SIZE***");
               const id = size.id;
               return (
                 <button
@@ -276,6 +283,7 @@ class ProductPage extends Component {
                 >
                   {size.value}
                 </button>
+                // savedAttributes: [...savedAttributes, {(nameAtt, id)}],
               );
             })}
           </div>
@@ -327,21 +335,15 @@ class ProductPage extends Component {
 
   render() {
     this.getAttributeName();
-    this.filterAttributes();
+    // this.filterAttributes();
     const addItem = this.props.addItem;
     const { savedAttributes, attributeName, errors, item, index, value } =
       this.state;
 
     const addAttribute = this.props.addAttribute;
 
-    // const newItem = item.push(savedAttributes);
-    // console.log(newItem);
-    console.log(savedAttributes);
-    console.log(item);
-
     const newItem = Object.assign(savedAttributes, item);
     console.log(newItem);
-
     const attributesLength = item.attributes ? item.attributes.length : "";
 
     const gallery = item.gallery;

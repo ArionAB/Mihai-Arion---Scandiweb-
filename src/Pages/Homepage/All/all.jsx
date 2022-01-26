@@ -93,11 +93,16 @@ class All extends Component {
                 src={Cart}
                 alt="cart"
                 className="cart"
-                onClick={() =>
-                  !hasAttributes
-                    ? addItem(product)
-                    : alert("Please select attributes")
-                }
+                onClick={() => {
+                  if (
+                    (hasAttributes && !product.inStock) ||
+                    (!hasAttributes && !product.inStock)
+                  ) {
+                    alert("Product out of stock");
+                  } else if (hasAttributes) {
+                    alert("Please select an attribute");
+                  } else addItem(product);
+                }}
               />
 
               <p className="name">{product.name}</p>
