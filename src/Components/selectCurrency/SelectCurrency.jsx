@@ -5,6 +5,8 @@ import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.s
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
 import { selectCurrency } from "../../Redux/Currency/currency.actions";
+import { ReactComponent as DownArrow } from "../../Assets/down-arrow-svgrepo-com.svg";
+import { ReactComponent as UpArrow } from "../../Assets/up-arrow-svgrepo-com.svg";
 
 import "./selectCurrency.styles.scss";
 
@@ -23,6 +25,7 @@ class SelectCurrency extends Component {
 
     this.state = {
       data: {},
+      show: false,
 
       value: 0,
     };
@@ -45,32 +48,56 @@ class SelectCurrency extends Component {
   }
 
   chooseCurrency() {
-    const { data } = this.state;
+    const { data, show } = this.state;
 
     return data.currencies?.map((currency, index) => {
-      return (
-        <option value={index}>
+      return show ? (
+        <li value={index} key={index}>
           {currency.symbol} {currency.label}
-        </option>
+        </li>
+      ) : (
+        ""
       );
     });
+  }
+
+  modalIcon() {
+    const { value } = this.state;
+    if (value === 0) {
+      return "$";
+    } else if (value === 1) {
+      return "£";
+    } else if (value === 2) {
+      return "A$";
+    } else if (value === 3) {
+      return "¥";
+    } else return "₽";
   }
 
   render() {
     const itemCount = this.props.itemCount;
     const selectCurrency = this.props.selectCurrency;
 
-    const { value } = this.state;
+    const { value, show } = this.state;
     selectCurrency(value);
 
     return (
       <div className="currency">
-        <select value={this.state.value} onChange={this.handleChange}>
-          {this.chooseCurrency()}
-        </select>
+        <div className="symbol" onClick={() => this.setState({ show: !show })}>
+          {this.modalIcon()}{" "}
+          {show ? (
+            <UpArrow className="down-arrow" />
+          ) : (
+            <DownArrow className="down-arrow" />
+          )}
+          <ul value={this.state.value} onClick={this.handleChange}>
+            {this.chooseCurrency()}
+          </ul>
+        </div>
 
         <div className="toggle" onClick={() => this.props.toggleCartHidden()}>
           <Cart className="shoppingCart" />
+
           <span className="item-count">{itemCount}</span>
         </div>
       </div>

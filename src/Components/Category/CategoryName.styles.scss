@@ -1,21 +1,23 @@
-ul {
-  display: flex;
-  justify-content: flex-start;
-  width: 20vw;
-  list-style: none;
+.category {
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    width: 20vw;
+    list-style: none;
 
-  a {
-    text-decoration: none;
-    color: black;
+    a {
+      text-decoration: none;
+      color: black;
 
-    &:focus {
-      color: #5ece7b;
-      border-bottom: 2px solid #5ece7b;
+      &:focus {
+        color: #5ece7b;
+        border-bottom: 2px solid #5ece7b;
+      }
     }
-  }
 
-  li {
-    padding: 20px 20px;
-    text-transform: uppercase;
+    li {
+      padding: 20px 20px;
+      text-transform: uppercase;
+    }
   }
 }

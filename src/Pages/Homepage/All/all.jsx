@@ -83,7 +83,7 @@ class All extends Component {
 
       const addItem = this.props.addItem;
       return (
-        <div>
+        <div key={index}>
           <Link to={`/product/${product.id}`}>
             <div key={index} className="card">
               <img src={product.gallery} alt="product"></img>

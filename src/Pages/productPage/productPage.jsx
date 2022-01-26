@@ -54,25 +54,11 @@ class ProductPage extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.attChange = this.attChange.bind(this);
-  }
-
-  isAttrActive(selectAttribute, chosenAttributes) {
-    return Boolean(
-      chosenAttributes.find(
-        (i) =>
-          i.id === selectAttribute.id && i.item?.id === selectAttribute.item.id
-      )
-    );
   }
 
   componentDidMount() {
     this.getProduct();
   }
-
-  /*   handleSavedAtt = (e) => {
-    this.setState([...this.state.savedAttributes], this.state.savedAttributes);
-  }; */
 
   async getProduct() {
     const id = this.props.id;
@@ -87,39 +73,16 @@ class ProductPage extends Component {
     this.setState({ item: response.data.product });
   }
 
-  getAttributeName() {
-    const { item, attributeName } = this.state;
-
-    if (attributeName.length > 0) return;
-    else
-      return item.attributes?.map((att) => {
-        this.setState({ attributeName: att.name });
-      });
-  }
-
   handleChange(event) {
     this.setState({ value: event.target.value });
-  }
-  attChange(e) {
-    const value = this.state.value;
-
-    this.setState({ value: e.target.value });
-    // console.log(e.target.value);
-    // console.log(value);
-  }
-
-  saveAttribute(attr) {
-    const { attr: attribute, itemID } = attr;
-    const { item } = this.state;
-    this.props.change(attribute, item[itemID]);
   }
 
   getAttributes() {
     const { item, savedAttributes } = this.state;
-    return item.attributes?.map((att) => {
+    return item.attributes?.map((att, index) => {
       const nameAtt = att.name;
       return (
-        <div>
+        <div key={index}>
           <p className="attribute">{att.name}</p>
 
           <div className="att-btn">
@@ -144,7 +107,6 @@ class ProductPage extends Component {
                 >
                   {size.value}
                 </button>
-                // savedAttributes: [...savedAttributes, {(nameAtt, id)}],
               );
             })}
           </div>
@@ -166,10 +128,9 @@ class ProductPage extends Component {
 
     return entries.map((entry, index) => {
       return (
-        <div className="thumb">
+        <div className="thumb" key={index}>
           <img
             onClick={() => this.handleTab(index)}
-            key={index}
             src={entry[1]}
             alt=""
           ></img>
@@ -195,13 +156,8 @@ class ProductPage extends Component {
   }
 
   render() {
-    this.getAttributeName();
-    // this.filterAttributes();
     const addItem = this.props.addItem;
-    const { savedAttributes, attributeName, errors, item, index, value } =
-      this.state;
-
-    const addAttribute = this.props.addAttribute;
+    const { savedAttributes, errors, item, index, value } = this.state;
 
     const newItem = Object.assign(savedAttributes, item);
     console.log(newItem);
