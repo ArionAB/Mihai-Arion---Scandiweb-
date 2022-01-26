@@ -55,8 +55,6 @@ class ProductPage extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.attChange = this.attChange.bind(this);
-    this.isAttrActive = this.isAttrActive.bind(this);
-    this.YoutubeHandleChange = this.YoutubeHandleChange.bind(this);
   }
 
   isAttrActive(selectAttribute, chosenAttributes) {
@@ -116,149 +114,9 @@ class ProductPage extends Component {
     this.props.change(attribute, item[itemID]);
   }
 
-  /*   getAttributes() {
-    const { item, savedAttributes, value } = this.state;
-    console.log(value);
-    return item.attributes?.map((att, index) => {
-      const { items, type, id, name } = att;
-      return (
-        <div key={index}>
-          <p className="attribute">{name}</p>
-
-          <div className="att-btn">
-            {items.map((size, index) => {
-              const selectAttribute = {
-                id,
-                name,
-                type,
-                item: size,
-              };
-              console.log(size);
-
-              return (
-                <button
-                  key={size.id}
-                  
-                  style={{ background: size.value, color: size.value }}
-                  className="att-button"
-                  
-                  onClick={() =>
-                    this.saveAttribute({  index, attr: selectAttribute })
-                  }
-                >
-                  {size.value}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      );
-    });
-  } */
-
-  YoutubeHandleChange = (e) => {
-    /*  const { item } = this.state;
-    const { name, value } = item || {};
-    /*  const { formData } = this.state;
-    const updatedState = {
-      ...formData,
-      [name]: value,
-    };
-    this.setState({ formData: updatedState }); */
-    // console.log(item); */
-  };
-
-  /*  getAttributes() {
-    const { item, savedAttributes, formData } = this.state;
-    return item.attributes?.map((att) => {
-      console.log(att);
-      return (
-        <div>
-          <p className="attribute" key={att.id}>
-            {att.name}
-          </p>
-
-          <div className="att-btn">
-            {att.items.map((size, index) => {
-              console.log(size);
-              return (
-                <button
-                  name={size.displayValue}
-                  value={formData[size.displayValue]}
-                  style={{ background: size.value, color: size.value }}
-                  className="att-button"
-                  key={size.id}
-                  onClick={(e) => this.YoutubeHandleChange(e)}
-                ></button>
-              );
-            })}
-          </div>
-        </div>
-      );
-    });
-  } */
-
-  /*   getAttributes() {
-    const { item, savedAttributes, value } = this.state;
-    console.log(value);
-    return item.attributes?.map((att) => {
-      return (
-        <div>
-          <p className="attribute">{att.name}</p>
-
-          <div className="att-btn">
-            {att.items.map((size, index) => {
-              console.log(size);
-              size.value === value
-                ? console.log("equal")
-                : console.log("not equal");
-
-              return (
-                <button
-                  name={size.value}
-                  value={size.value}
-                  style={{ background: size.value, color: size.value }}
-                  className="att-button"
-                  key={index}
-                  onClick={
-                    (e) => this.attChange(e)
-                    /*      this.setState({
-                        savedAttributes: [...savedAttributes, size.value],
-
-                        errors: "",
-                      }) */
-  // }
-  //               >
-  //                 {size.value}
-  //               </button>
-  //             );
-  //           })}
-  //         </div>
-  //       </div>
-  //     );
-  //   });*/
-  // }
-
-  /*   filterAttributes() {
-    const { savedAttributes } = this.state;
-    console.log(savedAttributes);
-    const allSaved = Object.assign(savedAttributes, savedAttributes);
-    // console.log(allSaved && allSaved[0].id);
-    console.log(savedAttributes);
-    console.log(allSaved.brand);
-    return savedAttributes.map((saved) => {
-      console.log(saved);
-    });
-    /*     console.log(savedAttributes);
-    console.log(savedAttributes[0]);
-    console.log(savedAttributes[1]);
-    console.log(savedAttributes[2]); */
-  // }
-
   getAttributes() {
     const { item, savedAttributes } = this.state;
     return item.attributes?.map((att) => {
-      // console.log(att, "***ATT***");
       const nameAtt = att.name;
       return (
         <div>
@@ -266,7 +124,7 @@ class ProductPage extends Component {
 
           <div className="att-btn">
             {att.items.map((size, index) => {
-              // console.log(size, "***SIZE***");
+              const hex = size.value;
               const id = size.id;
               return (
                 <button
@@ -276,7 +134,10 @@ class ProductPage extends Component {
                   key={index}
                   onClick={() =>
                     this.setState({
-                      savedAttributes: [...savedAttributes, { nameAtt, id }],
+                      savedAttributes: [
+                        ...savedAttributes,
+                        { nameAtt, id, hex },
+                      ],
                       errors: "",
                     })
                   }
