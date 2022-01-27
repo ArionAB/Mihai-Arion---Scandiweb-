@@ -8,7 +8,7 @@
 
   background-color: white;
   top: 80px;
-  right: 0;
+  right: 50px;
   z-index: 5;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 
@@ -21,13 +21,39 @@
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   .buttons {
     display: flex;
     justify-content: space-between;
     margin-top: auto;
+
+    button {
+      height: 3em;
+      width: 8.6em;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .bag {
+      background-color: #fff;
+      border: 1px solid black;
+      font-weight: 600;
+
+      &:hover {
+        background-color: black;
+        color: #fff;
+      }
+    }
+
+    .check {
+      background-color: #5ece7b;
+      color: #fff;
+      border: none;
+    }
   }
 
   .mybag {
@@ -37,5 +63,7 @@
   .total-price {
     display: flex;
     justify-content: space-between;
+    font-weight: 500;
+    margin: 1.5em 0;
   }
 }

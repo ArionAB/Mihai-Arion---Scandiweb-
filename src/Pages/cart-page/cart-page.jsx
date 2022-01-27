@@ -7,7 +7,7 @@ import "./cart-page.styles.scss";
 class CartPage extends Component {
   render() {
     const cartItems = this.props.cartItems;
-    const itemCount = this.props.itemCount;
+
     return (
       <div className="cart-page">
         <h1>CART</h1>
@@ -18,7 +18,6 @@ class CartPage extends Component {
         ) : (
           <span className="empty-message">Your cart is empty</span>
         )}
-        =
       </div>
     );
   }
@@ -26,10 +25,6 @@ class CartPage extends Component {
 
 const mapStateToProps = ({ cart: { cartItems } }) => ({
   cartItems,
-  itemCount: cartItems.reduce(
-    (accQuantity, cartItem) => accQuantity + cartItem.quantity,
-    0
-  ),
 });
 
 export default connect(mapStateToProps)(CartPage);

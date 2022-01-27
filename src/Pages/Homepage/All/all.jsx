@@ -56,12 +56,6 @@ class All extends Component {
     this.getCategories();
   }
 
-  /*   componentDidUpdate(prevProps) {
-    if (prevProps.category !== this.props.category) {
-      this.getCategories();
-    }
-  } */
-
   async getCategories() {
     const title = this.props.title;
 

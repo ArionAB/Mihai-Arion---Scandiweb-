@@ -6,42 +6,6 @@ import { Link } from "react-router-dom";
 import "./cart-dropdown.styles.scss";
 
 class CartDropdown extends Component {
-  constructor(props) {
-    super(props);
-    /*   this.state = {
-      newData: undefined,
-    }; */
-  }
-
-  /*   componentDidMount() {
-    this.setData();
-  } */
-
-  /*   setData() {
-    const cartItems = this.props.cartItems;
-    localStorage.setItem("myData", JSON.stringify(cartItems));
-  } */
-
-  getData() {
-    // const { newData } = this.state;
-    let data = localStorage.getItem("myData");
-    data = JSON.parse(data);
-    console.log(data);
-    if (data === undefined) {
-      console.log(data);
-      return data;
-    } else return;
-    /*  if (newData === undefined) {
-      this.setState({ newData: data });
-    } else return; */
-
-    // const { newData } = this.state;
-    // console.log(newData);
-    // this.setState({ user: data });
-    // console.log(data);
-    // console.log(user);
-  }
-
   getprice() {
     const cartItems = this.props.cartItems;
     const selectCurrency = this.props.selectCurrency;
@@ -55,16 +19,11 @@ class CartDropdown extends Component {
     return <div>{(Math.round(totalPrice * 100) / 100).toFixed(2)}</div>;
   }
   render() {
-    // this.getData();
+    const selectCurrency = this.props.selectCurrency;
     this.getprice();
     const cartItems = this.props.cartItems;
-    // const { newData } = this.state;
 
     const itemCount = this.props.itemCount;
-    /* let data = localStorage.getItem("myData");
-    data = JSON.parse(data);
-    console.log(data);  */
-    console.log(cartItems);
 
     return (
       <div className="cart-dropdown">
@@ -81,9 +40,9 @@ class CartDropdown extends Component {
         <div className="total-price">Total {this.getprice()}</div>
         <div className="buttons">
           <Link to="/cart">
-            <button>View Bag</button>
+            <button className="bag">View Bag</button>
           </Link>
-          <button>Check Out</button>
+          <button className="check">Check Out</button>
         </div>
       </div>
     );

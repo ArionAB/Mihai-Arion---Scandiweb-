@@ -10,12 +10,8 @@ import LocalStorage from "../storage";
 import "./cart-item.styles.scss";
 
 class CartItem extends Component {
-  /*  state = {
-    qty: 0,
-  }; */
   getAttributes() {
     const item = this.props.item;
-    const savedItem = this.props.savedItem;
     console.log(item);
     return item.attributes?.map((att) => {
       return (
@@ -57,45 +53,13 @@ class CartItem extends Component {
   }
   // <LocalStorage item={item} />
 
-  /*   componentDidMount() {
-    this.setData();
-    this.getData();
-    const { user } = this.state;
-    console.log(user);
-  }
-
-  setData() {
-    const item = this.props.item;
-    localStorage.setItem("myData", JSON.stringify(item));
-    console.log(item);
-  }
-
-  getData() {
-    let data = localStorage.getItem("myData");
-    data = JSON.parse(data);
-    this.setState({ user: data });
-    console.log(data);
-  }
- */
-  /*   incrementLocal() {
-    const item = this.props.item;
-    const { qty } = this.state;
-    const NewQty = (item.quantity += 1);
-    this.setState({ qty: NewQty });
-    console.log("*****", qty);
-  } */
-
   render() {
     const item = this.props.item;
-    console.log(item.brand);
-    // const { user } = this.state;
-    // console.log(user);
+
     const selectCurrency = this.props.selectCurrency;
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;
 
-    console.log(item.quantity);
-    // const { qty } = this.state;
     return (
       <div className="btn-img">
         <div className="name">
