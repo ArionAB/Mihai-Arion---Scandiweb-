@@ -182,11 +182,11 @@ class ProductPage extends Component {
     console.log(data);
   } */
 
-  setData() {
+  /*   setData() {
     const cartItems = this.props.cartItems;
     console.log(cartItems);
     localStorage.setItem("myData", JSON.stringify(cartItems));
-  }
+  } */
 
   render() {
     const addItem = this.props.addItem;
@@ -227,8 +227,9 @@ class ProductPage extends Component {
               onClick={() =>
                 savedAttributes.length === attributesLength ||
                 savedAttributes.length > attributesLength
-                  ? addItem(newItem) && this.setData()
-                  : // this.setState({ data: newItem }) &&
+                  ? addItem(newItem)
+                  : // && this.setData()
+                    // this.setState({ data: newItem }) &&
                     // this.setData()
                     this.setState({
                       errors: `Please choose  ${attributesLength} attributes.`,

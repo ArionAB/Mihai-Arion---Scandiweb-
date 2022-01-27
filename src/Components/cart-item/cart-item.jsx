@@ -6,11 +6,12 @@ import leftArrow from "../../Assets/left-arrow-svgrepo-com.svg";
 import { ReactComponent as rightArrow } from "../../Assets/right-arrow-svgrepo-com.svg";
 import { addItem, removeItem } from "../../Redux/Cart/cart.actions";
 import LocalStorage from "../storage";
+
 import "./cart-item.styles.scss";
 
 class CartItem extends Component {
-  /*   state = {
-    user: "",
+  /*  state = {
+    qty: 0,
   }; */
   getAttributes() {
     const item = this.props.item;
@@ -74,6 +75,14 @@ class CartItem extends Component {
     console.log(data);
   }
  */
+  /*   incrementLocal() {
+    const item = this.props.item;
+    const { qty } = this.state;
+    const NewQty = (item.quantity += 1);
+    this.setState({ qty: NewQty });
+    console.log("*****", qty);
+  } */
+
   render() {
     const item = this.props.item;
     console.log(item.brand);
@@ -83,6 +92,8 @@ class CartItem extends Component {
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;
 
+    console.log(item.quantity);
+    // const { qty } = this.state;
     return (
       <div className="btn-img">
         <div className="name">
@@ -109,8 +120,8 @@ class CartItem extends Component {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (cacat) => dispatch(addItem(cacat)),
-  removeItem: (item) => dispatch(removeItem(item)),
+  addItem: (param) => dispatch(addItem(param)),
+  removeItem: (param) => dispatch(removeItem(param)),
 });
 
 const mapStateToProps = ({ current: { currency } }) => ({
@@ -118,3 +129,12 @@ const mapStateToProps = ({ current: { currency } }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+
+/* const mapStateToProps = ({ current: { currency }, cart: cartItems }) => ({
+  selectCurrency: currency,
+  cartItems,
+  itemCount: cartItems.reduce(
+    (accQuantity, cartItem) => accQuantity + cartItem.quantity,
+    0
+  ),
+}); */

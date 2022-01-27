@@ -57,20 +57,21 @@ class CartDropdown extends Component {
   render() {
     // this.getData();
     this.getprice();
-
+    const cartItems = this.props.cartItems;
     // const { newData } = this.state;
 
     const itemCount = this.props.itemCount;
-    let data = localStorage.getItem("myData");
+    /* let data = localStorage.getItem("myData");
     data = JSON.parse(data);
-    console.log(data);
+    console.log(data);  */
+    console.log(cartItems);
 
     return (
       <div className="cart-dropdown">
         <div className="mybag">My bag, {itemCount} items</div>
         <div className="cart-items">
-          {data && data.length ? (
-            data.map((cartItem) => (
+          {cartItems && cartItems.length ? (
+            cartItems.map((cartItem) => (
               <CartItem key={cartItem.id} item={cartItem} />
             ))
           ) : (

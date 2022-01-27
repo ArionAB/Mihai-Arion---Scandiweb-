@@ -3,7 +3,6 @@ import "./CategoryName.styles.scss";
 import React, { Component } from "react";
 import { gql } from "@apollo/client";
 import { graphql } from "@apollo/client/react/hoc";
-import { Link } from "react-router-dom";
 
 const GET_CATEGORY_NAMES = gql`
   query {
@@ -25,9 +24,9 @@ class CategoryName extends Component {
       return data.categories.map((category, index) => {
         return (
           <div key={index}>
-            <Link to={`/category/${category.name}`} onClick={this.forceUpdate}>
+            <a href={`/category/${category.name}`}>
               <li key={index}> {category.name}</li>
-            </Link>
+            </a>
           </div>
         );
       });
