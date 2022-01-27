@@ -7,6 +7,7 @@ import { addAttribute } from "../../Redux/Cart/cart.actions";
 
 import "./productPage.styles.scss";
 import { addItemToCart } from "../../Redux/Cart/cart.utils";
+import LocalStorage from "../../Components/storage";
 
 const GET_PRODUCT = gql`
   query GetProduct($id: String!) {
@@ -51,6 +52,8 @@ class ProductPage extends Component {
       index: 0,
       value: [],
       formData: {},
+      data: undefined,
+      // hits: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,6 +61,7 @@ class ProductPage extends Component {
 
   componentDidMount() {
     this.getProduct();
+    // this.setData();
   }
 
   async getProduct() {
@@ -155,17 +159,50 @@ class ProductPage extends Component {
     );
   }
 
+  /* localStorage() {
+    this.getProduct();
+    this.getAttributes();
+    const { savedAttributes, item } = this.state;
+    const newItem = Object.assign(savedAttributes, item);
+    const cachedHits = localStorage.getItem(newItem);
+    console.log(cachedHits);
+    if (cachedHits) {
+      this.setState({ hits: JSON.parse(cachedHits) });
+    } else return;
+  }
+  onSetResult = (result, key) => {
+    localStorage.setItem(key, JSON.stringify(result.hits));
+    this.setState({ hits: result.hits });
+  };
+ */
+
+  /*   setData() {
+    const { data } = this.state;
+    localStorage.setItem("myData", JSON.stringify(data));
+    console.log(data);
+  } */
+
+  setData() {
+    const cartItems = this.props.cartItems;
+    console.log(cartItems);
+    localStorage.setItem("myData", JSON.stringify(cartItems));
+  }
+
   render() {
     const addItem = this.props.addItem;
-    const { savedAttributes, errors, item, index, value } = this.state;
+    const { savedAttributes, errors, item, index } = this.state;
 
     const newItem = Object.assign(savedAttributes, item);
-    console.log(newItem);
+
     const attributesLength = item.attributes ? item.attributes.length : "";
 
     const gallery = item.gallery;
 
     const newObj = Object.assign({}, gallery);
+
+    // <LocalStorage item={newItem} />
+    // {this.localStorage()}
+    // {this.onSetResult()}
 
     return (
       <div className="container">
@@ -183,14 +220,17 @@ class ProductPage extends Component {
             {this.getPrices()}
           </div>
           <div className={errors ? "hasErrors" : ""}>{errors}</div>
+
           {item.inStock ? (
             <button
               className="addCart"
               onClick={() =>
                 savedAttributes.length === attributesLength ||
                 savedAttributes.length > attributesLength
-                  ? addItem(newItem)
-                  : this.setState({
+                  ? addItem(newItem) && this.setData()
+                  : // this.setState({ data: newItem }) &&
+                    // this.setData()
+                    this.setState({
                       errors: `Please choose  ${attributesLength} attributes.`,
                     })
               }
@@ -214,12 +254,13 @@ class ProductPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (cacat) => dispatch(addItem(cacat)),
-  addAttribute: (cacat) => dispatch(addAttribute(cacat)),
+  addItem: (param) => dispatch(addItem(param)),
+  addAttribute: (param) => dispatch(addAttribute(param)),
 });
 
-const mapStateToProps = ({ current: { currency } }) => ({
+const mapStateToProps = ({ current: { currency }, cart: { cartItems } }) => ({
   selectCurrency: currency,
+  cartItems,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

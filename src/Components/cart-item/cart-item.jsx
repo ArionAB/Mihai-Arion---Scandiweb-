@@ -5,18 +5,24 @@ import { compose } from "redux";
 import leftArrow from "../../Assets/left-arrow-svgrepo-com.svg";
 import { ReactComponent as rightArrow } from "../../Assets/right-arrow-svgrepo-com.svg";
 import { addItem, removeItem } from "../../Redux/Cart/cart.actions";
+import LocalStorage from "../storage";
 import "./cart-item.styles.scss";
 
 class CartItem extends Component {
+  /*   state = {
+    user: "",
+  }; */
   getAttributes() {
     const item = this.props.item;
-    console.log(item[0].nameAtt == "Color");
+    const savedItem = this.props.savedItem;
+    console.log(item);
     return item.attributes?.map((att) => {
       return (
         <div className="size-att">
           {att.items.map((size, index) => {
             return item[0].id === size.id || item[1]?.id === size.id ? (
               <button
+                key={index}
                 className="att-button"
                 id={size.value}
                 style={
@@ -46,10 +52,33 @@ class CartItem extends Component {
       );
     });
   }
+  // <LocalStorage item={item} />
 
+  /*   componentDidMount() {
+    this.setData();
+    this.getData();
+    const { user } = this.state;
+    console.log(user);
+  }
+
+  setData() {
+    const item = this.props.item;
+    localStorage.setItem("myData", JSON.stringify(item));
+    console.log(item);
+  }
+
+  getData() {
+    let data = localStorage.getItem("myData");
+    data = JSON.parse(data);
+    this.setState({ user: data });
+    console.log(data);
+  }
+ */
   render() {
     const item = this.props.item;
-
+    console.log(item.brand);
+    // const { user } = this.state;
+    // console.log(user);
     const selectCurrency = this.props.selectCurrency;
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;
