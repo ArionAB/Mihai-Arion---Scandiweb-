@@ -47,13 +47,8 @@ class ProductPage extends Component {
       item: {},
       errors: "",
       savedAttributes: [],
-      attributeName: "",
-      prices: [],
       index: 0,
       value: [],
-      formData: {},
-      data: undefined,
-      // hits: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -61,7 +56,6 @@ class ProductPage extends Component {
 
   componentDidMount() {
     this.getProduct();
-    // this.setData();
   }
 
   async getProduct() {
@@ -159,35 +153,6 @@ class ProductPage extends Component {
     );
   }
 
-  /* localStorage() {
-    this.getProduct();
-    this.getAttributes();
-    const { savedAttributes, item } = this.state;
-    const newItem = Object.assign(savedAttributes, item);
-    const cachedHits = localStorage.getItem(newItem);
-    console.log(cachedHits);
-    if (cachedHits) {
-      this.setState({ hits: JSON.parse(cachedHits) });
-    } else return;
-  }
-  onSetResult = (result, key) => {
-    localStorage.setItem(key, JSON.stringify(result.hits));
-    this.setState({ hits: result.hits });
-  };
- */
-
-  /*   setData() {
-    const { data } = this.state;
-    localStorage.setItem("myData", JSON.stringify(data));
-    console.log(data);
-  } */
-
-  /*   setData() {
-    const cartItems = this.props.cartItems;
-    console.log(cartItems);
-    localStorage.setItem("myData", JSON.stringify(cartItems));
-  } */
-
   render() {
     const addItem = this.props.addItem;
     const { savedAttributes, errors, item, index } = this.state;
@@ -199,10 +164,6 @@ class ProductPage extends Component {
     const gallery = item.gallery;
 
     const newObj = Object.assign({}, gallery);
-
-    // <LocalStorage item={newItem} />
-    // {this.localStorage()}
-    // {this.onSetResult()}
 
     return (
       <div className="container">

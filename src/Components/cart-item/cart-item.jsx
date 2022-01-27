@@ -21,7 +21,9 @@ class CartItem extends Component {
       return (
         <div className="size-att">
           {att.items.map((size, index) => {
-            return item[0].id === size.id || item[1]?.id === size.id ? (
+            return item[0].id === size.id ||
+              item[1]?.id === size.id ||
+              item[2]?.id === size.id ? (
               <button
                 key={index}
                 className="att-button"
