@@ -156,14 +156,16 @@ class ProductPage extends Component {
   render() {
     const addItem = this.props.addItem;
     const { savedAttributes, errors, item, index } = this.state;
-
+    console.log(item);
     const newItem = Object.assign(savedAttributes, item);
 
     const attributesLength = item.attributes ? item.attributes.length : "";
 
     const gallery = item.gallery;
+    // console.log("GALLERY", gallery);
 
     const newObj = Object.assign({}, gallery);
+    // console.log("***newObj[1]", newObj[1]);
 
     return (
       <div className="container">

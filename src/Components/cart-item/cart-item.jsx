@@ -2,9 +2,9 @@ import { getInclusionDirectives } from "@apollo/client/utilities";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import leftArrow from "../../Assets/left-arrow-svgrepo-com.svg";
-import { ReactComponent as rightArrow } from "../../Assets/right-arrow-svgrepo-com.svg";
+
 import { addItem, removeItem } from "../../Redux/Cart/cart.actions";
+import CartGallery from "../CartGallery/CartGallery";
 import LocalStorage from "../storage";
 
 import "./cart-item.styles.scss";
@@ -12,7 +12,7 @@ import "./cart-item.styles.scss";
 class CartItem extends Component {
   getAttributes() {
     const item = this.props.item;
-    console.log(item);
+
     return item.attributes?.map((att) => {
       return (
         <div className="size-att">
@@ -78,10 +78,10 @@ class CartItem extends Component {
             <span>{item.quantity}</span>
             <button onClick={() => removeItem(item)}>-</button>
           </div>
-
-          <img className="cart-img" src={item.gallery} />
+          <CartGallery />
         </div>
       </div>
+      // <img className="cart-img" src={item.gallery} />
     );
   }
 }
@@ -95,12 +95,3 @@ const mapStateToProps = ({ current: { currency } }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
-
-/* const mapStateToProps = ({ current: { currency }, cart: cartItems }) => ({
-  selectCurrency: currency,
-  cartItems,
-  itemCount: cartItems.reduce(
-    (accQuantity, cartItem) => accQuantity + cartItem.quantity,
-    0
-  ),
-}); */

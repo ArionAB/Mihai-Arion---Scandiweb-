@@ -74,6 +74,24 @@ class SelectCurrency extends Component {
     } else return "₽";
   }
 
+  handleClick = () => {
+    if (!this.state.show) {
+      document.addEventListener("click", this.handleOutsideClick, false);
+    } else {
+      document.removeEventListener("click", this.handleOutsideClick, false);
+    }
+
+    this.setState((prevState) => ({
+      show: !prevState.show,
+    }));
+  };
+
+  handleOutsideClick = (e) => {
+    if (!this.node.contains(e.target)) {
+      this.handleClick();
+    }
+  };
+
   render() {
     const itemCount = this.props.itemCount;
     const selectCurrency = this.props.selectCurrency;
@@ -83,7 +101,13 @@ class SelectCurrency extends Component {
 
     return (
       <div className="currency">
-        <div className="symbol" onClick={() => this.setState({ show: !show })}>
+        <div
+          className="symbol"
+          ref={(node) => {
+            this.node = node;
+          }}
+          onClick={() => this.handleClick()}
+        >
           {this.modalIcon()}{" "}
           {show ? (
             <UpArrow className="down-arrow" />
@@ -107,7 +131,7 @@ class SelectCurrency extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
-  selectCurrency: (pisat) => dispatch(selectCurrency(pisat)),
+  selectCurrency: (props) => dispatch(selectCurrency(props)),
 });
 
 const mapStateToProps = ({ cart: { cartItems } }) => ({

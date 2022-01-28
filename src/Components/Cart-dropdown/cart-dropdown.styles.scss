@@ -6,6 +6,14 @@
   flex-direction: column;
   padding: 20px;
 
+  .left-arrow {
+    display: none;
+  }
+
+  .right-arrow {
+    display: none;
+  }
+
   background-color: white;
   top: 80px;
   right: 50px;
