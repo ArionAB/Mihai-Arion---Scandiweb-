@@ -14,56 +14,67 @@ class CartGallery extends Component {
   getImg() {
     const { index } = this.state;
     const cartItems = this.props.cartItems;
-
-    cartItems.map((item) => {
+    console.log(cartItems);
+    cartItems?.map((item) => {
       const gallery = item.gallery;
+      console.log(gallery);
       this.setState({ galleryLength: gallery.length });
       const newObj = Object.assign({}, gallery);
-
+      console.log(newObj);
       this.setState({ img: newObj[index] });
     });
   }
-
-  nextImage() {
+  /* 
+  nextImage = () => {
     // const len = this.props.images.length;
     const { index, galleryLength } = this.state;
-    console.log(galleryLength);
+
     if (index !== galleryLength - 1) {
       this.setState({ index: index + 1 });
     } else {
       this.setState({ index: 0 });
     }
-  }
+  }; */
 
-  previousImage() {
+  nextImg = () => {
+    const { index, galleryLength } = this.state;
+    if (index !== galleryLength - 1) {
+      this.setState({ index: index + 1 });
+      console.log(index);
+    } else this.setState({ index: 0 });
+
+    // this.getImg();
+  };
+
+  previousImage = () => {
     // const len = this.props.images.length;
 
     const { index, galleryLength } = this.state;
-    console.log(galleryLength);
+
     if (index !== 0) {
       this.setState({ index: index - 1 });
-    } else {
-      this.setState({ index: galleryLength - 1 });
-    }
-  }
+    } else this.setState({ index: galleryLength - 1 });
+
+    // this.getImg();
+  };
 
   componentDidMount() {
-    // this.getImg();
+    this.getImg();
   }
 
   render() {
     const { img, galleryLength } = this.state;
-
+    console.log(img);
     // console.log(galleryLength);
 
     return (
       <div className="cart-gallery">
         {galleryLength > 1 && (
-          <LeftArrow className="left-arrow" onClick={this.previousImage()} />
+          <LeftArrow className="left-arrow" onClick={this.previousImage} />
         )}
         <img className="cart-img" src={img} />;
         {galleryLength > 1 && (
-          <RightArrow className="right-arrow" onClick={this.nextImage()} />
+          <RightArrow className="right-arrow" onClick={this.nextImg} />
         )}
       </div>
     );
