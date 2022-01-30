@@ -30,7 +30,6 @@ class CartGallery extends Component {
 
   render() {
     const { index } = this.state;
-
     const { image } = this.props;
 
     return (

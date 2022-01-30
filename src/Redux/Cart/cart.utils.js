@@ -34,18 +34,3 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       : cartItem
   );
 };
-
-export const addAttributetoCart = (cartItems, cartItemToAdd) => {
-  const existingCartItem = cartItems.find(
-    (cartItem) => cartItem.id === cartItemToAdd.id
-  );
-
-  if (existingCartItem) {
-    return cartItems.map((cartItem) =>
-      cartItem.id === cartItemToAdd.id
-        ? { ...cartItem, addAttribute: cartItem.addAttribute }
-        : cartItem
-    );
-  }
-  return cartItems;
-};

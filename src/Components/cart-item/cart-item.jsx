@@ -1,11 +1,8 @@
-import { getInclusionDirectives } from "@apollo/client/utilities";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { compose } from "redux";
 
 import { addItem, removeItem } from "../../Redux/Cart/cart.actions";
 import CartGallery from "../CartGallery/CartGallery";
-import LocalStorage from "../storage";
 
 import "./cart-item.styles.scss";
 
@@ -81,7 +78,6 @@ class CartItem extends Component {
           <CartGallery image={item.gallery} />
         </div>
       </div>
-      // <img className="cart-img" src={item.gallery} />s
     );
   }
 }

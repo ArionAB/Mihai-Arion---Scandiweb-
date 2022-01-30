@@ -6,8 +6,6 @@ import { addItem } from "../../Redux/Cart/cart.actions";
 import { addAttribute } from "../../Redux/Cart/cart.actions";
 
 import "./productPage.styles.scss";
-import { addItemToCart } from "../../Redux/Cart/cart.utils";
-import LocalStorage from "../../Components/storage";
 
 const GET_PRODUCT = gql`
   query GetProduct($id: String!) {
@@ -162,10 +160,8 @@ class ProductPage extends Component {
     const attributesLength = item.attributes ? item.attributes.length : "";
 
     const gallery = item.gallery;
-    // console.log("GALLERY", gallery);
 
     const newObj = Object.assign({}, gallery);
-    // console.log("***newObj[1]", newObj[1]);
 
     return (
       <div className="container">
@@ -191,10 +187,7 @@ class ProductPage extends Component {
                 savedAttributes.length === attributesLength ||
                 savedAttributes.length > attributesLength
                   ? addItem(newItem)
-                  : // && this.setData()
-                    // this.setState({ data: newItem }) &&
-                    // this.setData()
-                    this.setState({
+                  : this.setState({
                       errors: `Please choose  ${attributesLength} attributes.`,
                     })
               }

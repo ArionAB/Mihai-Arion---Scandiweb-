@@ -1,9 +1,7 @@
 import { CurrencyActionTypes } from "./currency.types";
-import { PriceActionTypes } from "./currency.types";
 
 const INITIAL_STATE = {
   currency: 0,
-  price: 0,
 };
 
 export const currencyReducer = (state = INITIAL_STATE, action) => {
@@ -12,18 +10,6 @@ export const currencyReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currency: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export const priceReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case PriceActionTypes.SET_PRICE:
-      return {
-        ...state,
-        price: action.payload,
       };
     default:
       return state;

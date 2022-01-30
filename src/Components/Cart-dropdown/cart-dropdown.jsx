@@ -19,7 +19,6 @@ class CartDropdown extends Component {
     return <div>{(Math.round(totalPrice * 100) / 100).toFixed(2)}</div>;
   }
   render() {
-    const selectCurrency = this.props.selectCurrency;
     this.getprice();
     const cartItems = this.props.cartItems;
 
@@ -63,25 +62,3 @@ const mapStateToProps = ({
 });
 
 export default connect(mapStateToProps)(CartDropdown);
-
-/* return (
-  <div className="cart-dropdown">
-    <div className="mybag">My bag, {itemCount} items</div>
-    <div className="cart-items">
-      {cartItems.length ? (
-        cartItems.map((cartItem) => (
-          <CartItem key={cartItem.id} item={cartItem} />
-        ))
-      ) : (
-        <span className="empty-message">Your cart is empty</span>
-      )}
-    </div>
-    <div className="total-price">Total {this.getprice()}</div>
-    <div className="buttons">
-      <Link to="/cart">
-        <button>View Bag</button>
-      </Link>
-      <button>Check Out</button>
-    </div>
-  </div>
-); */
