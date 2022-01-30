@@ -7,55 +7,34 @@ import "./CartGallery.styles.scss";
 class CartGallery extends Component {
   state = {
     index: 0,
-    img: "",
     galleryLength: 0,
   };
 
   getImg() {
-    const { index } = this.state;
     const cartItems = this.props.cartItems;
-    console.log(cartItems);
     cartItems?.map((item) => {
       const gallery = item.gallery;
-      console.log(gallery);
       this.setState({ galleryLength: gallery.length });
-      const newObj = Object.assign({}, gallery);
-      console.log(newObj);
-      this.setState({ img: newObj[index] });
     });
   }
-  /* 
-  nextImage = () => {
-    // const len = this.props.images.length;
-    const { index, galleryLength } = this.state;
-
-    if (index !== galleryLength - 1) {
-      this.setState({ index: index + 1 });
-    } else {
-      this.setState({ index: 0 });
-    }
-  }; */
 
   nextImg = () => {
     const { index, galleryLength } = this.state;
     if (index !== galleryLength - 1) {
       this.setState({ index: index + 1 });
-      console.log(index);
     } else this.setState({ index: 0 });
 
-    // this.getImg();
+    this.getImg();
   };
 
   previousImage = () => {
-    // const len = this.props.images.length;
-
     const { index, galleryLength } = this.state;
 
     if (index !== 0) {
       this.setState({ index: index - 1 });
     } else this.setState({ index: galleryLength - 1 });
 
-    // this.getImg();
+    this.getImg();
   };
 
   componentDidMount() {
@@ -63,19 +42,23 @@ class CartGallery extends Component {
   }
 
   render() {
-    const { img, galleryLength } = this.state;
-    console.log(img);
-    // console.log(galleryLength);
+    const { galleryLength, index } = this.state;
 
+    const { image } = this.props;
+
+    console.log("***Gallery length", galleryLength);
+    console.log(image.length);
     return (
       <div className="cart-gallery">
-        {galleryLength > 1 && (
-          <LeftArrow className="left-arrow" onClick={this.previousImage} />
-        )}
-        <img className="cart-img" src={img} />;
-        {galleryLength > 1 && (
-          <RightArrow className="right-arrow" onClick={this.nextImg} />
-        )}
+        <LeftArrow
+          className={image.length > 1 ? "left-arrow" : "hidden-arrow"}
+          onClick={this.previousImage}
+        />
+        <img className="cart-img" src={image[index]} />
+        <RightArrow
+          className={image.length > 1 ? "right-arrow" : "hidden-arrow"}
+          onClick={this.nextImg}
+        />
       </div>
     );
   }
@@ -85,3 +68,15 @@ const mapStateToProps = ({ cart: { cartItems } }) => ({
   cartItems,
 });
 export default connect(mapStateToProps)(CartGallery);
+
+/* return (
+  <div className="cart-gallery">
+    {galleryLength > 1 && (
+      <LeftArrow className="left-arrow" onClick={this.previousImage} />
+    )}
+    <img className="cart-img" src={image[index]} />;
+    {galleryLength > 1 && (
+      <RightArrow className="right-arrow" onClick={this.nextImg} />
+    )}
+  </div>
+); */

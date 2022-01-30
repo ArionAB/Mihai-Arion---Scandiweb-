@@ -59,7 +59,7 @@ class CartItem extends Component {
     const selectCurrency = this.props.selectCurrency;
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;
-
+    console.log(item.gallery);
     return (
       <div className="btn-img">
         <div className="name">
@@ -78,10 +78,10 @@ class CartItem extends Component {
             <span>{item.quantity}</span>
             <button onClick={() => removeItem(item)}>-</button>
           </div>
-          <CartGallery />
+          <CartGallery image={item.gallery} />
         </div>
       </div>
-      // <img className="cart-img" src={item.gallery} />
+      // <img className="cart-img" src={item.gallery} />s
     );
   }
 }
