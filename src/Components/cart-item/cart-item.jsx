@@ -26,7 +26,7 @@ class CartItem extends Component {
                 id={size.value}
                 style={
                   size.value.includes("#")
-                    ? { background: size.value, color: size.value }
+                    ? { background: size.value, color: "transparent" }
                     : {
                         background: "black",
                         color: "white",

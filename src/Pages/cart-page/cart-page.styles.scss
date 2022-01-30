@@ -37,10 +37,14 @@
   display: flex;
   flex-direction: column;
 
+  h1 {
+    display: flex;
+  }
+
   .btn-img {
     display: flex;
     justify-content: space-between;
-    height: 25vh;
+    height: 35vh;
     margin-top: 4em;
     border-top: 1px solid rgb(199, 196, 196);
   }
@@ -55,24 +59,33 @@
   }
 
   .name p:first-child {
+    display: flex;
     font-weight: bolder;
     font-size: 2em;
+    margin-bottom: 0.2em;
   }
   .name p:nth-child(2) {
+    display: flex;
     font-weight: normal;
     font-size: 2em;
+    margin: 0 0.2em;
   }
 
   .price-symbol {
+    display: flex;
+    align-items: center;
+    margin: 0.6em;
     font-size: 0.7em;
     font-weight: 900;
-    margin: 2em 0;
   }
   span {
     font-size: 2em;
   }
 
   .size-att {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     margin-bottom: 1em;
     button {
