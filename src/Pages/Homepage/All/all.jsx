@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { addItem } from "../../../Redux/Cart/cart.actions";
 
 import "./all.styles.scss";
-import ProductPage from "../../productPage/productPage";
 
 const GET_ALL = gql`
   query category($title: String!) {
@@ -76,6 +75,8 @@ class All extends Component {
       const hasAttributes = product.attributes ? product.attributes.length : "";
 
       const addItem = this.props.addItem;
+
+      console.log(this.state.red);
       return (
         <div key={index}>
           <Link to={`/product/${product.id}`}>
@@ -102,11 +103,12 @@ class All extends Component {
                   } else addItem(product);
                 }}
               />
-
-              <p className="name">{product.name}</p>
-              <div className="price">
-                <p>{product.prices[selectCurrency].currency.symbol}</p>
-                <p>{product.prices[selectCurrency].amount}</p>
+              <div className="name-price">
+                <p className="name">{product.name}</p>
+                <div className="price">
+                  <p>{product.prices[selectCurrency].currency.symbol}</p>
+                  <p>{product.prices[selectCurrency].amount}</p>
+                </div>
               </div>
             </div>
           </Link>
