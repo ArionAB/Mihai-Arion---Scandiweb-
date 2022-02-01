@@ -6,9 +6,23 @@ import { Link } from "react-router-dom";
 import "./cart-dropdown.styles.scss";
 
 class CartDropdown extends Component {
+  totalPriceIcon() {
+    const selectCurrency = this.props.selectCurrency;
+    if (selectCurrency === 0) {
+      return "$";
+    } else if (selectCurrency === 1) {
+      return "£";
+    } else if (selectCurrency === 2) {
+      return "A$";
+    } else if (selectCurrency === 3) {
+      return "¥";
+    } else return "₽";
+  }
+
   getprice() {
     const cartItems = this.props.cartItems;
     const selectCurrency = this.props.selectCurrency;
+
     const totalPrice = cartItems.reduce(
       (accQuantity, cartItem) =>
         accQuantity +
@@ -16,8 +30,14 @@ class CartDropdown extends Component {
       0
     );
 
-    return <div>{(Math.round(totalPrice * 100) / 100).toFixed(2)}</div>;
+    return (
+      <div className="total-icon">
+        <p>{this.totalPriceIcon()}</p>
+        {(Math.round(totalPrice * 100) / 100).toFixed(2)}
+      </div>
+    );
   }
+
   render() {
     this.getprice();
     const cartItems = this.props.cartItems;

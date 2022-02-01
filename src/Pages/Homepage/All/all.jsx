@@ -76,7 +76,6 @@ class All extends Component {
 
       const addItem = this.props.addItem;
 
-      console.log(this.state.red);
       return (
         <div key={index}>
           <Link to={`/product/${product.id}`}>

@@ -154,7 +154,7 @@ class ProductPage extends Component {
   render() {
     const addItem = this.props.addItem;
     const { savedAttributes, errors, item, index } = this.state;
-    console.log(item);
+
     const newItem = Object.assign(savedAttributes, item);
 
     const attributesLength = item.attributes ? item.attributes.length : "";

@@ -12,7 +12,7 @@ class CartItem extends Component {
 
     return item.attributes?.map((att) => {
       return (
-        <div className="size-att">
+        <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
             return item[0].id === size.id ||
               item[1]?.id === size.id ||
@@ -56,7 +56,7 @@ class CartItem extends Component {
     const selectCurrency = this.props.selectCurrency;
     const addItem = this.props.addItem;
     const removeItem = this.props.removeItem;
-    console.log(item.gallery);
+
     return (
       <div className="btn-img">
         <div className="name">

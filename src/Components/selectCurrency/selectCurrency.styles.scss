@@ -4,6 +4,15 @@
   width: 20vw;
 }
 
+.total-icon {
+  display: flex;
+  align-items: flex-start;
+
+  p {
+    margin: 0 5px 0 0;
+  }
+}
+
 .symbol {
   display: flex;
   align-items: center;
