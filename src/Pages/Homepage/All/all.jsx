@@ -1,45 +1,13 @@
 import React, { Component } from "react";
-import { gql } from "@apollo/client";
 
 import Cart from "../../../Assets/shopping-cart-svgrepo-com.svg";
 import { Link } from "react-router-dom";
 import { client } from "../../../index";
 import { connect } from "react-redux";
 import { addItem } from "../../../Redux/Cart/cart.actions";
+import { GET_ALL } from "../../../GraphQL/queries";
 
 import "./all.styles.scss";
-
-const GET_ALL = gql`
-  query category($title: String!) {
-    category(input: { title: $title }) {
-      name
-      products {
-        id
-        gallery
-        name
-        inStock
-
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
-        }
-        attributes {
-          id
-          name
-          type
-          items {
-            displayValue
-            value
-            id
-          }
-        }
-      }
-    }
-  }
-`;
 
 class All extends Component {
   constructor(props) {

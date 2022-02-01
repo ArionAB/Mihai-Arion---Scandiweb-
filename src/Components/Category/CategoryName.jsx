@@ -1,16 +1,9 @@
 import "./CategoryName.styles.scss";
 
 import React, { Component } from "react";
-import { gql } from "@apollo/client";
-import { graphql } from "@apollo/client/react/hoc";
 
-const GET_CATEGORY_NAMES = gql`
-  query {
-    categories {
-      name
-    }
-  }
-`;
+import { graphql } from "@apollo/client/react/hoc";
+import { GET_CATEGORY_NAMES } from "../../GraphQL/queries";
 
 class CategoryName extends Component {
   displayCategories() {

@@ -1,41 +1,12 @@
 import React, { Component } from "react";
-import { gql } from "@apollo/client";
+
 import { client } from "../../index";
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/Cart/cart.actions";
 import { addAttribute } from "../../Redux/Cart/cart.actions";
+import { GET_PRODUCT } from "../../GraphQL/queries";
 
 import "./productPage.styles.scss";
-
-const GET_PRODUCT = gql`
-  query GetProduct($id: String!) {
-    product(id: $id) {
-      id
-      brand
-      name
-      gallery
-      inStock
-      description
-      prices {
-        currency {
-          label
-          symbol
-        }
-        amount
-      }
-      attributes {
-        id
-        name
-        type
-        items {
-          displayValue
-          value
-          id
-        }
-      }
-    }
-  }
-`;
 
 class ProductPage extends Component {
   constructor(props) {

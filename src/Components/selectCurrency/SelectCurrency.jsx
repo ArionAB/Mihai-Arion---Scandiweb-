@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { gql } from "@apollo/client";
+
 import { client } from "../../index";
 import { ReactComponent as Cart } from "../../Assets/shopping-cart-svgrepo-com.svg";
 import { connect } from "react-redux";
@@ -7,17 +7,9 @@ import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
 import { selectCurrency } from "../../Redux/Currency/currency.actions";
 import { ReactComponent as DownArrow } from "../../Assets/down-arrow-svgrepo-com.svg";
 import { ReactComponent as UpArrow } from "../../Assets/up-arrow-svgrepo-com.svg";
+import { SELECT_CURRENCY } from "../../GraphQL/queries";
 
 import "./selectCurrency.styles.scss";
-
-const SELECT_CURRENCY = gql`
-  query {
-    currencies {
-      label
-      symbol
-    }
-  }
-`;
 
 class SelectCurrency extends Component {
   constructor(props) {
