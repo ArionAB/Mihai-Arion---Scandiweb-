@@ -9,19 +9,14 @@ import "./cart-item.styles.scss";
 class CartItem extends Component {
   getAttributes() {
     const { item } = this.props;
-    const savedAttributes = this.props.savedAttributes;
 
     return item.attributes?.map((att) => {
-      const itmVl = savedAttributes.savedAttributes.find(
+      const itmVl = item.savedAttr[0].savedAttributes.find(
         (itm) => itm.attID === att.id
       );
-
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
-            // return item[0].id === size.id ||
-            // item[1]?.id === size.id ||
-            // item[2]?.id === size.id ? (
             return itmVl !== undefined && itmVl.id === size.id ? (
               <button
                 key={index}
@@ -103,52 +98,54 @@ const mapStateToProps = ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
 
-/*  getAttributes() {
-    const { item } = this.props;
-    const savedAttributes = this.props.savedAttributes;
+/* getAttributes() {
+  const { item } = this.props;
 
-    console.log(savedAttributes);
-    savedAttributes.savedAttributes.map((saved) => {
-      const attName = saved.attID;
-      const savedID = saved.id;
-      console.log(savedID);
+  item.savedAttr.map((newAttr) => {
+    newAttr.savedAttributes?.map((attID) => {
+      console.log(attID.attID);
     });
+  });
 
-    return item.attributes?.map((att) => {
-      return (
-        <div className="size-att" key={att.id}>
-          {att.items.map((size, index) => {
-            return item[0].id === size.id ||
-              item[1]?.id === size.id ||
-              item[2]?.id === size.id ? (
-              <button
-                key={index}
-                className="att-button"
-                id={size.value}
-                style={
-                  size.value.includes("#")
-                    ? { background: size.value, color: "transparent" }
-                    : {
-                        background: "black",
-                        color: "white",
-                      }
-                }
-              >
-                {size.value}
-              </button>
-            ) : (
-              <button
-                style={
-                  size.value.includes("#")
-                    ? { display: "none" }
-                    : { background: "white", color: "black" }
-                }
-              >
-                {size.value}
-              </button>
-            );
-          })}
-        </div>
-      );
-    });
-  } */
+  const savedAttributes = this.props.savedAttributes;
+
+  return item.attributes?.map((att) => {
+    const itmVl = savedAttributes.savedAttributes.find(
+      (itm) => itm.attID === att.id
+    );
+
+    return (
+      <div className="size-att" key={att.id}>
+        {att.items.map((size, index) => {
+          return itmVl !== undefined && itmVl.id === size.id ? (
+            <button
+              key={index}
+              className="att-button"
+              id={size.value}
+              style={
+                size.value.includes("#")
+                  ? { background: size.value, color: "transparent" }
+                  : {
+                      background: "black",
+                      color: "white",
+                    }
+              }
+            >
+              {size.value}
+            </button>
+          ) : (
+            <button
+              style={
+                size.value.includes("#")
+                  ? { display: "none" }
+                  : { background: "white", color: "black" }
+              }
+            >
+              {size.value}
+            </button>
+          );
+        })}
+      </div>
+    );
+  });
+} */

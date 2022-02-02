@@ -134,16 +134,12 @@ class ProductPage extends Component {
   }
 
   SendAttributeToItem() {
-    const { savedAttributes } = this.state;
-    console.log(savedAttributes);
-    return <CartItem savedItem={savedAttributes} />;
-
-    /*  savedAttributes.map((savedItem) => {
-      console.log("savedItem", savedItem);
-      const entries = Object.entries(savedItem);
-      const save = [entries, entries];
-      console.log("save", save);
-    }); */
+    const { cartItems } = this.props;
+    const { savedAttributes, item } = this.state;
+    const chosen = { savedAttributes, item };
+    cartItems.map((cartItem) => {
+      cartItem.savedAttr.push(chosen);
+    });
   }
 
   render() {
@@ -154,8 +150,7 @@ class ProductPage extends Component {
 
     const newItem = Object.assign(savedAttributes, item);
     const chosenAttributes = { savedAttributes, item };
-    // console.log(newItem);
-    // console.log(chosenAttributes.savedAttributes);
+
     addAttribute(chosenAttributes);
 
     const attributesLength = item.attributes ? item.attributes.length : "";
