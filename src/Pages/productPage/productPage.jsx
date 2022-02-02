@@ -7,6 +7,7 @@ import { addAttribute } from "../../Redux/Cart/cart.actions";
 import { GET_PRODUCT } from "../../GraphQL/queries";
 
 import "./productPage.styles.scss";
+import CartItem from "../../Components/cart-item/cart-item";
 
 class ProductPage extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class ProductPage extends Component {
     const { item, savedAttributes } = this.state;
     return item.attributes?.map((att, index) => {
       const nameAtt = att.name;
+      const attID = att.id;
       return (
         <div key={index}>
           <p className="attribute">{att.name}:</p>
@@ -62,15 +64,24 @@ class ProductPage extends Component {
                   style={{ background: size.value, color: size.value }}
                   className="att-button"
                   key={index}
-                  onClick={() =>
-                    this.setState({
+                  onClick={() => {
+                    const ind = savedAttributes.findIndex(
+                      (itm) => itm.attID === attID
+                    );
+
+                    if (ind !== -1) {
+                      savedAttributes.splice(ind, 1);
+                    }
+                    return this.setState({
                       savedAttributes: [
                         ...savedAttributes,
-                        { nameAtt, id, hex },
+
+                        { attID, nameAtt, id, hex },
                       ],
+                      attIDstate: attID,
                       errors: "",
-                    })
-                  }
+                    });
+                  }}
                 >
                   {size.value}
                 </button>
@@ -122,11 +133,30 @@ class ProductPage extends Component {
     );
   }
 
+  SendAttributeToItem() {
+    const { savedAttributes } = this.state;
+    console.log(savedAttributes);
+    return <CartItem savedItem={savedAttributes} />;
+
+    /*  savedAttributes.map((savedItem) => {
+      console.log("savedItem", savedItem);
+      const entries = Object.entries(savedItem);
+      const save = [entries, entries];
+      console.log("save", save);
+    }); */
+  }
+
   render() {
+    this.SendAttributeToItem();
     const addItem = this.props.addItem;
+    const addAttribute = this.props.addAttribute;
     const { savedAttributes, errors, item, index } = this.state;
 
     const newItem = Object.assign(savedAttributes, item);
+    const chosenAttributes = { savedAttributes, item };
+    // console.log(newItem);
+    // console.log(chosenAttributes.savedAttributes);
+    addAttribute(chosenAttributes);
 
     const attributesLength = item.attributes ? item.attributes.length : "";
 

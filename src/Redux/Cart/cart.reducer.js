@@ -4,6 +4,7 @@ import { addItemToCart, removeItemFromCart } from "./cart.utils";
 const INITIAL_STATE = {
   hidden: true,
   cartItems: [],
+  savedAttributes: [],
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -24,7 +25,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload),
       };
-
+    case CartActionTypes.ADD_ATTRIBUTE:
+      return {
+        ...state,
+        savedAttributes: action.payload,
+      };
     default:
       return state;
   }

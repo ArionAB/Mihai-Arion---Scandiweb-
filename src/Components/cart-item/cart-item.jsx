@@ -8,15 +8,21 @@ import "./cart-item.styles.scss";
 
 class CartItem extends Component {
   getAttributes() {
-    const item = this.props.item;
+    const { item } = this.props;
+    const savedAttributes = this.props.savedAttributes;
 
     return item.attributes?.map((att) => {
+      const itmVl = savedAttributes.savedAttributes.find(
+        (itm) => itm.attID === att.id
+      );
+
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
-            return item[0].id === size.id ||
-              item[1]?.id === size.id ||
-              item[2]?.id === size.id ? (
+            // return item[0].id === size.id ||
+            // item[1]?.id === size.id ||
+            // item[2]?.id === size.id ? (
+            return itmVl !== undefined && itmVl.id === size.id ? (
               <button
                 key={index}
                 className="att-button"
@@ -48,6 +54,7 @@ class CartItem extends Component {
       );
     });
   }
+
   // <LocalStorage item={item} />
 
   render() {
@@ -86,8 +93,62 @@ const mapDispatchToProps = (dispatch) => ({
   removeItem: (param) => dispatch(removeItem(param)),
 });
 
-const mapStateToProps = ({ current: { currency } }) => ({
+const mapStateToProps = ({
+  current: { currency },
+  cart: { savedAttributes },
+}) => ({
   selectCurrency: currency,
+  savedAttributes,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+
+/*  getAttributes() {
+    const { item } = this.props;
+    const savedAttributes = this.props.savedAttributes;
+
+    console.log(savedAttributes);
+    savedAttributes.savedAttributes.map((saved) => {
+      const attName = saved.attID;
+      const savedID = saved.id;
+      console.log(savedID);
+    });
+
+    return item.attributes?.map((att) => {
+      return (
+        <div className="size-att" key={att.id}>
+          {att.items.map((size, index) => {
+            return item[0].id === size.id ||
+              item[1]?.id === size.id ||
+              item[2]?.id === size.id ? (
+              <button
+                key={index}
+                className="att-button"
+                id={size.value}
+                style={
+                  size.value.includes("#")
+                    ? { background: size.value, color: "transparent" }
+                    : {
+                        background: "black",
+                        color: "white",
+                      }
+                }
+              >
+                {size.value}
+              </button>
+            ) : (
+              <button
+                style={
+                  size.value.includes("#")
+                    ? { display: "none" }
+                    : { background: "white", color: "black" }
+                }
+              >
+                {size.value}
+              </button>
+            );
+          })}
+        </div>
+      );
+    });
+  } */

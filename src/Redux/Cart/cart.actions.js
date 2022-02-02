@@ -14,7 +14,7 @@ export const removeItem = (item) => ({
   payload: item,
 });
 
-export const addAttribute = (item) => ({
+export const addAttribute = (attribute) => ({
   type: CartActionTypes.ADD_ATTRIBUTE,
-  payload: item,
+  payload: attribute,
 });
