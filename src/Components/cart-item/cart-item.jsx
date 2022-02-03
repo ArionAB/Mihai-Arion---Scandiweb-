@@ -9,9 +9,12 @@ import "./cart-item.styles.scss";
 class CartItem extends Component {
   someF() {
     const { item } = this.props;
-    item.savedAttr[0]?.item.attributes[0].items.find((test) =>
-      item.savedAttr[0]?.savedAttributes.every((e, i) => console.log(e.id))
-    );
+    console.log(item.savedAttr[0].savedAttributes[0]);
+
+    // console.log(item);
+    // // item.savedAttr[0]?.item.attributes[0].items.find((test) =>
+    // //   item.savedAttr[0]?.savedAttributes.every((e, i) => console.log(e.id))
+    // );
     // all attributes console.log(test) __typename: 'Attribute', displayValue: '40', value: '40', id: '40'}displayValue: "40"id: "40"value: "40"
 
     /*      test.items.map((attributes) =>
@@ -21,22 +24,23 @@ class CartItem extends Component {
       ) 
     );  */
 
-    item.savedAttr[0]?.item.attributes.find((test) =>
-      test.items.map((attributes) =>
-        item.savedAttr[0]?.savedAttributes.every((e, i) =>
-          console.log(e.attID && e.id === attributes.value)
-        )
-      )
-    );
+    // item.savedAttr[0]?.item.attributes.find((test) =>
+    //   test.items.map((attributes) =>
+    //     item.savedAttr[0]?.savedAttributes.every((e, i) =>
+    //       console.log(e.attID && e.id === attributes.value)
+    //     )
+    //   )
+    // );
   }
 
   getAttributes() {
     const { item } = this.props;
+
     //  console.log(item);
-    console.log(item.savedAttr);
+    // console.log(item.savedAttr);
     // console.log(item.savedAttr[0]?.item.attributes[0]);
     // console.log(item.savedAttr[0]?.savedAttributes[0]);
-    console.log(item.savedAttr[0].savedAttributes[0].id);
+    // console.log(item.savedAttr[0].savedAttributes[0].id);
 
     // item.savedAttr.find((asd) =>
     //   // asd.savedAttributes && asd.savedAttributes[0] {attID: 'Size', nameAtt: 'Size', id: '43', hex: '43'}
@@ -93,7 +97,23 @@ class CartItem extends Component {
 
   // <LocalStorage item={item} />
 
+  testTWo() {
+    const { item } = this.props;
+    const lalala = item.savedAttr.map((lol) => lol);
+
+    console.log(lalala);
+    const other = item.savedAttr.find((Cartitem) =>
+      Cartitem.savedAttributes.every(
+        (e, i) => console.log(e.id)
+        // Cartitem.savedAttribute.every(
+        //   (e, i) => e.item.value === Cartitem.savedAttribute[i].item.value
+        // )
+      )
+    );
+  }
+
   render() {
+    // this.testTWo();
     // this.someF();
     const item = this.props.item;
 

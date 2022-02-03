@@ -156,10 +156,18 @@ class ProductPage extends Component {
     const { savedAttributes, item } = this.state;
 
     const chosen = { savedAttributes, item };
-    console.log(chosen.savedAttributes);
+    // console.log(chosen);
+    //  chosen.savedAttributes.map((allAtt)=> console.log(allAtt))
 
     cartItems.map((cartItem) => {
-      cartItem.savedAttr.push(chosen);
+      const initialAtt = cartItem.attributes;
+      const allAttr = { initialAtt, savedAttributes };
+
+      // console.log(allAttr);
+      cartItem.savedAttr?.push(chosen);
+      // cartItem
+      // console.log(cartItem.attributes);
+      // cartItem.savedAttr.push(chosen);
     });
   }
 

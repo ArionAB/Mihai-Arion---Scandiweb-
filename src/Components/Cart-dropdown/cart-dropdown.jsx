@@ -4,6 +4,7 @@ import CartItem from "../cart-item/cart-item";
 import { Link } from "react-router-dom";
 
 import "./cart-dropdown.styles.scss";
+import cartItem from "../cart-item/cart-item";
 
 class CartDropdown extends Component {
   totalPriceIcon() {
@@ -38,7 +39,20 @@ class CartDropdown extends Component {
     );
   }
 
+  test() {
+    const cartItems = this.props.cartItems;
+
+    cartItems?.map((item) =>
+      item.savedAttr.map((cartItem) =>
+        cartItem.savedAttributes.every((e, i) => console.log(e.id))
+      )
+    );
+
+    // newCart.map((something) => console.log(something.savedAttr));
+  }
+
   render() {
+    this.test();
     this.getprice();
     const cartItems = this.props.cartItems;
 
@@ -82,3 +96,38 @@ const mapStateToProps = ({
 });
 
 export default connect(mapStateToProps)(CartDropdown);
+
+/* export const addItemToCart = (cartItems, cartItemToAdd) => {
+  if (cartItemToAdd[0].id) {
+    const match = cartItems.find((cartItem) => cartItem.id == cartItemToAdd.id);
+    const other = cartItems.find((item) =>
+      item.savedAttr.find((Cartitem) =>
+        Cartitem.savedAttributes.every((e, i) => e.id === cartItemToAdd[i].id)
+      )
+    );
+    console.log("read me");
+    if (other && match) {
+      return cartItems?.map((item) =>
+        item.savedAttr.map((cartItem) =>
+          cartItem.savedAttributes.every((e, i) => e.id === cartItemToAdd[i].id)
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        )
+      );
+    }
+    return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+  } else {
+    const match = cartItems.find(
+      (item) => item.item.name === cartItemToAdd.item.name
+    );
+
+    if (match) {
+      return cartItems.map((cartItem) =>
+        cartItem.item.name === cartItemToAdd.item.name
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    }
+    return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+  }
+}; */
