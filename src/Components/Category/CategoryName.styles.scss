@@ -9,6 +9,11 @@
       text-decoration: none;
       color: black;
 
+      &:hover {
+        color: #5ece7b;
+        border-bottom: 2px solid #5ece7b;
+      }
+
       &:focus {
         color: #5ece7b;
         border-bottom: 2px solid #5ece7b;

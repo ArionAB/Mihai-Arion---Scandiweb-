@@ -1,6 +1,7 @@
 import "./CategoryName.styles.scss";
 
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import { graphql } from "@apollo/client/react/hoc";
 import { GET_CATEGORY_NAMES } from "../../GraphQL/queries";
@@ -18,13 +19,14 @@ class CategoryName extends Component {
         return (
           <div key={index}>
             <a href={`/category/${category.name}`}>
-              <li key={index}> {category.name}</li>
+              <li key={index}>{category.name}</li>
             </a>
           </div>
         );
       });
     }
   }
+
   render() {
     return (
       <div className="category">

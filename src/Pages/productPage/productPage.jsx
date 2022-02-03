@@ -3,11 +3,10 @@ import React, { Component } from "react";
 import { client } from "../../index";
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/Cart/cart.actions";
-import { addAttribute } from "../../Redux/Cart/cart.actions";
+
 import { GET_PRODUCT } from "../../GraphQL/queries";
 
 import "./productPage.styles.scss";
-import CartItem from "../../Components/cart-item/cart-item";
 
 class ProductPage extends Component {
   constructor(props) {
@@ -133,10 +132,32 @@ class ProductPage extends Component {
     );
   }
 
+  test() {
+    const { cartItems } = this.props;
+    const { savedAttributes, item } = this.state;
+
+    const chosen = { savedAttributes, item };
+    cartItems.map((cartItem) => {
+      const ind = cartItem.savedAttr.find((i) => {
+        console.log("i.ite.id", i.item.id);
+        i.item.attributes?.map((at) => {
+          console.log("at.id", at.id);
+          /*  if (i.item.id === at.id) {
+            console.log("equal");
+          } else console.log("not equal"); */
+        });
+      });
+      cartItem.savedAttr.push(chosen);
+    });
+  }
+
   SendAttributeToItem() {
     const { cartItems } = this.props;
     const { savedAttributes, item } = this.state;
+
     const chosen = { savedAttributes, item };
+    console.log(chosen.savedAttributes);
+
     cartItems.map((cartItem) => {
       cartItem.savedAttr.push(chosen);
     });
@@ -145,13 +166,10 @@ class ProductPage extends Component {
   render() {
     this.SendAttributeToItem();
     const addItem = this.props.addItem;
-    const addAttribute = this.props.addAttribute;
+
     const { savedAttributes, errors, item, index } = this.state;
 
     const newItem = Object.assign(savedAttributes, item);
-    const chosenAttributes = { savedAttributes, item };
-
-    addAttribute(chosenAttributes);
 
     const attributesLength = item.attributes ? item.attributes.length : "";
 
@@ -208,7 +226,6 @@ class ProductPage extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (param) => dispatch(addItem(param)),
-  addAttribute: (param) => dispatch(addAttribute(param)),
 });
 
 const mapStateToProps = ({ current: { currency }, cart: { cartItems } }) => ({

@@ -67,7 +67,7 @@ class All extends Component {
                     alert("Product out of stock");
                   } else if (hasAttributes) {
                     alert("Please select an attribute");
-                  } else addItem(product);
+                  } else addItem(product) && alert("Item added to cart");
                 }}
               />
               <div className="name-price">
