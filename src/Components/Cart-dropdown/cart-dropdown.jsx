@@ -39,16 +39,20 @@ class CartDropdown extends Component {
     );
   }
 
-  test() {
-    const cartItems = this.props.cartItems;
+  // return itmVl !== undefined && itmVl.id === size.id ? (
 
-    cartItems?.map((item) => console.log(item));
+  /*   item.attributes?.map((att, index) => {
+    const itmVl = item.savedAttr.map((attr) =>
+      attr.savedAttributes.find((itm) => itm.attID === att.id)
+    );
+ */
 
-    // newCart.map((something) => console.log(something.savedAttr));
-  }
+  /*  item.attributes?.map((att, index) => {
+      const itmVl = item.savedAttr[0].savedAttributes.find((itm) =>
+        console.log(itm)
+      ); */
 
   render() {
-    this.test();
     this.getprice();
     const cartItems = this.props.cartItems;
 
@@ -59,8 +63,8 @@ class CartDropdown extends Component {
         <div className="mybag">My bag, {itemCount} items</div>
         <div className="cart-items">
           {cartItems && cartItems.length ? (
-            cartItems.map((cartItem) => (
-              <CartItem key={cartItem.id} item={cartItem} />
+            cartItems.map((cartItem, index) => (
+              <CartItem key={index} item={cartItem} />
             ))
           ) : (
             <span className="empty-message">Your cart is empty</span>

@@ -55,6 +55,7 @@ class ProductPage extends Component {
 
           <div className="att-btn">
             {att.items.map((size, index) => {
+              console.log("size.id", size.id);
               const hex = size.value;
               const id = size.id;
               return (

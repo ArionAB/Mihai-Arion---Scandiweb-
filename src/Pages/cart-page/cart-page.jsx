@@ -12,8 +12,8 @@ class CartPage extends Component {
       <div className="cart-page">
         <h1>CART</h1>
         {cartItems.length ? (
-          cartItems.map((cartItem) => (
-            <CartItem key={cartItem.id} item={cartItem} />
+          cartItems.map((cartItem, index) => (
+            <CartItem key={index} item={cartItem} />
           ))
         ) : (
           <span className="empty-message">Your cart is empty</span>

@@ -9,7 +9,11 @@ import "./cart-item.styles.scss";
 class CartItem extends Component {
   someF() {
     const { item } = this.props;
-    console.log(item.savedAttr[0].savedAttributes[0]);
+    console.log(item[0].id);
+    /*  item.savedAttr.map((attr) => {
+      console.log(attr);
+      attr.savedAttributes.map((allAtt) => console.log(allAtt.id));
+    }); */
 
     // console.log(item);
     // // item.savedAttr[0]?.item.attributes[0].items.find((test) =>
@@ -39,7 +43,7 @@ class CartItem extends Component {
     //  console.log(item);
     // console.log(item.savedAttr);
     // console.log(item.savedAttr[0]?.item.attributes[0]);
-    // console.log(item.savedAttr[0]?.savedAttributes[0]);
+    // console.log(item.savedAttr[0]?.savedAttributes);
     // console.log(item.savedAttr[0].savedAttributes[0].id);
 
     // item.savedAttr.find((asd) =>
@@ -54,14 +58,15 @@ class CartItem extends Component {
     );
  */
 
-    return item.attributes?.map((att) => {
-      const itmVl = item.savedAttr[0]?.savedAttributes.find(
-        (itm) => itm.attID === att.id
+    return item.attributes?.map((att, index) => {
+      const itmVl = item.savedAttr.map((attr) =>
+        attr.savedAttributes.find((itm) => itm.id === item[0].id)
       );
+      console.log(itmVl.id);
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
-            return itmVl !== undefined && itmVl.id === size.id ? (
+            return item[0].id === size.id ? (
               <button
                 key={index}
                 className="att-button"
@@ -114,7 +119,7 @@ class CartItem extends Component {
 
   render() {
     // this.testTWo();
-    // this.someF();
+    this.someF();
     const item = this.props.item;
 
     const selectCurrency = this.props.selectCurrency;
