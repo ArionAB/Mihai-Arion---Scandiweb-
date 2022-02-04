@@ -42,11 +42,7 @@ class CartDropdown extends Component {
   test() {
     const cartItems = this.props.cartItems;
 
-    cartItems?.map((item) =>
-      item.savedAttr.map((cartItem) =>
-        cartItem.savedAttributes.every((e, i) => console.log(e.id))
-      )
-    );
+    cartItems?.map((item) => console.log(item));
 
     // newCart.map((something) => console.log(something.savedAttr));
   }
