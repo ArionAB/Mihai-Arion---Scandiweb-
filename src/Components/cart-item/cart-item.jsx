@@ -9,7 +9,9 @@ import "./cart-item.styles.scss";
 class CartItem extends Component {
   someF() {
     const { item } = this.props;
-    console.log(item[0].id);
+    console.log(item[0]?.id);
+    console.log(item[1]?.id);
+    console.log(item[2]?.id);
     /*  item.savedAttr.map((attr) => {
       console.log(attr);
       attr.savedAttributes.map((allAtt) => console.log(allAtt.id));
@@ -59,14 +61,20 @@ class CartItem extends Component {
  */
 
     return item.attributes?.map((att, index) => {
-      const itmVl = item.savedAttr.map((attr) =>
-        attr.savedAttributes.find((itm) => itm.id === item[0].id)
+      const itmVl = item.savedAttr[0].savedAttributes.find(
+        (itm) => itm.attID === att.id
       );
-      console.log(itmVl.id);
+
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
-            return item[0].id === size.id ? (
+            return item[0].id === size.id ||
+              (item[1]?.id === size.id &&
+                itmVl !== undefined &&
+                itmVl.id === size.id) ||
+              (item[2]?.id === size.id &&
+                itmVl !== undefined &&
+                itmVl.id === size.id) ? (
               <button
                 key={index}
                 className="att-button"
