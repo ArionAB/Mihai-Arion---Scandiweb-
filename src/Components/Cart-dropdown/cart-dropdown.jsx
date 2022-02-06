@@ -4,7 +4,6 @@ import CartItem from "../cart-item/cart-item";
 import { Link } from "react-router-dom";
 
 import "./cart-dropdown.styles.scss";
-import cartItem from "../cart-item/cart-item";
 
 class CartDropdown extends Component {
   totalPriceIcon() {
@@ -38,19 +37,6 @@ class CartDropdown extends Component {
       </div>
     );
   }
-
-  // return itmVl !== undefined && itmVl.id === size.id ? (
-
-  /*   item.attributes?.map((att, index) => {
-    const itmVl = item.savedAttr.map((attr) =>
-      attr.savedAttributes.find((itm) => itm.attID === att.id)
-    );
- */
-
-  /*  item.attributes?.map((att, index) => {
-      const itmVl = item.savedAttr[0].savedAttributes.find((itm) =>
-        console.log(itm)
-      ); */
 
   render() {
     this.getprice();
@@ -96,38 +82,3 @@ const mapStateToProps = ({
 });
 
 export default connect(mapStateToProps)(CartDropdown);
-
-/* export const addItemToCart = (cartItems, cartItemToAdd) => {
-  if (cartItemToAdd[0].id) {
-    const match = cartItems.find((cartItem) => cartItem.id == cartItemToAdd.id);
-    const other = cartItems.find((item) =>
-      item.savedAttr.find((Cartitem) =>
-        Cartitem.savedAttributes.every((e, i) => e.id === cartItemToAdd[i].id)
-      )
-    );
-    console.log("read me");
-    if (other && match) {
-      return cartItems?.map((item) =>
-        item.savedAttr.map((cartItem) =>
-          cartItem.savedAttributes.every((e, i) => e.id === cartItemToAdd[i].id)
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    }
-    return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
-  } else {
-    const match = cartItems.find(
-      (item) => item.item.name === cartItemToAdd.item.name
-    );
-
-    if (match) {
-      return cartItems.map((cartItem) =>
-        cartItem.item.name === cartItemToAdd.item.name
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      );
-    }
-    return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
-  }
-}; */

@@ -55,7 +55,6 @@ class ProductPage extends Component {
 
           <div className="att-btn">
             {att.items.map((size, index) => {
-              console.log("size.id", size.id);
               const hex = size.value;
               const id = size.id;
               return (
@@ -133,42 +132,14 @@ class ProductPage extends Component {
     );
   }
 
-  test() {
-    const { cartItems } = this.props;
-    const { savedAttributes, item } = this.state;
-
-    const chosen = { savedAttributes, item };
-    cartItems.map((cartItem) => {
-      const ind = cartItem.savedAttr.find((i) => {
-        console.log("i.ite.id", i.item.id);
-        i.item.attributes?.map((at) => {
-          console.log("at.id", at.id);
-          /*  if (i.item.id === at.id) {
-            console.log("equal");
-          } else console.log("not equal"); */
-        });
-      });
-      cartItem.savedAttr.push(chosen);
-    });
-  }
-
   SendAttributeToItem() {
     const { cartItems } = this.props;
     const { savedAttributes, item } = this.state;
 
     const chosen = { savedAttributes, item };
-    // console.log(chosen);
-    //  chosen.savedAttributes.map((allAtt)=> console.log(allAtt))
 
     cartItems.map((cartItem) => {
-      const initialAtt = cartItem.attributes;
-      const allAttr = { initialAtt, savedAttributes };
-
-      // console.log(allAttr);
       cartItem.savedAttr?.push(chosen);
-      // cartItem
-      // console.log(cartItem.attributes);
-      // cartItem.savedAttr.push(chosen);
     });
   }
 
@@ -206,14 +177,23 @@ class ProductPage extends Component {
           {item.inStock ? (
             <button
               className="addCart"
-              onClick={() =>
-                savedAttributes.length === attributesLength ||
-                savedAttributes.length > attributesLength
-                  ? addItem(newItem)
-                  : this.setState({
-                      errors: `Please choose  ${attributesLength} attributes.`,
-                    })
-              }
+              onClick={() => {
+                if (attributesLength === 0) {
+                  savedAttributes.push("attribute") && addItem(newItem);
+                } else if (
+                  savedAttributes.length === attributesLength ||
+                  savedAttributes.length > attributesLength
+                ) {
+                  addItem(newItem);
+                } else if (
+                  savedAttributes.length !== attributesLength ||
+                  savedAttributes.length < attributesLength
+                ) {
+                  this.setState({
+                    errors: `Please choose ${attributesLength} attributes.`,
+                  });
+                }
+              }}
             >
               ADD TO CART
             </button>
@@ -243,3 +223,96 @@ const mapStateToProps = ({ current: { currency }, cart: { cartItems } }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
+
+/* export const addItemToCart = (cartItems, cartItemToAdd) => {
+  if (cartItemToAdd[0]) {
+    const match = cartItems.find(
+      (cartItem) =>
+        (cartItem.id === cartItemToAdd.id &&
+          cartItem[0].id === cartItemToAdd[0].id) ||
+        (cartItem.id === cartItemToAdd.id &&
+          cartItem[0].id === cartItemToAdd[0].id &&
+          cartItem[1].id === cartItemToAdd[1].id)
+    );
+
+    if (match) {
+      return cartItems.map((cartItem) =>
+        (cartItem.id == cartItemToAdd.id &&
+          cartItem[0].id === cartItemToAdd[0].id) ||
+        (cartItem.id === cartItemToAdd.id &&
+          cartItem[0].id === cartItemToAdd[0].id &&
+          cartItem[1].id === cartItemToAdd[1].id)
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    }
+    return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
+  } else {
+    const existingCartItem = cartItems.find(
+      (cartItem) => cartItem.id == cartItemToAdd.id
+    );
+
+    if (existingCartItem) {
+      return cartItems.map((cartItem) =>
+        cartItem.id == cartItemToAdd.id
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    }
+
+    return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
+  }
+};
+
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+  const existingCartItem = cartItems.find(
+    (cartItem) =>
+      (cartItem.id === cartItemToRemove.id &&
+        cartItem[0].id === cartItemToRemove[0].id) ||
+      (cartItem.id === cartItemToRemove.id &&
+        cartItem[0].id === cartItemToRemove[0].id &&
+        cartItem[1].id === cartItemToRemove[1].id)
+  );
+
+  if (existingCartItem.quantity === 1) {
+    let data = [];
+    cartItems.map((cartItem) => {
+      if (cartItem.id !== cartItemToRemove.id) {
+        data.push(cartItem);
+      } else if (
+        cartItem.id === cartItemToRemove.id &&
+        cartItem[0].id === cartItemToRemove[0].id &&
+        cartItem[1].id === cartItemToRemove[1].id
+      ) {
+        data.push(cartItem);
+      } else if (
+        cartItem.id === cartItemToRemove.id &&
+        cartItem[0].id === cartItemToRemove[0].id &&
+        cartItem[1].id !== cartItemToRemove[1].id
+      ) {
+        data.push(cartItem);
+      } else if (
+        cartItem.id === cartItemToRemove.id &&
+        cartItem[0].id !== cartItemToRemove[0].id
+      ) {
+        data.push(cartItem);
+      }
+    });
+
+    return data;
+  }
+
+  return cartItems.map((cartItem) =>
+    (cartItem.id === cartItemToRemove.id &&
+      cartItem[0].id === cartItemToRemove[0].id) ||
+    (cartItem.id === cartItemToRemove.id &&
+      cartItem[0].id === cartItemToRemove[0].id &&
+      cartItem[1].id === cartItemToRemove[1].id)
+      ? {
+          ...cartItem,
+          quantity: cartItem.quantity - 1,
+        }
+      : cartItem
+  );
+};
+ */

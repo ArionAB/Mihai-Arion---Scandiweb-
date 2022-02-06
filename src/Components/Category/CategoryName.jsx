@@ -1,7 +1,6 @@
 import "./CategoryName.styles.scss";
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import { graphql } from "@apollo/client/react/hoc";
 import { GET_CATEGORY_NAMES } from "../../GraphQL/queries";

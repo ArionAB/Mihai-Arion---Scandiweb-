@@ -7,64 +7,17 @@ import CartGallery from "../CartGallery/CartGallery";
 import "./cart-item.styles.scss";
 
 class CartItem extends Component {
-  someF() {
-    const { item } = this.props;
-    console.log(item[0]?.id);
-    console.log(item[1]?.id);
-    console.log(item[2]?.id);
-    /*  item.savedAttr.map((attr) => {
-      console.log(attr);
-      attr.savedAttributes.map((allAtt) => console.log(allAtt.id));
-    }); */
-
-    // console.log(item);
-    // // item.savedAttr[0]?.item.attributes[0].items.find((test) =>
-    // //   item.savedAttr[0]?.savedAttributes.every((e, i) => console.log(e.id))
-    // );
-    // all attributes console.log(test) __typename: 'Attribute', displayValue: '40', value: '40', id: '40'}displayValue: "40"id: "40"value: "40"
-
-    /*      test.items.map((attributes) =>
-        item.savedAttr[0]?.savedAttributes.every((e, i) =>
-          console.log(e.attID && e.id === attributes.value)
-        )
-      ) 
-    );  */
-
-    // item.savedAttr[0]?.item.attributes.find((test) =>
-    //   test.items.map((attributes) =>
-    //     item.savedAttr[0]?.savedAttributes.every((e, i) =>
-    //       console.log(e.attID && e.id === attributes.value)
-    //     )
-    //   )
-    // );
-  }
-
   getAttributes() {
     const { item } = this.props;
-
-    //  console.log(item);
-    // console.log(item.savedAttr);
-    // console.log(item.savedAttr[0]?.item.attributes[0]);
-    // console.log(item.savedAttr[0]?.savedAttributes);
-    // console.log(item.savedAttr[0].savedAttributes[0].id);
-
-    // item.savedAttr.find((asd) =>
-    //   // asd.savedAttributes && asd.savedAttributes[0] {attID: 'Size', nameAtt: 'Size', id: '43', hex: '43'}
-    //   asd.savedAttributes?.every((e, i) => console.log(e.asd))
-    // );
-    // item.find((asd) => asd.savedAttr.every((e, i) => console.log(e.asd)));
-    // {attID: 'Size', nameAtt: 'Size', id: '41', hex: '41'} console.log(e, i)
-    /*  item.savedAttr[0]?.item.attributes.find((test) => 
-      test.items.map((attributes) => console.log(attributes.value)),
-      item.savedAttr[0]?.savedAttributes.every((e, i) => e.attID && e.id === attributes.value)
-    );
- */
 
     return item.attributes?.map((att, index) => {
       const itmVl = item.savedAttr[0].savedAttributes.find(
         (itm) => itm.attID === att.id
       );
-
+      /*   ||
+      (item[2]?.id === size.id &&
+        itmVl !== undefined &&
+        itmVl.id === size.id) */
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
@@ -110,24 +63,7 @@ class CartItem extends Component {
 
   // <LocalStorage item={item} />
 
-  testTWo() {
-    const { item } = this.props;
-    const lalala = item.savedAttr.map((lol) => lol);
-
-    console.log(lalala);
-    const other = item.savedAttr.find((Cartitem) =>
-      Cartitem.savedAttributes.every(
-        (e, i) => console.log(e.id)
-        // Cartitem.savedAttribute.every(
-        //   (e, i) => e.item.value === Cartitem.savedAttribute[i].item.value
-        // )
-      )
-    );
-  }
-
   render() {
-    // this.testTWo();
-    this.someF();
     const item = this.props.item;
 
     const selectCurrency = this.props.selectCurrency;
@@ -168,3 +104,33 @@ const mapStateToProps = ({ current: { currency } }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+
+/* const existingCartItem = cartItems.find(
+  (cartItem) =>
+    cartItem.id === cartItemToRemove.id &&
+    cartItem[0].id === cartItemToRemove[0].id
+  //  &&
+  // cartItem[1].id === cartItemToRemove[1].id
+);
+
+if (existingCartItem.quantity === 1) {
+  let data = [];
+  cartItems.map((cartItem) => {
+    if (cartItem.id !== cartItemToRemove.id) {
+      data.push(cartItem);
+    } else if (
+      cartItem.id === cartItemToRemove.id &&
+      cartItem[0].id === cartItemToRemove[0].id
+      // && cartItem[1].id !== cartItemToRemove[1].id allows me to delete second attribute different
+    ) {
+      data.push(cartItem);
+    } else if (
+      cartItem.id === cartItemToRemove.id &&
+      cartItem[0].id !== cartItemToRemove[0].id
+    ) {
+      data.push(cartItem);
+    }
+  });
+
+  return data;
+} */
