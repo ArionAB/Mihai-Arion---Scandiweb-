@@ -14,10 +14,7 @@ class CartItem extends Component {
       const itmVl = item.savedAttr[0].savedAttributes.find(
         (itm) => itm.attID === att.id
       );
-      /*   ||
-      (item[2]?.id === size.id &&
-        itmVl !== undefined &&
-        itmVl.id === size.id) */
+
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
@@ -104,39 +101,3 @@ const mapStateToProps = ({ current: { currency } }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
-
-/* export const addItemToCart = (cartItems, cartItemToAdd) => {
-  if (cartItemToAdd[0]) {
-    const match = cartItems.find(
-      (cartItem) =>
-        cartItem.id === cartItemToAdd.id &&
-        cartItem[0].id === cartItemToAdd[0].id &&
-        cartItem[1].id === cartItemToAdd[1].id
-    );
-
-    if (match) {
-      return cartItems.map((cartItem) =>
-        cartItem.id == cartItemToAdd.id &&
-        cartItem[0].id === cartItemToAdd[0].id &&
-        cartItem[1].id === cartItemToAdd[1].id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      );
-    }
-    return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
-  } else {
-    const existingCartItem = cartItems.find(
-      (cartItem) => cartItem.id == cartItemToAdd.id
-    );
-
-    if (existingCartItem) {
-      return cartItems.map((cartItem) =>
-        cartItem.id == cartItemToAdd.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      );
-    }
-
-    return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
-  }
-}; */
