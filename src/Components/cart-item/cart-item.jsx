@@ -105,32 +105,38 @@ const mapStateToProps = ({ current: { currency } }) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
 
-/* const existingCartItem = cartItems.find(
-  (cartItem) =>
-    cartItem.id === cartItemToRemove.id &&
-    cartItem[0].id === cartItemToRemove[0].id
-  //  &&
-  // cartItem[1].id === cartItemToRemove[1].id
-);
+/* export const addItemToCart = (cartItems, cartItemToAdd) => {
+  if (cartItemToAdd[0]) {
+    const match = cartItems.find(
+      (cartItem) =>
+        cartItem.id === cartItemToAdd.id &&
+        cartItem[0].id === cartItemToAdd[0].id &&
+        cartItem[1].id === cartItemToAdd[1].id
+    );
 
-if (existingCartItem.quantity === 1) {
-  let data = [];
-  cartItems.map((cartItem) => {
-    if (cartItem.id !== cartItemToRemove.id) {
-      data.push(cartItem);
-    } else if (
-      cartItem.id === cartItemToRemove.id &&
-      cartItem[0].id === cartItemToRemove[0].id
-      // && cartItem[1].id !== cartItemToRemove[1].id allows me to delete second attribute different
-    ) {
-      data.push(cartItem);
-    } else if (
-      cartItem.id === cartItemToRemove.id &&
-      cartItem[0].id !== cartItemToRemove[0].id
-    ) {
-      data.push(cartItem);
+    if (match) {
+      return cartItems.map((cartItem) =>
+        cartItem.id == cartItemToAdd.id &&
+        cartItem[0].id === cartItemToAdd[0].id &&
+        cartItem[1].id === cartItemToAdd[1].id
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
     }
-  });
+    return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
+  } else {
+    const existingCartItem = cartItems.find(
+      (cartItem) => cartItem.id == cartItemToAdd.id
+    );
 
-  return data;
-} */
+    if (existingCartItem) {
+      return cartItems.map((cartItem) =>
+        cartItem.id == cartItemToAdd.id
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    }
+
+    return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
+  }
+}; */

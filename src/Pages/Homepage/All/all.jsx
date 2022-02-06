@@ -16,6 +16,7 @@ class All extends Component {
     this.state = {
       category: [],
       prices: 0,
+      savedAttributes: [],
     };
   }
 
@@ -43,6 +44,8 @@ class All extends Component {
       const hasAttributes = product.attributes ? product.attributes.length : "";
 
       const addItem = this.props.addItem;
+      const { savedAttributes } = this.state;
+      const newItem = Object.assign(savedAttributes, product);
 
       return (
         <div key={index}>
@@ -67,7 +70,11 @@ class All extends Component {
                     alert("Product out of stock");
                   } else if (hasAttributes) {
                     alert("Please select an attribute");
-                  } else addItem(product) && alert("Item added to cart");
+                  } else if (hasAttributes === 0) {
+                    savedAttributes.push("attribute") &&
+                      addItem(newItem) &&
+                      alert("Item added to cart");
+                  }
                 }}
               />
               <div className="name-price">
