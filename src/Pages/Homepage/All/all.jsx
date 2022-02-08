@@ -26,7 +26,7 @@ class All extends Component {
 
   async getCategories() {
     const title = this.props.title;
-    console.log(title);
+
     const response = await client.query({
       query: GET_ALL,
       variables: {
@@ -42,7 +42,7 @@ class All extends Component {
 
   mapCategories() {
     const { category } = this.state;
-    console.log(category);
+
     const selectCurrency = this.props.selectCurrency;
 
     return category.products?.map((product, index) => {

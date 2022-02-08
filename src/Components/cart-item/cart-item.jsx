@@ -18,7 +18,10 @@ class CartItem extends Component {
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
-            return item[0].id === size.id ||
+            console.log(size.id, "size.id");
+            return (item[0].id === size.id &&
+              itmVl !== undefined &&
+              itmVl.id === size.id) ||
               (item[1]?.id === size.id &&
                 itmVl !== undefined &&
                 itmVl.id === size.id) ||
