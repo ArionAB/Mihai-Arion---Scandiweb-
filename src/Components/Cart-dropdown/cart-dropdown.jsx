@@ -33,7 +33,9 @@ class CartDropdown extends Component {
     return (
       <div className="total-icon">
         <p>{this.totalPriceIcon()}</p>
-        {(Math.round(totalPrice * 100) / 100).toFixed(2)}
+        <p className="tot-prc">
+          {(Math.round(totalPrice * 100) / 100).toFixed(2)}
+        </p>
       </div>
     );
   }
@@ -46,7 +48,10 @@ class CartDropdown extends Component {
 
     return (
       <div className="cart-dropdown">
-        <div className="mybag">My bag, {itemCount} items</div>
+        <div className="mybag">
+          <span>My bag,</span>
+          {itemCount} items
+        </div>
         <div className="cart-items">
           {cartItems && cartItems.length ? (
             cartItems.map((cartItem, index) => (

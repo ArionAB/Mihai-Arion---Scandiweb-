@@ -17,15 +17,14 @@
     color: black;
   }
 
-
-
   .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20vw;
-    height: 42vh;
+    width: 15vw;
+    height: 46vh;
+
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
@@ -35,19 +34,15 @@
     }
 
     .card-img {
-      height: 22em;
-      width: 14em;
+      max-height: 70%;
+      max-width: 88%;
     }
-    /*    .card-img {
-      height: 60%;
-      width: 50%;
-    } */
   }
   .card:hover .cart {
     display: block;
     position: absolute;
     right: 25px;
-    bottom: 100px;
+    bottom: 90px;
     background-color: #5ece7b;
     padding: 5px;
     border-radius: 60%;

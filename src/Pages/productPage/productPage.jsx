@@ -127,7 +127,7 @@ class ProductPage extends Component {
     return (
       <div className="symbol-amount">
         <p>{symbol}</p>
-        <p>{amount}</p>
+        <p className="tot-prc">{amount}</p>
       </div>
     );
   }

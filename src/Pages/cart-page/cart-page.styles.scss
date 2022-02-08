@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 6em;
+    height: 80%;
 
     .left-arrow {
       display: none;
@@ -54,7 +54,11 @@
     button {
       border: 1px solid black;
       background-color: white;
-      padding: 15px 15px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .btn-span {
     }
   }
 
@@ -68,13 +72,13 @@
     display: flex;
     font-weight: normal;
     font-size: 2em;
-    margin: 0 0.2em;
+    margin: 0;
   }
 
   .price-symbol {
     display: flex;
     align-items: center;
-    margin: 0.6em;
+    margin: 1em 0;
     font-size: 0.7em;
     font-weight: 900;
   }
@@ -88,9 +92,21 @@
     flex-wrap: wrap;
     gap: 1em;
     margin-bottom: 1em;
+
     button {
       width: 4em;
       height: 4em;
+    }
+    .no-color {
+      background-color: white !important;
+      color: black !important;
+    }
+    .att-button {
+      background-color: black !important;
+      color: white !important;
+    }
+    .color-btn {
+      color: transparent;
     }
   }
 }

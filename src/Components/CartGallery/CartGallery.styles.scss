@@ -1,8 +1,3 @@
-.cart-img {
-  width: 6em;
-  height: 8em;
-}
-
 .cart-gallery {
   position: relative;
   .left-arrow {
@@ -23,5 +18,10 @@
   }
   .hidden-arrow {
     display: none;
+  }
+
+  .cart-img {
+    width: 10em;
+    height: 14em;
   }
 }

@@ -27,14 +27,19 @@ class CartItem extends Component {
                 itmVl.id === size.id) ? (
               <button
                 key={index}
-                className="att-button"
+                className={
+                  size.value.includes("#") ? "color-btn" : "att-button"
+                }
                 id={size.value}
                 style={
                   size.value.includes("#")
-                    ? { background: size.value, color: "transparent" }
+                    ? {
+                        background: size.value,
+                        color: "transparent",
+                      }
                     : {
-                        background: "black",
-                        color: "white",
+                        background: "white",
+                        color: "black",
                       }
                 }
               >
@@ -42,11 +47,16 @@ class CartItem extends Component {
               </button>
             ) : (
               <button
+                className={!size.value.includes("#") ? "no-color" : ""}
                 key={index}
                 style={
                   size.value.includes("#")
                     ? { display: "none" }
-                    : { background: "white", color: "black" }
+                    : {
+                        background: "#ededed",
+                        color: "grey",
+                        border: "1px solid grey",
+                      }
                 }
               >
                 {size.value}
@@ -81,9 +91,13 @@ class CartItem extends Component {
 
         <div className="increment">
           <div className="plus-minus">
-            <button onClick={() => addItem(item)}>+</button>
+            <button className="plus" onClick={() => addItem(item)}>
+              <span className="btn-span">+</span>
+            </button>
             <span>{item.quantity}</span>
-            <button onClick={() => removeItem(item)}>-</button>
+            <button className="minus" onClick={() => removeItem(item)}>
+              <span className="btn-span">-</span>
+            </button>
           </div>
           <CartGallery image={item.gallery} />
         </div>

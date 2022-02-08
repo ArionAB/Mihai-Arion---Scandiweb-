@@ -35,9 +35,14 @@ class All extends Component {
     });
     this.setState({ category: response.data.category });
   }
+  getCategName() {
+    const categName = this.state.category.name;
+    return categName;
+  }
 
   mapCategories() {
     const { category } = this.state;
+    console.log(category);
     const selectCurrency = this.props.selectCurrency;
 
     return category.products?.map((product, index) => {
@@ -53,7 +58,7 @@ class All extends Component {
             <div key={index} className="card">
               <img
                 className="card-img"
-                src={product.gallery}
+                src={product.gallery[0]}
                 alt={product.id}
               ></img>
               {!product.inStock && <div className="stock">OUT OF STOCK</div>}
@@ -91,7 +96,12 @@ class All extends Component {
     });
   }
   render() {
-    return <div className="container">{this.mapCategories()}</div>;
+    return (
+      <>
+        <div className="categ-name"> {this.getCategName()}</div>
+        <div className="container">{this.mapCategories()}</div>
+      </>
+    );
   }
 }
 
