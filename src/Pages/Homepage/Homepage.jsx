@@ -3,11 +3,7 @@ import All from "./All/all";
 
 class Homepage extends Component {
   render() {
-    return (
-      <div>
-        <All />
-      </div>
-    );
+    return <div></div>;
   }
 }
 

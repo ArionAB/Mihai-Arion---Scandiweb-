@@ -16,6 +16,7 @@ class App extends Component {
         <Nav />
         <Routes>
           <Route path="/" element={<Homepage />} />
+
           <Route path="/category/:title" element={<GetTitle />} />
           <Route path="/product/:id" element={<GetId />} />
           <Route path="/Cart" element={<CartPage />} />
