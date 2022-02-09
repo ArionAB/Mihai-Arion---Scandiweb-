@@ -11,23 +11,12 @@ class CartItem extends Component {
     const { item } = this.props;
 
     return item.attributes?.map((att, index) => {
-      const itmVl = item.savedAttr[0].savedAttributes.find(
-        (itm) => itm.attID === att.id
-      );
-
       return (
         <div className="size-att" key={att.id}>
           {att.items.map((size, index) => {
-            console.log(size.id, "size.id");
-            return (item[0].id === size.id &&
-              itmVl !== undefined &&
-              itmVl.id === size.id) ||
-              (item[1]?.id === size.id &&
-                itmVl !== undefined &&
-                itmVl.id === size.id) ||
-              (item[2]?.id === size.id &&
-                itmVl !== undefined &&
-                itmVl.id === size.id) ? (
+            return (item[0].attID === att.id && item[0].id === size.id) ||
+              (item[1]?.attID === att.id && item[1]?.id === size.id) ||
+              (item[2]?.attID === att.id && item[2]?.id === size.id) ? (
               <button
                 key={index}
                 className={
