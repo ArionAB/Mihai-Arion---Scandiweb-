@@ -55,6 +55,8 @@ class SelectCurrency extends Component {
 
   modalIcon() {
     const { value } = this.state;
+    const { selectCurrency } = this.props;
+    selectCurrency(value);
     if (value === 0) {
       return "$";
     } else if (value === 1) {
@@ -85,9 +87,8 @@ class SelectCurrency extends Component {
   };
 
   render() {
-    const { hidden, itemCount, selectCurrency } = this.props;
-    const { value, show } = this.state;
-    selectCurrency(value);
+    const { hidden, itemCount } = this.props;
+    const { show } = this.state;
 
     return (
       <div className="currency">
