@@ -157,6 +157,31 @@ class ProductPage extends Component {
 
     const newObj = Object.assign({}, gallery);
 
+    function sort_by_key(array, key) {
+      return array.sort(function (a, b) {
+        let x = a[key];
+        let y = b[key];
+        return x < y ? -1 : x > y ? 1 : 0;
+      });
+    }
+
+    const addNewItem = (item) => {
+      let tempAttributes = [];
+      let i = 0;
+      while (true) {
+        if (item[i]) {
+          tempAttributes.push(item[i]);
+        } else {
+          break;
+        }
+        i++;
+      }
+
+      let sortedAttributes = sort_by_key(tempAttributes, "attID");
+      console.log("soeted", sortedAttributes);
+      addItem({ ...item, ...sortedAttributes });
+    };
+
     return (
       <div className="container">
         <img src={newObj[index]} alt="" />
@@ -179,12 +204,12 @@ class ProductPage extends Component {
               className="addCart"
               onClick={() => {
                 if (attributesLength === 0) {
-                  savedAttributes.push("attribute") && addItem(newItem);
+                  savedAttributes.push("attribute") && addNewItem(newItem);
                 } else if (
                   savedAttributes.length === attributesLength ||
                   savedAttributes.length > attributesLength
                 ) {
-                  addItem(newItem);
+                  addNewItem(newItem);
                 } else if (
                   savedAttributes.length !== attributesLength ||
                   savedAttributes.length < attributesLength

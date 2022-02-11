@@ -107,3 +107,18 @@ const mapStateToProps = ({ current: { currency } }) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+
+/* return (
+  cartItem.id === cartItemToAdd.id &&
+  cartItem[0].id === cartItemToAdd[0].id &&
+  cartItem[0].attID === att.id &&
+  cartItem[0].id === size.id &&
+  cartItem[1]?.id === cartItemToAdd[1]?.id &&
+  cartItem[1]?.attID === att.id &&
+  cartItem[1]?.id === size.id &&
+  cartItem[2]?.id === cartItemToAdd[2]?.id &&
+  cartItem[2]?.attID === att.id &&
+  cartItem[2]?.id === size.id
+); */
+
+//  de jos NO mij YES sus 256
