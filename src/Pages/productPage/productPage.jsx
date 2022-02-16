@@ -18,6 +18,7 @@ class ProductPage extends Component {
       savedAttributes: [],
       index: 0,
       value: [],
+      active: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,10 +46,13 @@ class ProductPage extends Component {
   }
 
   getAttributes() {
-    const { item, savedAttributes } = this.state;
+    const { item, savedAttributes, active } = this.state;
     return item.attributes?.map((att, index) => {
       const nameAtt = att.name;
       const attID = att.id;
+      console.log(item);
+      console.log(savedAttributes);
+
       return (
         <div key={index}>
           <p className="attribute">{att.name}:</p>
@@ -57,7 +61,39 @@ class ProductPage extends Component {
             {att.items.map((size, index) => {
               const hex = size.value;
               const id = size.id;
-              return (
+              return (savedAttributes[0]?.attID === att.id &&
+                savedAttributes[0].id === size.id) ||
+                (savedAttributes[1]?.attID === att.id &&
+                  savedAttributes[1]?.id === size.id) ||
+                (savedAttributes[2]?.attID === att.id &&
+                  savedAttributes[2]?.id === size.id) ? (
+                <button
+                  value={size.value}
+                  style={{ background: size.value, color: size.value }}
+                  className="is-active"
+                  key={index}
+                  onClick={() => {
+                    const ind = savedAttributes.findIndex(
+                      (itm) => itm.attID === attID
+                    );
+
+                    if (ind !== -1) {
+                      savedAttributes.splice(ind, 1);
+                    }
+                    return this.setState({
+                      savedAttributes: [
+                        ...savedAttributes,
+
+                        { attID, nameAtt, id, hex },
+                      ],
+                      attIDstate: attID,
+                      errors: "",
+                    });
+                  }}
+                >
+                  {size.value}
+                </button>
+              ) : (
                 <button
                   value={size.value}
                   style={{ background: size.value, color: size.value }}
