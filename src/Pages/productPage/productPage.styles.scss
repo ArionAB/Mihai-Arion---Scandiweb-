@@ -1,5 +1,6 @@
 .container {
   display: flex;
+
   justify-content: center;
 
   & img {
@@ -44,6 +45,7 @@
     font-weight: bold;
     font-size: 1.2rem;
     display: flex;
+    justify-content: flex-start;
   }
 
   .att-button {
@@ -81,7 +83,7 @@
   .specs {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
 
     h1 {
@@ -109,6 +111,7 @@
 
 .symbol-amount {
   display: flex;
+  justify-content: flex-start;
 
   p {
     font-weight: 700;
@@ -117,6 +120,7 @@
 
 .product-price {
   display: flex;
+  justify-content: flex-start;
   font-weight: 600;
 }
 

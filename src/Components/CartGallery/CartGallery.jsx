@@ -38,7 +38,7 @@ class CartGallery extends Component {
           className={image.length > 1 ? "left-arrow" : "hidden-arrow"}
           onClick={this.previousImage}
         />
-        <img className="cart-img" src={image[index]} />
+        <img className="cart-img" src={image[index]} alt={image.name} />
         <RightArrow
           className={image.length > 1 ? "right-arrow" : "hidden-arrow"}
           onClick={this.nextImg}

@@ -138,6 +138,7 @@ class ProductPage extends Component {
 
     const chosen = { savedAttributes, item };
 
+    // eslint-disable-next-line array-callback-return
     cartItems.map((cartItem) => {
       cartItem.savedAttr?.push(chosen);
     });
@@ -178,7 +179,7 @@ class ProductPage extends Component {
       }
 
       let sortedAttributes = sort_by_key(tempAttributes, "attID");
-      console.log("soeted", sortedAttributes);
+
       addItem({ ...item, ...sortedAttributes });
     };
 

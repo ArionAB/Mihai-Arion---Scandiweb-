@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   if (cartItemToAdd[0]) {
     const match = cartItems.find((cartItem) => {
@@ -22,12 +23,12 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     return [...cartItems, { ...cartItemToAdd, quantity: 1, savedAttr: [] }];
   } else {
     const existingCartItem = cartItems.find(
-      (cartItem) => cartItem.id == cartItemToAdd.id
+      (cartItem) => cartItem.id === cartItemToAdd.id
     );
 
     if (existingCartItem) {
       return cartItems.map((cartItem) =>
-        cartItem.id == cartItemToAdd.id
+        cartItem.id === cartItemToAdd.id
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
           : cartItem
       );
