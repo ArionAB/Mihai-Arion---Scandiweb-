@@ -50,8 +50,6 @@ class ProductPage extends Component {
     return item.attributes?.map((att, index) => {
       const nameAtt = att.name;
       const attID = att.id;
-      console.log(item);
-      console.log(savedAttributes);
 
       return (
         <div key={index}>
