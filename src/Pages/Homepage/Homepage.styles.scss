@@ -1,0 +1,70 @@
+.HP-container {
+  margin-top: 3rem;
+  .order {
+    display: flex;
+
+    .left {
+      width: 50%;
+      margin: 0 auto;
+
+      p {
+        width: 70%;
+        margin: 0 auto;
+        color: rgb(92, 91, 91);
+        height: 5rem;
+        font-weight: 600;
+        font-size: 1.3rem;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+
+        span {
+          color: var(--lightGreen);
+        }
+      }
+
+      button {
+        margin: 4rem 0 1.5rem 0;
+        padding: 1.3rem 3.5rem;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--lightGreen);
+        color: white;
+        cursor: pointer;
+        font-size: 1.3rem;
+
+        &:hover {
+          background-color: var(--darkGreen);
+        }
+      }
+    }
+
+    .right {
+      width: 50%;
+
+      img {
+        z-index: 999;
+      }
+
+      .background {
+        position: absolute;
+        background-color: var(--lightGreen);
+        opacity: 10%;
+        height: 40rem;
+        width: 54rem;
+        border-radius: 0px 0px 0px 400px;
+      }
+    }
+  }
+}
+
+.asd {
+  height: 1rem !important;
+  color: black !important;
+  margin-bottom: 2rem !important;
+}
+
+.numbers {
+  color: var(--lightGreen);
+}

@@ -13,14 +13,22 @@ class Nav extends Component {
     const hidden = this.props.hidden;
 
     return (
-      <div className="nav">
-        <CategoryName />
-        <Link to="/">
-          <img src={Logo} className="logo" alt="Logo"></img>
-        </Link>
-        <SelectCurrency />
-        {hidden ? null : <CartDropdown />}
-      </div>
+      <>
+        <div className="top-nav">
+          <p>
+            We're open and available for shipping nation wide.{" "}
+            <span>Order Now</span>
+          </p>
+        </div>
+        <div className="nav">
+          <CategoryName />
+          <Link to="/">
+            <img src={Logo} className="logo" alt="Logo"></img>
+          </Link>
+          <SelectCurrency />
+          {hidden ? null : <CartDropdown />}
+        </div>
+      </>
     );
   }
 }

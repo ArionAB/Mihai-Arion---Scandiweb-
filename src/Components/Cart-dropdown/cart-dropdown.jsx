@@ -4,8 +4,16 @@ import CartItem from "../cart-item/cart-item";
 import { Link } from "react-router-dom";
 
 import "./cart-dropdown.styles.scss";
+import CheckoutModal from "../checkout-modal/checkout-modal";
 
 class CartDropdown extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+    };
+  }
+
   totalPriceIcon() {
     const selectCurrency = this.props.selectCurrency;
     if (selectCurrency === 0) {
@@ -40,12 +48,21 @@ class CartDropdown extends Component {
     );
   }
 
+  activeModal() {
+    const { show } = this.state;
+    this.setState = {
+      show: !show,
+    };
+  }
+
   render() {
     this.getprice();
     const cartItems = this.props.cartItems;
-
+    const { show } = this.state;
+    console.log(show);
     const itemCount = this.props.itemCount;
-
+    console.log(cartItems.length);
+    console.log(cartItems.length === 0);
     return (
       <div className="cart-dropdown">
         <div className="mybag">
@@ -66,7 +83,23 @@ class CartDropdown extends Component {
           <Link to="/cart">
             <button className="bag">View Bag</button>
           </Link>
-          <button className="check">Check Out</button>
+          <Link to="/checkout" onClick={this.activeModal()}>
+            <button
+              className="check"
+              onClick={this.activeModal()}
+
+              /* onClick={() => {
+                if (cartItems.length === 0) {
+                  this.setState = {
+                    show: true,
+                  };
+                }
+              }} */
+            >
+              Check Out
+            </button>
+          </Link>
+          {cartItems.length === 0 ? <CheckoutModal /> : ""}
         </div>
       </div>
     );

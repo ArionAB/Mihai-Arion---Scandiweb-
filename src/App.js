@@ -8,6 +8,7 @@ import GetId from "./Components/GetId";
 import GetTitle from "./Components/getTitle";
 import CartPage from "./Pages/cart-page/cart-page";
 import NotFound from "./Pages/NotFound/notFound";
+import Checkout from "./Pages/checkout/checkout";
 
 class App extends Component {
   render() {
@@ -16,7 +17,7 @@ class App extends Component {
         <Nav />
         <Routes>
           <Route path="/" element={<Homepage />} />
-
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/category/:title" element={<GetTitle />} />
           <Route path="/product/:id" element={<GetId />} />
           <Route path="/Cart" element={<CartPage />} />
