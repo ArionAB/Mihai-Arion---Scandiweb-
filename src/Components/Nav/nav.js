@@ -27,6 +27,7 @@ class Nav extends Component {
           <Link to="/">
             <img src={Logo} className="logo" alt="Logo"></img>
           </Link>
+
           <SelectCurrency />
           {hidden ? null : <CartDropdown />}
         </div>

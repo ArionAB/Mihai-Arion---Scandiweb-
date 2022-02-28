@@ -1,0 +1,10 @@
+.triangle-bottomright {
+  position: absolute;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  border-bottom: 600px solid var(--lightGreen);
+  border-left: 600px solid transparent;
+  opacity: 10%;
+  z-index: 0;
+}

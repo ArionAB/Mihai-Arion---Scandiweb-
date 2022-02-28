@@ -9,6 +9,7 @@ import GetTitle from "./Components/getTitle";
 import CartPage from "./Pages/cart-page/cart-page";
 import NotFound from "./Pages/NotFound/notFound";
 import Checkout from "./Pages/checkout/checkout";
+import Register from "./Pages/register/register";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/product/:id" element={<GetId />} />
           <Route path="/Cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     );

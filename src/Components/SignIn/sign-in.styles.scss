@@ -1,0 +1,105 @@
+.sign-in-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .labels {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    font-weight: 600;
+    font-size: large;
+
+    input {
+      height: 2.5rem;
+      border-radius: 30px;
+      padding-left: 1rem;
+      margin-top: 0.7rem;
+      margin-bottom: 0.7rem;
+      border: 1px solid rgb(201, 201, 201);
+
+      outline: none;
+
+      &:focus {
+        border: 1px solid black;
+      }
+    }
+  }
+
+  .tos {
+    display: flex;
+    align-items: center;
+  }
+
+  .buttons {
+    display: flex;
+  }
+
+  .triangle-bottomleft {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-top: 600px solid var(--lightGreen);
+    border-right: 600px solid transparent;
+    opacity: 10%;
+  }
+  .test {
+    z-index: 1;
+  }
+
+  button {
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+      background-color: #fff;
+      color: black;
+      border: 1px solid black;
+    }
+  }
+
+  .google {
+    background-color: #4285f4;
+    border: none;
+
+    &:hover {
+      background-color: #1d6ef1;
+      color: white;
+      border: none;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  .accept {
+    display: flex;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0%;
+    background-color: white;
+    border: 1px solid black;
+    margin-right: 1rem;
+  }
+  .accepted {
+    display: flex;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0%;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    margin-right: 1rem;
+  }
+}

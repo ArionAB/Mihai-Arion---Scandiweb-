@@ -3,6 +3,18 @@
   justify-content: flex-end;
   width: 20vw;
   margin-right: 5%;
+
+  .register {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin-right: 3rem;
+
+    &:hover {
+      color: var(--lightGreen);
+    }
+  }
 }
 
 .total-icon {

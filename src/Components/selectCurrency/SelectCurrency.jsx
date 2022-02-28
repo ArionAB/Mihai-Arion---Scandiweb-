@@ -8,6 +8,7 @@ import { selectCurrency } from "../../Redux/Currency/currency.actions";
 import { ReactComponent as DownArrow } from "../../Assets/down-arrow-svgrepo-com.svg";
 import { ReactComponent as UpArrow } from "../../Assets/up-arrow-svgrepo-com.svg";
 import { SELECT_CURRENCY } from "../../GraphQL/queries";
+import { Link } from "react-router-dom";
 
 import "./selectCurrency.styles.scss";
 
@@ -92,6 +93,9 @@ class SelectCurrency extends Component {
 
     return (
       <div className="currency">
+        <Link className="register" to="/register">
+          Sign In
+        </Link>
         <div
           className="symbol"
           ref={(node) => {
