@@ -9,6 +9,7 @@ import "./cart-item.styles.scss";
 class CartItem extends Component {
   getAttributes() {
     const { item } = this.props;
+    console.log(item);
 
     return item.attributes?.map((att, index) => {
       return (

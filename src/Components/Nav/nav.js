@@ -17,7 +17,9 @@ class Nav extends Component {
         <div className="top-nav">
           <p>
             We're open and available for shipping nation wide.{" "}
-            <span>Order Now</span>
+            <Link to="/category/all">
+              <span>Order Now</span>
+            </Link>
           </p>
         </div>
         <div className="nav">

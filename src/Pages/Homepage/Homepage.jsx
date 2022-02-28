@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { ReactComponent as Trustpilot } from "../../Assets/trustpilot-svgrepo-com.svg";
 
 import "../Homepage/Homepage.styles.scss";
 
@@ -21,7 +22,11 @@ class Homepage extends Component {
               <button>Place an Order</button>
             </Link>
             <div className="trustpilot">
-              <p className="asd">Trustpilot</p>
+              <p className="asd">
+                <Trustpilot />
+                Trustpilot
+              </p>
+
               <p>
                 <span className="numbers">4.8 out of 5</span> based on 2000+
                 reviews

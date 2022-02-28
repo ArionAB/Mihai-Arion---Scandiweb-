@@ -18,7 +18,6 @@ class ProductPage extends Component {
       savedAttributes: [],
       index: 0,
       value: [],
-      active: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -46,7 +45,7 @@ class ProductPage extends Component {
   }
 
   getAttributes() {
-    const { item, savedAttributes, active } = this.state;
+    const { item, savedAttributes } = this.state;
     return item.attributes?.map((att, index) => {
       const nameAtt = att.name;
       const attID = att.id;

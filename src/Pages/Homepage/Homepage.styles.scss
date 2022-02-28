@@ -18,6 +18,8 @@
 
       h1 {
         font-size: 3.5rem;
+        position: relative;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 
         span {
           color: var(--lightGreen);
@@ -57,9 +59,18 @@
       }
     }
   }
+
+  .test {
+    font-size: 0.6em;
+    transition: 1s;
+    transform: scale(2, 3);
+  }
 }
 
 .asd {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   height: 1rem !important;
   color: black !important;
   margin-bottom: 2rem !important;
