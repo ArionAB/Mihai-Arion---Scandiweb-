@@ -10,12 +10,46 @@ import CartPage from "./Pages/cart-page/cart-page";
 import NotFound from "./Pages/NotFound/notFound";
 import Checkout from "./Pages/checkout/checkout";
 import Register from "./Pages/register/register";
+import { auth } from "./Components/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentUser: null,
+    };
+  }
+
+  unsuscribeFromAuth = null;
+
+  componentDidMount() {
+    this.auth();
+  }
+
+  componentWillUnmount() {
+    this.unsuscribeFromAuth();
+  }
+
+  auth() {
+    this.unsuscribeFromAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.setState({ currentUser: user });
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+  }
   render() {
+    const { currentUser } = this.state;
     return (
       <div className="App">
-        <Nav />
+        <Nav user={currentUser} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/checkout" element={<Checkout />} />

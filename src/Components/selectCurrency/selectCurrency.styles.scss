@@ -10,6 +10,7 @@
     text-decoration: none;
     color: black;
     margin-right: 3rem;
+    cursor: pointer;
 
     &:hover {
       color: var(--lightGreen);
@@ -83,6 +84,12 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
+}
+
+.error {
+  display: flex;
+  font-weight: 600;
+  font-size: large;
 }
 
 .overlay {

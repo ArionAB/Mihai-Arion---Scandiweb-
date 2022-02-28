@@ -9,6 +9,8 @@ import { ReactComponent as DownArrow } from "../../Assets/down-arrow-svgrepo-com
 import { ReactComponent as UpArrow } from "../../Assets/up-arrow-svgrepo-com.svg";
 import { SELECT_CURRENCY } from "../../GraphQL/queries";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 
 import "./selectCurrency.styles.scss";
 
@@ -87,15 +89,35 @@ class SelectCurrency extends Component {
     }
   };
 
+  LogOff() {
+    signOut(auth)
+      .then(() => {
+        console.log("sign-out");
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log(error);
+        // An error happened.
+      });
+  }
+
   render() {
-    const { hidden, itemCount } = this.props;
+    const { hidden, itemCount, user } = this.props;
     const { show } = this.state;
+    console.log(user);
 
     return (
       <div className="currency">
-        <Link className="register" to="/register">
-          Sign In
-        </Link>
+        {user !== null ? (
+          <div className="register" onClick={() => this.LogOff()}>
+            Sign Out
+          </div>
+        ) : (
+          <Link className="register" to="/register">
+            Sign In
+          </Link>
+        )}
+
         <div
           className="symbol"
           ref={(node) => {

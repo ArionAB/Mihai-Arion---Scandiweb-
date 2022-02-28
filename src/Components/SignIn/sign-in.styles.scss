@@ -10,7 +10,7 @@
     font-weight: 600;
     font-size: large;
 
-    input {
+    .input {
       height: 2.5rem;
       border-radius: 30px;
       padding-left: 1rem;
@@ -81,16 +81,6 @@
     margin-top: 2rem;
   }
 
-  .accept {
-    display: flex;
-    align-items: center;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 0%;
-    background-color: white;
-    border: 1px solid black;
-    margin-right: 1rem;
-  }
   .accepted {
     display: flex;
     align-items: center;
@@ -101,5 +91,19 @@
     color: black;
     border: 1px solid black;
     margin-right: 1rem;
+  }
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  .hasErrors {
+    border: 1px solid red;
+    height: 1.3rem;
+    border-radius: 30px;
+    padding-left: 1rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+    outline: none;
   }
 }
