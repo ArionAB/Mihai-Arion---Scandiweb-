@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { signup } from "../firebase";
 
 import "./sign-up.styles.scss";
 
 export default class SignUp extends Component {
   state = {
     active: false,
+    loading: false,
     content: {
       email: "",
       password: "",
@@ -78,10 +80,22 @@ export default class SignUp extends Component {
       this.setState({ errors: newErrors });
       return;
     }
-    alert("Account created");
+    this.handleSignUp();
   };
+
+  async handleSignUp() {
+    const { content } = this.state;
+    this.setState({ loading: true });
+    try {
+      await signup(content.email, content.password);
+    } catch {
+      alert("Error, user already exists");
+    }
+    this.setState({ loading: false });
+  }
   render() {
     const { active, content, errors } = this.state;
+
     return (
       <div>
         <form className="sign-in-form" onSubmit={this.handleSubmit}>
@@ -142,7 +156,9 @@ export default class SignUp extends Component {
               <p>I accept the Terms of Use & Privacy Policy.</p>
             </div>
             <div className="buttons">
-              <button type="submit">Sign Up</button>
+              <button disabled={this.state.loading} type="submit">
+                Sign Up
+              </button>
             </div>
           </div>
         </form>

@@ -69,7 +69,7 @@ class SignIn extends Component {
       this.setState({ errors: newErrors });
       return;
     }
-    alert("logged in succesfully");
+    this.props.history.push("/");
   };
 
   render() {

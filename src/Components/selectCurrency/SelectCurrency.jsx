@@ -9,8 +9,7 @@ import { ReactComponent as DownArrow } from "../../Assets/down-arrow-svgrepo-com
 import { ReactComponent as UpArrow } from "../../Assets/up-arrow-svgrepo-com.svg";
 import { SELECT_CURRENCY } from "../../GraphQL/queries";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase";
-import { signOut } from "firebase/auth";
+import { logout } from "../firebase";
 
 import "./selectCurrency.styles.scss";
 
@@ -21,6 +20,7 @@ class SelectCurrency extends Component {
     this.state = {
       data: {},
       show: false,
+      currentUser: null,
 
       value: 0,
     };
@@ -33,6 +33,7 @@ class SelectCurrency extends Component {
 
   componentDidMount() {
     this.getCurrencies();
+    this.setState({ currentUser: this.props.user });
   }
 
   async getCurrencies() {
@@ -89,27 +90,23 @@ class SelectCurrency extends Component {
     }
   };
 
-  LogOff() {
-    signOut(auth)
-      .then(() => {
-        console.log("sign-out");
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log(error);
-        // An error happened.
-      });
+  async handleLogout() {
+    try {
+      await logout();
+      this.setState({ currentUser: null });
+    } catch {
+      alert("error");
+    }
   }
 
   render() {
     const { hidden, itemCount, user } = this.props;
     const { show } = this.state;
-    console.log(user);
 
     return (
       <div className="currency">
         {user !== null ? (
-          <div className="register" onClick={() => this.LogOff()}>
+          <div className="register" onClick={() => this.handleLogout()}>
             Sign Out
           </div>
         ) : (
