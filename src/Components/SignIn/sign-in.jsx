@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { google } from "../firebase";
+import { history } from "../history";
+import { login } from "../firebase";
 
 import "./sign-in.styles.scss";
 
@@ -14,10 +16,6 @@ class SignIn extends Component {
       password: "",
     },
   };
-
-  myFunction() {
-    this.props.history.push("/");
-  }
 
   handleChange = (e) => {
     const { content, errors } = this.state;
@@ -69,8 +67,14 @@ class SignIn extends Component {
       this.setState({ errors: newErrors });
       return;
     }
-    this.props.history.push("/");
+    this.handleLogin();
   };
+
+  handleLogin() {
+    const { content } = this.state;
+    login(content.email, content.password);
+    history.push("/");
+  }
 
   render() {
     const { content, errors } = this.state;

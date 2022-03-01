@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { history } from "./history";
 
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
@@ -8,6 +9,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -28,8 +30,22 @@ export function logout() {
   return signOut(auth);
 }
 
-export const signup = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+export const login = (email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {})
+    .catch((error) => {
+      const errorCode = error.code;
+      alert(errorCode);
+    });
+};
+
+export const register = (email, password) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {})
+    .catch((error) => {
+      const errorCode = error.code;
+      alert(errorCode);
+    });
 };
 
 const provider = new GoogleAuthProvider();
@@ -39,11 +55,11 @@ export const google = () => {
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      console.log(token);
+      // const token = credential.accessToken;
+      history.push("/");
       // The signed-in user info.
-      const user = result.user;
-      console.log(user);
+      // const user = result.user;
+
       // ...
     })
     .catch((error) => {
