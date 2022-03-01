@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { signup, register } from "../firebase";
+import { register, addData } from "../firebase";
 import { history } from "../history";
 
 import "./sign-up.styles.scss";
@@ -7,7 +7,7 @@ import "./sign-up.styles.scss";
 export default class SignUp extends Component {
   state = {
     active: false,
-    loading: false,
+
     content: {
       email: "",
       password: "",
@@ -86,24 +86,12 @@ export default class SignUp extends Component {
 
   handleSignUp() {
     const { content } = this.state;
-    this.setState({ loading: true });
-
+    const date = new Date();
+    addData(content.email, content.password, date);
     register(content.email, content.password);
     history.push("/");
-
-    this.setState({ loading: false });
   }
-  /*   async handleSignUp() {
-    const { content } = this.state;
-    this.setState({ loading: true });
-    try {
-      await signup(content.email, content.password);
-      history.push("/");
-    } catch {
-      alert("Error, user already exists");
-    }
-    this.setState({ loading: false });
-  } */
+
   render() {
     const { active, content, errors } = this.state;
 

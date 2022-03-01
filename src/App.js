@@ -11,7 +11,7 @@ import CartPage from "./Pages/cart-page/cart-page";
 import NotFound from "./Pages/NotFound/notFound";
 import Checkout from "./Pages/checkout/checkout";
 import Register from "./Pages/register/register";
-import { auth } from "./Components/firebase";
+import { auth, getData } from "./Components/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
 class App extends Component {
@@ -21,11 +21,11 @@ class App extends Component {
       currentUser: null,
     };
   }
-
   unsuscribeFromAuth = null;
 
   componentDidMount() {
     this.auth();
+    getData();
   }
 
   componentWillUnmount() {

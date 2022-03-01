@@ -58,11 +58,9 @@ class CartDropdown extends Component {
   render() {
     this.getprice();
     const cartItems = this.props.cartItems;
-    const { show } = this.state;
-    console.log(show);
+
     const itemCount = this.props.itemCount;
-    console.log(cartItems.length);
-    console.log(cartItems.length === 0);
+
     return (
       <div className="cart-dropdown">
         <div className="mybag">

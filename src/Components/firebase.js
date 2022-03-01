@@ -1,7 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { history } from "./history";
 
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+} from "firebase/firestore/lite";
 
 import {
   createUserWithEmailAndPassword,
@@ -22,9 +27,30 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
+export const db = getFirestore(app);
+
+export const addData = async (email, password, date) => {
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+      email,
+      password,
+      date,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+export const getData = async () => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+
+  querySnapshot.docs.forEach((doc) => {
+    const allData = { ...doc.data(), id: doc.id };
+  });
+};
 
 export const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
 export function logout() {
   return signOut(auth);
@@ -48,17 +74,17 @@ export const register = (email, password) => {
     });
 };
 
-const provider = new GoogleAuthProvider();
-
 export const google = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
+
       // const token = credential.accessToken;
       history.push("/");
       // The signed-in user info.
-      // const user = result.user;
+      const user = result.user;
+      addData(user.email, user.displayName, user.uid);
 
       // ...
     })
