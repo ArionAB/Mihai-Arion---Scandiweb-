@@ -149,12 +149,17 @@ const mapDispatchToProps = (dispatch) => ({
   selectCurrency: (props) => dispatch(selectCurrency(props)),
 });
 
-const mapStateToProps = ({ cart: { cartItems }, cart: { hidden } }) => ({
+const mapStateToProps = ({
+  cart: { cartItems },
+  cart: { hidden },
+  user: { user },
+}) => ({
   itemCount: cartItems.reduce(
     (accQuantity, cartItem) => accQuantity + cartItem.quantity,
     0
   ),
   hidden,
+  user,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectCurrency);

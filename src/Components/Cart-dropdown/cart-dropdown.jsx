@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "../cart-item/cart-item";
 import { Link } from "react-router-dom";
+import { price } from "../../Redux/Currency/currency.actions";
 
 import "./cart-dropdown.styles.scss";
 import CheckoutModal from "../checkout-modal/checkout-modal";
@@ -28,8 +29,7 @@ class CartDropdown extends Component {
   }
 
   getprice() {
-    const cartItems = this.props.cartItems;
-    const selectCurrency = this.props.selectCurrency;
+    const { selectCurrency, cartItems, price } = this.props;
 
     const totalPrice = cartItems.reduce(
       (accQuantity, cartItem) =>
@@ -37,7 +37,7 @@ class CartDropdown extends Component {
         cartItem.quantity * cartItem.prices[selectCurrency].amount,
       0
     );
-
+    price(totalPrice);
     return (
       <div className="total-icon">
         <p>{this.totalPriceIcon()}</p>
@@ -82,18 +82,7 @@ class CartDropdown extends Component {
             <button className="bag">View Bag</button>
           </Link>
           <Link to="/checkout" onClick={this.activeModal()}>
-            <button
-              className="check"
-              onClick={this.activeModal()}
-
-              /* onClick={() => {
-                if (cartItems.length === 0) {
-                  this.setState = {
-                    show: true,
-                  };
-                }
-              }} */
-            >
+            <button className="check" onClick={this.activeModal()}>
               Check Out
             </button>
           </Link>
@@ -103,6 +92,10 @@ class CartDropdown extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  price: (props) => dispatch(price(props)),
+});
 
 const mapStateToProps = ({
   cart: { cartItems, attributes },
@@ -117,4 +110,4 @@ const mapStateToProps = ({
   ),
 });
 
-export default connect(mapStateToProps)(CartDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);

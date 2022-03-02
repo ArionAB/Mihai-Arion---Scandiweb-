@@ -10,7 +10,7 @@ import "./nav.styles.scss";
 import CartDropdown from "../Cart-dropdown/cart-dropdown";
 class Nav extends Component {
   render() {
-    const { hidden, user } = this.props;
+    const { hidden } = this.props;
 
     return (
       <>
@@ -28,7 +28,7 @@ class Nav extends Component {
             <img src={Logo} className="logo" alt="Logo"></img>
           </Link>
 
-          <SelectCurrency user={user} />
+          <SelectCurrency />
           {hidden ? null : <CartDropdown />}
         </div>
       </>

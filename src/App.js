@@ -13,12 +13,14 @@ import Checkout from "./Pages/checkout/checkout";
 import Register from "./Pages/register/register";
 import { auth, getData } from "./Components/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { currentUser } from "./Redux/User/user.actions";
+import { connect } from "react-redux";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentUser: null,
+      user: null,
     };
   }
   unsuscribeFromAuth = null;
@@ -35,22 +37,25 @@ class App extends Component {
   auth() {
     this.unsuscribeFromAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
-        this.setState({ currentUser: user });
+        this.setState({ user: user });
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         // ...
       } else {
-        this.setState({ currentUser: null });
+        this.setState({ user: null });
       }
     });
   }
   render() {
-    const { currentUser } = this.state;
+    const { user } = this.state;
+    const { currentUser } = this.props;
     console.log(currentUser);
+    console.log(user);
+    currentUser(user);
     return (
       <div className="App">
-        <Nav user={currentUser} />
+        <Nav />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/checkout" element={<Checkout />} />
@@ -65,4 +70,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  currentUser: (props) => dispatch(currentUser(props)),
+});
+
+export default connect(null, mapDispatchToProps)(App);
