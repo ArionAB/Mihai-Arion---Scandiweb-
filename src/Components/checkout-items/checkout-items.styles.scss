@@ -1,0 +1,43 @@
+.check-items {
+  margin: 0 auto;
+  width: 30vw;
+  border: 1px solid black;
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+
+    .item-card {
+      display: flex;
+      flex-direction: column;
+
+      .brand {
+        display: flex;
+        align-items: center;
+      }
+
+      .att {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 2rem;
+
+        span {
+          font-weight: 600;
+        }
+      }
+      .price {
+        display: flex;
+      }
+    }
+  }
+}

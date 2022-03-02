@@ -13,7 +13,7 @@ export default class Billing extends Component {
         address: "",
         zip: "",
         city: "",
-        country: "",
+        county: "",
       },
       errors: {
         fName: "",
@@ -22,15 +22,68 @@ export default class Billing extends Component {
         address: "",
         zip: "",
         city: "",
-        country: "",
+        county: "",
       },
     };
   }
+
+  handleChange = (e) => {
+    const { content, errors } = this.state;
+    const { value, name } = e.target;
+    this.setState({ content: { ...content, [name]: value } });
+
+    const newErrors = { ...errors };
+    newErrors[name] = "";
+
+    this.setState({ errors: newErrors });
+  };
+
+  handleSubmit = (e) => {
+    const { content, errors } = this.state;
+    e.preventDefault();
+
+    let hasErrors = false;
+    let newErrors = { ...errors };
+
+    if (!content.fName) {
+      hasErrors = true;
+      newErrors.fName = "Please add your first name";
+    }
+    if (!content.lName) {
+      hasErrors = true;
+      newErrors.lName = "Please add your last name";
+    }
+    if (!content.street) {
+      hasErrors = true;
+      newErrors.street = "Please add your street";
+    }
+    if (!content.address) {
+      hasErrors = true;
+      newErrors.address = "Please add your address";
+    }
+    if (!content.zip) {
+      hasErrors = true;
+      newErrors.zip = "Please add your zip code";
+    }
+    if (!content.city) {
+      hasErrors = true;
+      newErrors.city = "Please add your city";
+    }
+    if (!content.county) {
+      hasErrors = true;
+      newErrors.county = "Please add your county";
+    }
+
+    if (hasErrors) {
+      this.setState({ errors: newErrors });
+      return;
+    }
+  };
   render() {
     const { content, errors } = this.state;
     return (
       <div className="billing">
-        <form className="sign-in-form">
+        <form className="sign-in-form" onSubmit={this.handleSubmit}>
           <div className="triangle-bottomright"></div>
           <div className="test">
             <h1>Billing Address</h1>
