@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CartItem from "../cart-item/cart-item";
 import { Link } from "react-router-dom";
 import { price } from "../../Redux/Currency/currency.actions";
+import { toggleCartHidden } from "../../Redux/Cart/cart.actions";
 
 import "./cart-dropdown.styles.scss";
 import CheckoutModal from "../checkout-modal/checkout-modal";
@@ -37,7 +38,7 @@ class CartDropdown extends Component {
         cartItem.quantity * cartItem.prices[selectCurrency].amount,
       0
     );
-    price(totalPrice);
+    price((Math.round(totalPrice * 100) / 100).toFixed(2));
     return (
       <div className="total-icon">
         <p>{this.totalPriceIcon()}</p>
@@ -57,9 +58,7 @@ class CartDropdown extends Component {
 
   render() {
     this.getprice();
-    const cartItems = this.props.cartItems;
-
-    const itemCount = this.props.itemCount;
+    const { cartItems, itemCount, user, hidden } = this.props;
 
     return (
       <div className="cart-dropdown">
@@ -81,11 +80,20 @@ class CartDropdown extends Component {
           <Link to="/cart">
             <button className="bag">View Bag</button>
           </Link>
-          <Link to="/checkout" onClick={this.activeModal()}>
-            <button className="check" onClick={this.activeModal()}>
-              Check Out
-            </button>
-          </Link>
+          {user ? (
+            <Link to="/checkout" onClick={() => this.props.toggleCartHidden()}>
+              <button className="check" onClick={this.activeModal()}>
+                Check Out
+              </button>
+            </Link>
+          ) : (
+            <Link to="/register" onClick={() => this.props.toggleCartHidden()}>
+              <button className="check" onClick={this.activeModal()}>
+                Check Out
+              </button>
+            </Link>
+          )}
+
           {cartItems.length === 0 ? <CheckoutModal /> : ""}
         </div>
       </div>
@@ -95,15 +103,19 @@ class CartDropdown extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   price: (props) => dispatch(price(props)),
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
 const mapStateToProps = ({
-  cart: { cartItems, attributes },
+  cart: { cartItems, attributes, hidden },
   current: { currency },
+  user: { user },
 }) => ({
   selectCurrency: currency,
   cartItems,
   attributes,
+  user,
+  hidden,
   itemCount: cartItems.reduce(
     (accQuantity, cartItem) => accQuantity + cartItem.quantity,
     0

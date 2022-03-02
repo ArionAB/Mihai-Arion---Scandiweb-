@@ -1,0 +1,46 @@
+.CPC {
+  box-shadow: 2px 4px 15px 0 var(--lightGreen);
+  width: 25vw;
+  height: 50vh;
+
+  .change-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .policy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .fee {
+    display: flex;
+    justify-content: center;
+    font-weight: 400;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .delivery {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+
+    span {
+      margin-left: 20px;
+    }
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    background-color: var(--lightGreen);
+    border: none;
+    color: white;
+    padding: 1rem;
+    margin: 2rem 10%;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
