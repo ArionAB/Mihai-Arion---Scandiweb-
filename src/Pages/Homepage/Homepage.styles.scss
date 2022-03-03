@@ -44,6 +44,7 @@
 
     .right {
       width: 50%;
+      position: relative;
 
       img {
         z-index: 999;
@@ -55,27 +56,94 @@
         opacity: 10%;
         height: 40rem;
         width: 54rem;
+        right: 0;
         border-radius: 0px 0px 0px 400px;
       }
     }
   }
 
   .test {
-    font-size: 0.6em;
-    transition: 1s;
-    transform: scale(2, 3);
+    margin-top: 50rem;
+    height: 10px;
+    width: 300px;
+    background-color: red;
+    width: -100vw;
+    transition: transform 1s;
+    transform: translateX(-100vw) !important;
+    margin: 20px;
   }
-}
 
-.asd {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  height: 1rem !important;
-  color: black !important;
-  margin-bottom: 2rem !important;
-}
+  .test-active {
+    margin-top: 50rem;
+    height: 400px;
+    width: 300px;
+    background-color: red;
+    transform: translateX(0);
+    transition: transform 2s;
+    margin: 20px;
+  }
 
-.numbers {
-  color: var(--lightGreen);
+  .test1 {
+    margin-top: 50rem;
+    height: 10px;
+    width: 300px;
+    background-color: red;
+    transform: translateX(-100vw);
+    transition: transform 2s;
+    margin: 20px;
+  }
+
+  .test1-active {
+    margin-top: 50rem;
+    height: 400px;
+    width: 300px;
+    background-color: red;
+    transform: translateX(0);
+    transition: transform 2s;
+    margin: 20px;
+    background-color: green;
+  }
+
+  .test2 {
+    margin-top: 50rem;
+    height: 10px;
+    width: 300px;
+    background-color: red;
+    transform: translateX(-100vw);
+    transition: transform 2s;
+    margin: 20px;
+  }
+  .test2-active {
+    height: 400px;
+    width: 300px;
+    transform: translateX(0);
+    // transform: translateX(50vw);
+    transition: transform 2s;
+    color: yellow;
+    background-color: yellow;
+  }
+
+  .numbers {
+    color: var(--lightGreen);
+  }
+
+  .reveal-left {
+    // transform: translateX(-50vw);
+    transform: translateX(-50vw);
+    transition: transform 2s ease-out;
+  }
+
+  .reveal-right {
+    // transform: translateX(-50vw);
+    opacity: 0;
+    // transform: translateX(50vw);
+    // transition: transform 2s ease-out;
+  }
+
+  .fade-in {
+    transform: translateY(0);
+    opacity: 1;
+    // transform: translateX(50vw);
+    transition: transform 5s ease-out;
+  }
 }
