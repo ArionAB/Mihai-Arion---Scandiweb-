@@ -1,7 +1,8 @@
 .check-items {
   margin: 0 auto;
   width: 30vw;
-  border: 1px solid black;
+  height: 70vh;
+  overflow-x: auto;
 
   h2 {
     font-size: 1rem;
@@ -19,10 +20,27 @@
     .item-card {
       display: flex;
       flex-direction: column;
+      border-bottom: 1px solid rgb(221, 220, 220);
 
       .brand {
         display: flex;
         align-items: center;
+        gap: 10px;
+      }
+
+      .price {
+        font-weight: 600;
+      }
+
+      .qty {
+        display: flex;
+        margin: 0;
+        height: 1rem;
+
+        span {
+          font-weight: 600;
+          margin-left: 10px;
+        }
       }
 
       .att {
@@ -37,6 +55,7 @@
       }
       .price {
         display: flex;
+        margin: 10px 0;
       }
     }
   }

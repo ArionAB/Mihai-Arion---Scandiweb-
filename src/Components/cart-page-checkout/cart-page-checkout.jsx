@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReactComponent as Change } from "../../Assets/change-svgrepo-com.svg";
+import StripeCheckoutButton from "../stripe-button";
 import "./cart-page-checkout.styles.scss";
 
 class CPCheckout extends Component {

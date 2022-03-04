@@ -128,22 +128,25 @@
   }
 
   .reveal-left {
-    // transform: translateX(-50vw);
     transform: translateX(-50vw);
-    transition: transform 2s ease-out;
   }
 
   .reveal-right {
-    // transform: translateX(-50vw);
-    opacity: 0;
-    // transform: translateX(50vw);
-    // transition: transform 2s ease-out;
+    transform: translateX(50vw);
+
+    //apear from scratch
+    // opacity: 0;
   }
 
   .fade-in {
     transform: translateY(0);
     opacity: 1;
     // transform: translateX(50vw);
-    transition: transform 5s ease-out;
+    transition: transform 2s;
+
+    //appear form scratch
+    /*    opacity: 1;
+    -webkit-transition: opacity 2s ease-out;
+    -moz-transition: opacity 2s ease-in-out; */
   }
 }

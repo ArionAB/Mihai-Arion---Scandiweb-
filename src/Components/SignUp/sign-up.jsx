@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { register, addData } from "../firebase";
+import { register, addData, register2 } from "../firebase";
 import { history } from "../history";
+import { connect } from "react-redux";
 
 import "./sign-up.styles.scss";
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   state = {
     active: false,
 
@@ -87,8 +88,9 @@ export default class SignUp extends Component {
   handleSignUp() {
     const { content } = this.state;
     const date = new Date();
-    addData(content.email, content.password, date);
-    register(content.email, content.password);
+    // register2(content.email, content.password);
+    register(content.email, content.password, date);
+    // addData(content.email, content.password, date);
     history.push("/");
   }
 
@@ -165,3 +167,9 @@ export default class SignUp extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user: { user } }) => ({
+  user,
+});
+
+export default connect(mapStateToProps)(SignUp);

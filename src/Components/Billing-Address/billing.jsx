@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { history } from "../history";
+import { addBilling } from "../firebase";
+import { connect } from "react-redux";
 
 import "./billing.styles.scss";
 
-export default class Billing extends Component {
+class Billing extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,6 +28,21 @@ export default class Billing extends Component {
         county: "",
       },
     };
+  }
+
+  handleSendBilling() {
+    const { content } = this.state;
+    const { user } = this.props;
+    addBilling(
+      content.fName,
+      content.lName,
+      content.street,
+      content.address,
+      content.zip,
+      content.city,
+      content.county,
+      user.uid
+    );
   }
 
   handleChange = (e) => {
@@ -78,6 +96,9 @@ export default class Billing extends Component {
       this.setState({ errors: newErrors });
       return;
     }
+    this.handleSendBilling();
+    alert("success");
+    // history.push("/confirmation");
   };
   render() {
     const { content, errors } = this.state;
@@ -191,3 +212,9 @@ export default class Billing extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user: { user } }) => ({
+  user,
+});
+
+export default connect(mapStateToProps)(Billing);

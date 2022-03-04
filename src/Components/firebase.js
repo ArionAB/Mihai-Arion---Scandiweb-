@@ -6,6 +6,8 @@ import {
   collection,
   getDocs,
   addDoc,
+  setDoc,
+  doc,
 } from "firebase/firestore/lite";
 
 import {
@@ -29,18 +31,77 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-export const addData = async (email, password, date) => {
+export const addBilling = async (
+  fname,
+  lname,
+  street,
+  address,
+  zip,
+  city,
+  county,
+  user
+) => {
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      email,
-      password,
-      date,
+    /*     const docRef = await db
+      .collection("users")
+      .doc(user)
+      .collection("billing")
+      .add({
+        fname,
+        lname,
+        street,
+        address,
+        zip,
+        city,
+        county,
+      }); */
+    const docRef = await doc((db, "users", user), {
+      fname,
+      lname,
+      street,
+      address,
+      zip,
+      city,
+      county,
     });
+    /*     const docRef = await addDoc(
+      collection(db, "users"),
+      {
+        fname,
+        lname,
+        street,
+        address,
+        zip,
+        city,
+        county,
+      }
+    );  */
+
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
+
+export const addData = async (email, password, date) => {
+  try {
+    /* const docRef = await setDoc(doc(db, "users"), {
+      email,
+      password,
+      date,
+    }); */
+    const docRef = await addDoc(collection(db, "users"), {
+      email,
+      password,
+      date,
+    });
+
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
 export const getData = async () => {
   const querySnapshot = await getDocs(collection(db, "users"));
 
@@ -58,21 +119,54 @@ export function logout() {
 
 export const login = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {})
+    .then((userCredential) => {
+      console.log(userCredential);
+    })
     .catch((error) => {
       const errorCode = error.code;
       alert(errorCode);
     });
 };
 
-export const register = (email, password) => {
+export const register = (email, password, date) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {})
+    .then((userCredential) => {
+      return addDoc(
+        collection(db, "users", userCredential.user.uid, "registerd"),
+        {
+          email,
+          password,
+          date,
+        }
+      );
+    })
     .catch((error) => {
       const errorCode = error.code;
       alert(errorCode);
+      console.log(error);
+    })
+    .then(() => {
+      console.log("last then");
     });
 };
+/* export const register = (email, password, date) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      return db.collection("users").doc(userCredential.user.uid).set({
+        email,
+        password,
+        date,
+      });
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      alert(errorCode);
+      console.log(error);
+    })
+    .then(() => {
+      console.log("last then");
+    });
+}; */
 
 export const google = () => {
   signInWithPopup(auth, provider)

@@ -11,32 +11,50 @@ class CheckoutItems extends Component {
       <div className="check-items">
         <h1>Your order</h1>
         <div className="item">
-          {cartItems.map((item) => {
+          {cartItems.map((item, index) => {
             return (
-              <div className="item-card" key={item.id}>
+              <div className="item-card" key={index}>
                 <img src={item.gallery} alt="cartItem" />
                 <div className="brand">
                   <h2>{item.brand}</h2>
                   <h3>{item.name}</h3>
                 </div>
+                <p className="qty">
+                  Qty <span>{item.quantity}</span>
+                </p>
                 <div>
                   {item[0] ? (
                     <div className="att">
-                      <p>{item[0].attID}</p> <span>{item[0].id}</span>
+                      <p>{item[0].attID}</p> <span>{item[0].hex}</span>
                     </div>
                   ) : (
                     ""
                   )}
                   {item[1] ? (
                     <div className="att">
-                      <p>{item[1]?.attID}</p> <span>{item[1]?.id}</span>{" "}
+                      <p>{item[1]?.attID}</p>{" "}
+                      <span
+                        style={
+                          item[1]?.hex.includes("#")
+                            ? {
+                                background: item[1].hex,
+                                color: "transparent",
+                              }
+                            : {
+                                background: "white",
+                                color: "black",
+                              }
+                        }
+                      >
+                        {item[1]?.hex}
+                      </span>{" "}
                     </div>
                   ) : (
                     ""
                   )}
                   {item[2] ? (
                     <div className="att">
-                      <p>{item[2]?.attID}</p> <span>{item[2]?.id}</span>{" "}
+                      <p>{item[2]?.attID}</p> <span>{item[2]?.hex}</span>{" "}
                     </div>
                   ) : (
                     ""

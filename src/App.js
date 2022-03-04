@@ -15,6 +15,7 @@ import { auth, getData } from "./Components/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { currentUser } from "./Redux/User/user.actions";
 import { connect } from "react-redux";
+import { Test } from "./Components/test";
 
 class App extends Component {
   constructor() {
@@ -64,6 +65,7 @@ class App extends Component {
           <Route path="/Cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
     );
