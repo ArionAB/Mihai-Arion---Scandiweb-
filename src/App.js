@@ -28,6 +28,7 @@ class App extends Component {
   unsuscribeFromAuth = null;
 
   componentDidMount() {
+    console.log(this.state.user);
     this.auth();
     getData();
   }
@@ -52,11 +53,13 @@ class App extends Component {
   render() {
     const { user } = this.state;
     const { currentUser } = this.props;
+    currentUser(user);
 
     return (
       <div className="App">
         <Nav />
         <Routes>
+          <Route path="/:param" />
           <Route path="/" element={<Homepage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/category/:title" element={<GetTitle />} />

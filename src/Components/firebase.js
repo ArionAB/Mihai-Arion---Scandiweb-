@@ -74,11 +74,14 @@ export const addData = async (email, password, date) => {
   }
 };
 
-export const getData = async () => {
-  const querySnapshot = await getDocs(collection(db, "users"));
-
+export const getData = async (userID) => {
+  const querySnapshot = await getDocs(
+    collection(db, "users", userID, "registerd")
+  );
+  console.log(querySnapshot);
   querySnapshot.docs.forEach((doc) => {
     const allData = { ...doc.data(), id: doc.id };
+    console.log(allData);
   });
 };
 
