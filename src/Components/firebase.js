@@ -39,23 +39,10 @@ export const addBilling = async (
   zip,
   city,
   county,
-  user
+  userID
 ) => {
   try {
-    /*     const docRef = await db
-      .collection("users")
-      .doc(user)
-      .collection("billing")
-      .add({
-        fname,
-        lname,
-        street,
-        address,
-        zip,
-        city,
-        county,
-      }); */
-    const docRef = await doc((db, "users", user), {
+    await addDoc(collection(db, "users", userID, "Billing"), {
       fname,
       lname,
       street,
@@ -63,24 +50,9 @@ export const addBilling = async (
       zip,
       city,
       county,
+      userID,
     });
-    /*     const docRef = await addDoc(
-      collection(db, "users"),
-      {
-        fname,
-        lname,
-        street,
-        address,
-        zip,
-        city,
-        county,
-      }
-    );  */
-
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
+  } catch (e) {}
 };
 
 export const addData = async (email, password, date) => {
@@ -145,9 +117,7 @@ export const register = (email, password, date) => {
       alert(errorCode);
       console.log(error);
     })
-    .then(() => {
-      console.log("last then");
-    });
+    .then(() => {});
 };
 /* export const register = (email, password, date) => {
   createUserWithEmailAndPassword(auth, email, password)

@@ -97,8 +97,8 @@ class Billing extends Component {
       return;
     }
     this.handleSendBilling();
-    alert("success");
-    // history.push("/confirmation");
+
+    history.push("/confirmation");
   };
   render() {
     const { content, errors } = this.state;

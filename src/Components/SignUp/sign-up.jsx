@@ -88,9 +88,7 @@ class SignUp extends Component {
   handleSignUp() {
     const { content } = this.state;
     const date = new Date();
-    // register2(content.email, content.password);
     register(content.email, content.password, date);
-    // addData(content.email, content.password, date);
     history.push("/");
   }
 
