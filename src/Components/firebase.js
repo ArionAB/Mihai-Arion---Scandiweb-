@@ -42,7 +42,7 @@ export const addBilling = async (
   userID
 ) => {
   try {
-    await addDoc(collection(db, "users", userID, "Billing"), {
+    const docRef = await addDoc(collection(db, "users", userID, "Billing"), {
       fname,
       lname,
       street,
@@ -52,6 +52,7 @@ export const addBilling = async (
       county,
       userID,
     });
+    console.log(docRef);
   } catch (e) {}
 };
 
@@ -76,12 +77,12 @@ export const addData = async (email, password, date) => {
 
 export const getData = async (userID) => {
   const querySnapshot = await getDocs(
-    collection(db, "users", userID, "registerd")
+    collection(db, "users", userID, "Billing")
   );
-  console.log(querySnapshot);
+  console.log("querySnapshot", querySnapshot);
   querySnapshot.docs.forEach((doc) => {
     const allData = { ...doc.data(), id: doc.id };
-    console.log(allData);
+    console.log("allData", allData);
   });
 };
 

@@ -1,9 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getDocs, collection } from "firebase/firestore/lite";
+import { db } from "../firebase";
 
 import "./checkout-items.styles.scss";
 
 class CheckoutItems extends Component {
+  constructor() {
+    super();
+    this.state = {
+      data: {},
+    };
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData = async () => {
+    const { user } = this.props;
+
+    const querySnapshot = await getDocs(
+      collection(db, "users", user?.uid, "Billing")
+    );
+    querySnapshot.docs.forEach((doc) => {
+      const allData = { ...doc.data(), id: doc.id };
+      this.setState({ data: allData });
+      console.log("allData", allData);
+    });
+  };
+
   getCurrency() {
     const { currency } = this.props;
 
@@ -19,11 +45,21 @@ class CheckoutItems extends Component {
   }
   render() {
     const { cartItems, currency, price } = this.props;
+    const { data } = this.state;
 
     return (
       <div className="column">
         <div className="check-items">
           <h1>Your order</h1>
+          <div className="delivery">
+            <h1>Delivery Address</h1>
+            <div>{data?.address}</div>
+            <div>{data?.street}</div>
+            <div>
+              <span>{data?.zip},</span>
+              <span>{data?.city}</span>
+            </div>
+          </div>
           <div className="item">
             {cartItems.map((item, index) => {
               return (
@@ -96,10 +132,12 @@ class CheckoutItems extends Component {
 const mapStateToProps = ({
   cart: { cartItems },
   current: { currency, price },
+  user: { user },
 }) => ({
   cartItems,
   currency,
   price,
+  user,
 });
 
 export default connect(mapStateToProps)(CheckoutItems);
