@@ -1,0 +1,52 @@
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 70vw;
+  height: 50px;
+  background-color: var(--lightGrey);
+
+  .checked {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    border-radius: 30px;
+    background-color: var(--darkGreen);
+    color: white;
+  }
+
+  .checked-bar {
+    height: 2px;
+    width: 15rem;
+    background-color: var(--lightGreen);
+  }
+  .not-checked {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    border-radius: 30px;
+    background-color: var(--darkGrey);
+    color: white;
+  }
+
+  .not-checked-bar {
+    height: 2px;
+    width: 15rem;
+    background-color: var(--darkGrey);
+  }
+  .link {
+    display: flex;
+
+    justify-content: center;
+
+    text-decoration: none;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    right: 0;
+  }
+}

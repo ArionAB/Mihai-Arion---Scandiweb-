@@ -17,6 +17,7 @@ import { currentUser } from "./Redux/User/user.actions";
 import { connect } from "react-redux";
 
 import Confirmation from "./Pages/confirmation/confirmation";
+import ProgressBar from "./Components/progress-bar/progress-bar";
 
 class App extends Component {
   constructor() {
@@ -59,7 +60,6 @@ class App extends Component {
       <div className="App">
         <Nav />
         <Routes>
-          <Route path="/:param" />
           <Route path="/" element={<Homepage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/category/:title" element={<GetTitle />} />
