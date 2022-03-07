@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { history } from "../history";
 import { addBilling } from "../firebase";
 import { connect } from "react-redux";
+import { getDocs, collection } from "firebase/firestore/lite";
+import { db } from "../firebase";
 
 import "./billing.styles.scss";
 import ProgressBar from "../progress-bar/progress-bar";
@@ -32,8 +34,32 @@ class Billing extends Component {
     };
   }
 
+  getData = async () => {
+    const { user } = this.props;
+
+    const querySnapshot = await getDocs(
+      collection(db, "users", user?.uid, "Billing")
+    );
+    querySnapshot.docs.forEach((doc) => {
+      const allData = { ...doc.data(), id: doc.id };
+      this.setState({
+        content: {
+          fName: allData?.fname,
+          lName: allData?.lname,
+          street: allData?.street,
+          address: allData?.address,
+          zip: allData?.zip,
+          city: allData?.city,
+          county: allData?.county,
+        },
+      });
+      console.log("allData", allData);
+    });
+  };
+
   componentDidMount() {
     this.setState({ progressBar: true });
+    this.getData();
   }
 
   handleSendBilling() {
