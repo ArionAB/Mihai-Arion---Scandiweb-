@@ -1,0 +1,166 @@
+.full {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.cart-page {
+  width: 60vw;
+  margin: auto;
+}
+
+.increment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.increment button {
+  width: 25px;
+  height: 25px;
+}
+
+.increment .plus-minus {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 80%;
+}
+
+.increment .plus-minus .left-arrow {
+  display: none;
+}
+
+.increment .plus-minus .right-arrow {
+  display: none;
+}
+
+.increment .plus-minus button {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.increment .plus-minus button:hover {
+  cursor: pointer;
+}
+
+.cart-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.cart-page h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.cart-page .btn-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 35vh;
+  margin-top: 4em;
+  border-top: 1px solid #c7c4c4;
+}
+
+.cart-page .plus-minus {
+  margin-right: 1rem;
+}
+
+.cart-page .plus-minus button {
+  border: 1px solid black;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+}
+
+.cart-page .name p:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bolder;
+  font-size: 2em;
+  margin-bottom: 0.2em;
+}
+
+.cart-page .name p:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: normal;
+  font-size: 2em;
+  margin: 0;
+}
+
+.cart-page .price-symbol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1em 0;
+  font-size: 0.7em;
+  font-weight: 900;
+}
+
+.cart-page span {
+  font-size: 2em;
+}
+
+.cart-page .size-att {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.cart-page .size-att button {
+  width: 4em;
+  height: 4em;
+}
+
+.cart-page .size-att .no-color {
+  background-color: white !important;
+  color: black !important;
+}
+
+.cart-page .size-att .att-button {
+  background-color: black !important;
+  color: white !important;
+}
+
+.cart-page .size-att .color-btn {
+  color: transparent;
+}
+/*# sourceMappingURL=cart-page.styles.css.map */

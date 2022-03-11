@@ -1,0 +1,40 @@
+.category ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 20vw;
+  list-style: none;
+}
+
+.category ul a {
+  text-decoration: none;
+  color: black;
+}
+
+.category ul a:hover {
+  color: #5ece7b;
+  border-bottom: 2px solid #5ece7b;
+}
+
+.category ul a:focus {
+  color: #5ece7b;
+  border-bottom: 2px solid #5ece7b;
+}
+
+.category ul li {
+  padding: 20px 20px;
+  text-transform: uppercase;
+}
+
+.categ-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 10vw;
+  text-transform: capitalize;
+  font-size: 2em;
+}
+/*# sourceMappingURL=CategoryName.styles.css.map */

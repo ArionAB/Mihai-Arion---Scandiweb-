@@ -1,0 +1,63 @@
+.progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 70vw;
+  height: 50px;
+  background-color: var(--lightGrey);
+}
+
+.progress .checked {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  border-radius: 30px;
+  background-color: var(--darkGreen);
+  color: white;
+}
+
+.progress .checked-bar {
+  height: 2px;
+  width: 15rem;
+  background-color: var(--lightGreen);
+}
+
+.progress .not-checked {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  border-radius: 30px;
+  background-color: var(--darkGrey);
+  color: white;
+}
+
+.progress .not-checked-bar {
+  height: 2px;
+  width: 15rem;
+  background-color: var(--darkGrey);
+}
+
+.progress .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-decoration: none;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+}
+/*# sourceMappingURL=progress-bar.styles.css.map */

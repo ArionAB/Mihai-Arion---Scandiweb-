@@ -1,0 +1,79 @@
+.cart-items .price-symbol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+
+.cart-items .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.cart-items .name p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.cart-items .increment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 1em;
+}
+
+.cart-items .increment button {
+  width: 25px;
+}
+
+.cart-items .increment span {
+  width: 25px;
+}
+
+.cart-items .btn-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 2em;
+}
+
+.cart-items .name {
+  height: 100%;
+  width: 60%;
+}
+
+.size-att {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 0.5em;
+}
+
+.size-att button {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.size-att .att-btn-hidden {
+  border: 1px solid red;
+}
+/*# sourceMappingURL=cart-item.styles.css.map */

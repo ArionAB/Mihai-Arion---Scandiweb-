@@ -1,0 +1,182 @@
+.HP-container {
+  margin-top: 3rem;
+}
+
+.HP-container .order {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.HP-container .order .left {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.HP-container .order .left p {
+  width: 70%;
+  margin: 0 auto;
+  color: #5c5b5b;
+  height: 5rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.HP-container .order .left h1 {
+  font-size: 3.5rem;
+  position: relative;
+  -webkit-transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.HP-container .order .left h1 span {
+  color: var(--lightGreen);
+}
+
+.HP-container .order .left button {
+  margin: 4rem 0 1.5rem 0;
+  padding: 1.3rem 3.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--lightGreen);
+  color: white;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.HP-container .order .left button:hover {
+  background-color: var(--darkGreen);
+}
+
+.HP-container .order .right {
+  width: 50%;
+  position: relative;
+}
+
+.HP-container .order .right img {
+  z-index: 999;
+}
+
+.HP-container .order .right .background {
+  display: none;
+  position: absolute;
+  background-color: var(--lightGreen);
+  opacity: 10%;
+  height: 40rem;
+  width: 54rem;
+  right: 0;
+  border-radius: 0px 0px 0px 400px;
+}
+
+.HP-container .test {
+  margin-top: 50rem;
+  height: 10px;
+  width: 300px;
+  background-color: red;
+  width: -100vw;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+  -webkit-transform: translateX(-100vw) !important;
+          transform: translateX(-100vw) !important;
+  margin: 20px;
+}
+
+.HP-container .test-active {
+  margin-top: 50rem;
+  height: 400px;
+  width: 300px;
+  background-color: red;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+  margin: 20px;
+}
+
+.HP-container .test1 {
+  margin-top: 50rem;
+  height: 10px;
+  width: 300px;
+  background-color: red;
+  -webkit-transform: translateX(-100vw);
+          transform: translateX(-100vw);
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+  margin: 20px;
+}
+
+.HP-container .test1-active {
+  margin-top: 50rem;
+  height: 400px;
+  width: 300px;
+  background-color: red;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+  margin: 20px;
+  background-color: green;
+}
+
+.HP-container .test2 {
+  margin-top: 50rem;
+  height: 10px;
+  width: 300px;
+  background-color: red;
+  -webkit-transform: translateX(-100vw);
+          transform: translateX(-100vw);
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+  margin: 20px;
+}
+
+.HP-container .test2-active {
+  height: 400px;
+  width: 300px;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+  color: yellow;
+  background-color: yellow;
+}
+
+.HP-container .numbers {
+  color: var(--lightGreen);
+}
+
+.HP-container .reveal-left {
+  -webkit-transform: translateX(-50vw);
+          transform: translateX(-50vw);
+}
+
+.HP-container .reveal-right {
+  -webkit-transform: translateX(50vw);
+          transform: translateX(50vw);
+}
+
+.HP-container .fade-in {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+  /*    opacity: 1;
+    -webkit-transition: opacity 2s ease-out;
+    -moz-transition: opacity 2s ease-in-out; */
+}
+/*# sourceMappingURL=Homepage.styles.css.map */

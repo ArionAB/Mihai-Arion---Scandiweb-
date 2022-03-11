@@ -1,0 +1,18 @@
+.checkout .billing {
+  width: 30vw;
+  margin: 50px auto;
+}
+
+.checkout .first-last {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checkout .first-last .labels {
+  width: 45%;
+}
+/*# sourceMappingURL=billing.styles.css.map */

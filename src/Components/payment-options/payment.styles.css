@@ -1,0 +1,45 @@
+.payment {
+  width: 30vw;
+  margin: 50px auto;
+}
+
+.payment .payment-meth {
+  height: 75px;
+  width: 75px;
+}
+
+.payment .method {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+  height: 75px;
+}
+
+.payment .method input {
+  margin-right: 20px;
+}
+
+.payment .all-pay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.payment .stripe {
+  margin-left: 20px;
+}
+/*# sourceMappingURL=payment.styles.css.map */

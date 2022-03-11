@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .currency {
   display: flex;
   justify-content: flex-end;
@@ -15,6 +17,10 @@
     &:hover {
       color: var(--lightGreen);
     }
+
+    @media screen and (max-width: $bp-md) {
+      display: none;
+    }
   }
 }
 
@@ -25,6 +31,10 @@
   p {
     margin: 0 0 0 0;
   }
+}
+
+.toggle {
+  position: relative;
 }
 
 .symbol {
@@ -76,8 +86,9 @@
 
 .item-count {
   position: absolute;
-  right: 8.6vw;
-  top: 4rem;
+  right: 0;
+  left: 2rem;
+  top: -1rem;
 
   background-color: black;
   color: white;

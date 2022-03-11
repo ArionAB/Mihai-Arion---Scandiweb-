@@ -1,0 +1,107 @@
+.column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 50px;
+}
+
+.column .price {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+.column .delivery h1 {
+  font-size: 1.5rem;
+}
+
+.check-items {
+  margin: 0 auto;
+  width: 30vw;
+  height: 70vh;
+  overflow-x: auto;
+}
+
+.check-items h2 {
+  font-size: 1rem;
+}
+
+.check-items .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.check-items .item img {
+  height: 100px;
+  width: 100px;
+}
+
+.check-items .item .item-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid #dddcdc;
+}
+
+.check-items .item .item-card .brand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.check-items .item .item-card .price {
+  font-weight: 600;
+}
+
+.check-items .item .item-card .qty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  height: 1rem;
+}
+
+.check-items .item .item-card .qty span {
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.check-items .item .item-card .att {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  height: 2rem;
+}
+
+.check-items .item .item-card .att span {
+  font-weight: 600;
+}
+
+.check-items .item .item-card .price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0;
+}
+/*# sourceMappingURL=checkout-items.styles.css.map */

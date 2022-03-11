@@ -1,0 +1,30 @@
+.cart-gallery {
+  position: relative;
+}
+
+.cart-gallery .left-arrow {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 6.2em;
+  left: -1em;
+  cursor: pointer;
+}
+
+.cart-gallery .right-arrow {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 6.2em;
+  cursor: pointer;
+}
+
+.cart-gallery .hidden-arrow {
+  display: none;
+}
+
+.cart-gallery .cart-img {
+  width: 10em;
+  height: 14em;
+}
+/*# sourceMappingURL=CartGallery.styles.css.map */

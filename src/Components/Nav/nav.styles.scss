@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -7,14 +9,103 @@
     width: 25px;
     height: 25px;
   }
+
+  @media only screen and(max-width: $bp-md) {
+    display: none;
+  }
+}
+
+.ham-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  height: 3rem;
+
+  @media only screen and(min-width: $bp-md) {
+    display: none;
+  }
+
+  .menu {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+  }
+
+  .logo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .only-cart {
+    display: none;
+  }
+
+  .content {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    background-color: #fff;
+    top: 4rem;
+    width: 100%;
+    height: 15rem;
+
+    .category ul {
+      @include flexCenter(column);
+      width: 100%;
+      padding: 0;
+
+      div {
+        width: 100%;
+      }
+      // width: 10rem;
+      li {
+        display: flex;
+        color: black;
+        border-bottom: 1px solid var(--darkGreen);
+      }
+    }
+
+    .currency {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      // padding-left: 10px;
+
+      .register {
+        margin: -10px 0;
+        display: flex;
+        justify-content: flex-start;
+        text-transform: uppercase;
+        color: black;
+        border-bottom: 1px solid var(--darkGreen);
+        width: calc(100% - 20px);
+        padding-left: 20px;
+        padding-bottom: 20px;
+      }
+
+      .symbol {
+        width: 0;
+        display: none;
+      }
+
+      .toggle {
+        display: none;
+      }
+    }
+  }
 }
 
 .top-nav {
   background-color: var(--lightGreen);
   height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexCenter(row);
 
   a {
     text-decoration: none;

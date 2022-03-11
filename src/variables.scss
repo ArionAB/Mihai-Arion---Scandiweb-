@@ -1,0 +1,25 @@
+// RESPONSIVE BREAKPOINTS
+$bp-xxl: 87.5em; // 1400px
+$bp-xl: 75em; // 1200px
+$bp-lg: 62.5em; // 1000px
+$bp-md: 50em; // 800px
+$bp-sm: 37.5em; // 600px
+$bp-xsm: 25em; // 400px
+
+:root {
+  --lightGreen: #5ece7b;
+  --darkGreen: #3ab95c;
+  --lightGrey: rgb(238, 235, 235);
+  --darkGrey: rgb(172, 169, 169);
+  text-align: center;
+  box-sizing: content-box;
+}
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+//   @include flexCenter();

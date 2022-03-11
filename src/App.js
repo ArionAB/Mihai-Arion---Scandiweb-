@@ -1,4 +1,4 @@
-import "./App.css";
+import "./variables.scss";
 import { Component } from "react";
 
 import { Routes, Route } from "react-router-dom";
@@ -17,7 +17,6 @@ import { currentUser } from "./Redux/User/user.actions";
 import { connect } from "react-redux";
 
 import Confirmation from "./Pages/confirmation/confirmation";
-import ProgressBar from "./Components/progress-bar/progress-bar";
 
 class App extends Component {
   constructor() {
