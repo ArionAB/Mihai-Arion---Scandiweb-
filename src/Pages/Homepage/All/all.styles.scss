@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -22,22 +24,47 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*  width: 20vw;
-    height: 60vh; */
     width: 20vw;
     height: 55vh;
-
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
+
+    @media screen and (max-width: $bp-md) {
+      .cart {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 90px;
+        background-color: #5ece7b;
+        padding: 5px;
+        border-radius: 60%;
+        height: 35px;
+        width: 35px;
+      }
+    }
+
+    @media only screen and (max-width: $bp-lg) {
+      width: 30vw;
+      height: 47vh;
+    }
 
     &:hover {
       box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     }
 
+    @media only screen and (max-width: $bp-md) {
+      width: 100%;
+      height: auto;
+    }
+
     .card-img {
       max-height: 75%;
       max-width: 88%;
+
+      @media only screen and (max-width: $bp-lg) {
+        width: 100%;
+      }
     }
   }
   .card:hover .cart {
