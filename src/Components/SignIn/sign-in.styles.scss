@@ -1,7 +1,16 @@
+@import "../../variables";
+
 .sign-in-form {
   position: relative;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: $bp-lg) {
+    width: 60%;
+  }
+  @media only screen and (max-width: $bp-md) {
+    width: 100%;
+  }
 
   .labels {
     display: flex;
@@ -42,6 +51,19 @@
     border-top: 600px solid var(--lightGreen);
     border-right: 600px solid transparent;
     opacity: 10%;
+
+    @media only screen and (max-width: $bp-md) {
+      border-top: 500px solid var(--lightGreen);
+      border-right: 500px solid transparent;
+    }
+    @media only screen and (max-width: $bp-sm) {
+      border-top: 350px solid var(--lightGreen);
+      border-right: 350px solid transparent;
+    }
+    @media only screen and (max-width: $bp-xs) {
+      border-top: 250px solid var(--lightGreen);
+      border-right: 250px solid transparent;
+    }
   }
   .test {
     z-index: 1;

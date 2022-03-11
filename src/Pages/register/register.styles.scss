@@ -1,5 +1,11 @@
+@import "../../variables";
+
 .register {
   display: flex;
   justify-content: center;
   gap: 10rem;
+
+  @media only screen and (max-width: $bp-lg) {
+    flex-direction: column;
+  }
 }

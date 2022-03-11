@@ -1,3 +1,13 @@
+:root {
+  --lightGreen: #5ece7b;
+  --darkGreen: #3ab95c;
+  --lightGrey: rgb(238, 235, 235);
+  --darkGrey: rgb(172, 169, 169);
+  text-align: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
 .sign-in-form {
   position: relative;
   display: -webkit-box;
@@ -7,6 +17,18 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media only screen and (max-width: 62.5em) {
+  .sign-in-form {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 50em) {
+  .sign-in-form {
+    width: 100%;
+  }
 }
 
 .sign-in-form .labels {
@@ -58,6 +80,27 @@
   border-top: 600px solid var(--lightGreen);
   border-right: 600px solid transparent;
   opacity: 10%;
+}
+
+@media only screen and (max-width: 50em) {
+  .sign-in-form .triangle-bottomleft {
+    border-top: 500px solid var(--lightGreen);
+    border-right: 500px solid transparent;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .sign-in-form .triangle-bottomleft {
+    border-top: 350px solid var(--lightGreen);
+    border-right: 350px solid transparent;
+  }
+}
+
+@media only screen and (max-width: 25em) {
+  .sign-in-form .triangle-bottomleft {
+    border-top: 250px solid var(--lightGreen);
+    border-right: 250px solid transparent;
+  }
 }
 
 .sign-in-form .test {

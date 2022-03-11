@@ -27,10 +27,21 @@
     display: none;
   }
 
+  .menu-fill {
+    height: 30px;
+    width: 30px;
+    padding: 7px;
+    cursor: pointer;
+    color: white;
+    background-color: var(--lightGreen);
+    margin-right: 15%;
+  }
+
   .menu {
     height: 40px;
     width: 40px;
     cursor: pointer;
+    margin-right: 15%;
   }
 
   .logo {
@@ -52,6 +63,61 @@
     top: 4rem;
     width: 100%;
     height: 16.5rem;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.6s;
+    animation-name: animatetop;
+    animation-duration: 0.6s;
+
+    @-webkit-keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0;
+      }
+      to {
+        top: 60px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0;
+      }
+      to {
+        top: 60px;
+        opacity: 1;
+      }
+    }
+
+    /* @-webkit-keyframes animateBottom {
+      from {
+        top: 0px;
+        opacity: 1;
+      }
+      to {
+        top: 500px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes animateBottom {
+      from {
+        top: 0px;
+        opacity: 1;
+      }
+      to {
+        top: 300px;
+        opacity: 0;
+      }
+    }
+
+    .modal-content-active {
+      -webkit-animation-name: animateBottom;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animateBottom;
+      animation-duration: 0.4s;
+    } */
 
     .category ul {
       @include flexCenter(column);
@@ -65,7 +131,7 @@
       li {
         display: flex;
         color: black;
-        border-bottom: 1px solid var(--darkGreen);
+        // border-bottom: 1px solid var(--darkGreen);
       }
     }
 
@@ -80,14 +146,16 @@
 
       .register {
         margin: -10px 0;
-        display: flex;
-        justify-content: flex-start;
+
+        display: inline;
+        text-align: start;
+
         text-transform: uppercase;
-        color: black;
-        border-bottom: 1px solid var(--darkGreen);
+        color: var(--darkGreen);
+        // border-bottom: 1px solid var(--darkGreen);
         width: calc(100% - 20px);
         padding-left: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         padding-top: 20px;
       }
 

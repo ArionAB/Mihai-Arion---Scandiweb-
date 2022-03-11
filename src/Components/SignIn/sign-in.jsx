@@ -80,7 +80,7 @@ class SignIn extends Component {
     const { content, errors } = this.state;
 
     return (
-      <div>
+      <>
         <form className="sign-in-form" onSubmit={this.handleSubmit} noValidate>
           <div className="triangle-bottomleft"></div>
           <div className="test">
@@ -121,7 +121,7 @@ class SignIn extends Component {
             </div>
           </div>
         </form>
-      </div>
+      </>
     );
   }
 }

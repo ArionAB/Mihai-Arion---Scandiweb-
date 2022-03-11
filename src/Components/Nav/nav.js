@@ -39,7 +39,7 @@ class Nav extends Component {
         </div>
         <div className="ham-nav">
           <Menu
-            className="menu"
+            className={this.state.show ? "menu-fill" : "menu"}
             onClick={() => this.setState({ show: !this.state.show })}
           />
           <Link to="/">
