@@ -44,14 +44,14 @@
 
   .content {
     position: absolute;
-
+    z-index: 5;
     display: flex;
     flex-direction: column-reverse;
-
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     background-color: #fff;
     top: 4rem;
     width: 100%;
-    height: 15rem;
+    height: 16.5rem;
 
     .category ul {
       @include flexCenter(column);
@@ -88,6 +88,7 @@
         width: calc(100% - 20px);
         padding-left: 20px;
         padding-bottom: 20px;
+        padding-top: 20px;
       }
 
       .symbol {

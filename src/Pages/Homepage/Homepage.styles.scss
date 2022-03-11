@@ -1,11 +1,24 @@
+@import "../../variables.scss";
+
 .HP-container {
   margin-top: 3rem;
   .order {
     display: flex;
 
+    @media only screen and (max-width: $bp-xl) {
+      flex-direction: column;
+    }
+
     .left {
       width: 50%;
       margin: 0 auto;
+
+      @media only screen and (max-width: $bp-xl) {
+        width: 75%;
+      }
+      @media only screen and (max-width: $bp-lg) {
+        width: 100%;
+      }
 
       p {
         width: 70%;
@@ -19,7 +32,10 @@
       h1 {
         font-size: 3.5rem;
         position: relative;
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        @media screen and (max-width: $bp-sm) {
+          font-size: 2.5rem;
+        }
 
         span {
           color: var(--lightGreen);
@@ -39,6 +55,9 @@
         &:hover {
           background-color: var(--darkGreen);
         }
+        @media only screen and (max-width: $bp-md) {
+          margin-top: 9rem;
+        }
       }
     }
 
@@ -46,19 +65,36 @@
       width: 50%;
       position: relative;
 
+      @media only screen and (max-width: $bp-xl) {
+        width: 75%;
+      }
+      @media only screen and (max-width: $bp-lg) {
+        width: 100%;
+      }
+
       img {
         z-index: 999;
+        @media only screen and (max-width: $bp-sm) {
+          width: 100%;
+        }
       }
 
       .background {
-        display: none;
         position: absolute;
         background-color: var(--lightGreen);
         opacity: 10%;
         height: 40rem;
-        width: 54rem;
+        width: 50vw;
         right: 0;
         border-radius: 0px 0px 0px 400px;
+
+        @media only screen and (max-width: $bp-lg) {
+          left: 0;
+        }
+        @media only screen and (max-width: $bp-sm) {
+          height: 20rem;
+          width: 100%;
+        }
       }
     }
   }

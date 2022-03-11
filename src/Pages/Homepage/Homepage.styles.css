@@ -1,3 +1,13 @@
+:root {
+  --lightGreen: #5ece7b;
+  --darkGreen: #3ab95c;
+  --lightGrey: rgb(238, 235, 235);
+  --darkGrey: rgb(172, 169, 169);
+  text-align: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
 .HP-container {
   margin-top: 3rem;
 }
@@ -8,9 +18,30 @@
   display: flex;
 }
 
+@media only screen and (max-width: 75em) {
+  .HP-container .order {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .HP-container .order .left {
   width: 50%;
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 75em) {
+  .HP-container .order .left {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 62.5em) {
+  .HP-container .order .left {
+    width: 100%;
+  }
 }
 
 .HP-container .order .left p {
@@ -25,8 +56,12 @@
 .HP-container .order .left h1 {
   font-size: 3.5rem;
   position: relative;
-  -webkit-transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@media screen and (max-width: 37.5em) {
+  .HP-container .order .left h1 {
+    font-size: 2.5rem;
+  }
 }
 
 .HP-container .order .left h1 span {
@@ -48,24 +83,60 @@
   background-color: var(--darkGreen);
 }
 
+@media only screen and (max-width: 50em) {
+  .HP-container .order .left button {
+    margin-top: 9rem;
+  }
+}
+
 .HP-container .order .right {
   width: 50%;
   position: relative;
+}
+
+@media only screen and (max-width: 75em) {
+  .HP-container .order .right {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 62.5em) {
+  .HP-container .order .right {
+    width: 100%;
+  }
 }
 
 .HP-container .order .right img {
   z-index: 999;
 }
 
+@media only screen and (max-width: 37.5em) {
+  .HP-container .order .right img {
+    width: 100%;
+  }
+}
+
 .HP-container .order .right .background {
-  display: none;
   position: absolute;
   background-color: var(--lightGreen);
   opacity: 10%;
   height: 40rem;
-  width: 54rem;
+  width: 50vw;
   right: 0;
   border-radius: 0px 0px 0px 400px;
+}
+
+@media only screen and (max-width: 62.5em) {
+  .HP-container .order .right .background {
+    left: 0;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .HP-container .order .right .background {
+    height: 20rem;
+    width: 100%;
+  }
 }
 
 .HP-container .test {
