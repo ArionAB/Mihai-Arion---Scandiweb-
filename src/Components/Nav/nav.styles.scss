@@ -90,35 +90,6 @@
       }
     }
 
-    /* @-webkit-keyframes animateBottom {
-      from {
-        top: 0px;
-        opacity: 1;
-      }
-      to {
-        top: 500px;
-        opacity: 0;
-      }
-    }
-
-    @keyframes animateBottom {
-      from {
-        top: 0px;
-        opacity: 1;
-      }
-      to {
-        top: 300px;
-        opacity: 0;
-      }
-    }
-
-    .modal-content-active {
-      -webkit-animation-name: animateBottom;
-      -webkit-animation-duration: 0.4s;
-      animation-name: animateBottom;
-      animation-duration: 0.4s;
-    } */
-
     .category ul {
       @include flexCenter(column);
       width: 100%;

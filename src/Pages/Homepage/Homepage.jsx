@@ -36,10 +36,7 @@ class Homepage extends Component {
     });
   }
 
-  test() {}
-
   render() {
-    this.test();
     return (
       <div className="HP-container">
         <div className="order">
